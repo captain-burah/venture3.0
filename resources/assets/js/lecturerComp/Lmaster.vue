@@ -172,7 +172,8 @@
               </p>
             </a>
             <form id="logout-form" :action="logout_user" method="POST" style="display: none;">
-              {!! csrf_field() !!}
+              <input type="hidden" name="_token" :value="csrf">
+              
             </form>
           </li>
         </ul>
@@ -216,7 +217,8 @@
       data: function(){
         const lang = localStorage.getItem('lang') || 'en';
         return {
-          lang: lang
+          lang: lang,
+          csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
       },
 

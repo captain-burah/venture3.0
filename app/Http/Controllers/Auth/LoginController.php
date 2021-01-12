@@ -49,6 +49,14 @@ class LoginController extends Controller
         $this->middleware('guest:lecturer')->except('logout');
     } 
 
+    public function logout(Request $request)
+    {
+        $this->guard('lecturer')->logout();
+
+        $request->session()->invalidate();
+
+        return redirect( app()->getLocale() . '/login');
+    }
 
 //------------------ Tutor Login Form -----------------------
     public function showLecLoginForm()

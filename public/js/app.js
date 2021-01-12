@@ -90260,7 +90260,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         var lang = localStorage.getItem('lang') || 'en';
         return {
-            lang: lang
+            lang: lang,
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         };
     },
 
@@ -90704,9 +90705,10 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._v(
-                        "\n              {!! csrf_field() !!}\n            "
-                      )
+                      _c("input", {
+                        attrs: { type: "hidden", name: "_token" },
+                        domProps: { value: _vm.csrf }
+                      })
                     ]
                   )
                 ])
