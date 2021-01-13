@@ -114,11 +114,11 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
 });
 
-Route::group(['middleware' => 'auth:lecturer'], function() {
+Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => ['auth:lecturer','setlocale']], function() {
 //---------------------------- Group: Lecturer Auths------------------------------------------------------->
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', function(){
+        return view('landing');
+    })->name('landing-page-vue');
     
     Route::get('/setup', function () {              //---- Loading of the step page
         return view('lecturer.setup.lecSetup');     //---- This is controlled by App/Exceptions/Handler.php
@@ -148,5 +148,5 @@ Route::group(['middleware' => 'auth:lecturer'], function() {
 //--------------------------------------------------------------------------------------------
 //Route::get('{path}','Student\StudentController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
 //Route::get('{path}','Lecturer\LecturerController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
-Route::get('{path}','Lecturer\LecturerController@dashboard')->where( 'path', '([A-z\d\-\/_.]+)?' );
+//Route::get('/{path}','Lecturer\LecturerController@dashboard')->where( 'path', '([A-z\d\-\/_.]+)?' );
 //Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );

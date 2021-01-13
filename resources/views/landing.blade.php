@@ -8,10 +8,7 @@
     <div class="row container text-center mx-auto my-auto d-flex align-content-center flex-wrap" >
       <div class="col-md-12">
         
-        <test-vue
-        about_us="{{ (app()->getLocale() . '/login/tutor' ) }}"
-        login_now="{{ route('login', app()->getLocale() )}}"
-        ></test-vue>
+       
 
         <h1 class="cover-heading mx-auto mb-5 mt-0 text-light animate__animated animate__fadeInUp animate__delay-1s"
         style="font-size: 4.5em">
