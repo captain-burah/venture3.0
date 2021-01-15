@@ -44,7 +44,7 @@ class LecturerController extends Controller
 //------------------ Going Home--------------------------------------
     public function home_tutor()
     {
-        return app()->getLocale() . view('joinAsTutor', ['url' => '/tutors']);
+        return view('joinAsTutor', ['url' => '/tutors']);
     }
 
 //------------------ After Registered--------------------------------------

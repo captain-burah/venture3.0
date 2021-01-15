@@ -64,7 +64,7 @@
 
 <script>
 export default {
-  props: ['locale', 'link-en', 'link-sn'],
+  props: ['locale', 'link-en', 'link-sn', 'linkEn', 'linkSn'],
   data() {
     return {
       isVisible: false,

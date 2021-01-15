@@ -2,21 +2,21 @@
 
 @section('content')
   <!---   Cover   --->
-  <!--style="background-image: url({{asset('img/bg4.jpg')}}); transform: translate3d(0px, 0px, 0px);"-->
-  <div class="page-header bg-primary header-filter dark-filter" data-parallax="true" 
-  style="background-image: url({{asset('img/bg15.jpg')}}); transform: translate3d(0px, 0px, 0px);" id="coverSection">
+  <!-- style="background-image: url({{asset('img/bg15.jpg')}}); transform: translate3d(0px, 0px, 0px);" -->
+  <div class="page-header bg-white " data-parallax="true" 
+   id="coverSection">
     <div class="row container text-center mx-auto my-auto d-flex align-content-center flex-wrap" >
       <div class="col-md-12">
         
        
 
-        <h1 class="cover-heading mx-auto mb-5 mt-0 text-light animate__animated animate__fadeInUp animate__delay-1s"
+        <h1 class="cover-heading mx-auto mb-5 mt-0 text-dark animate__animated animate__fadeInUp animate__delay-1s"
         style="font-size: 4.5em">
         {{ __('Enlighten Venture')}}
         </h1>
       </div>
       <div class="col-md-12 mx-auto animate__animated animate__fadeInDown animate__delay-2s animate__fast	800ms">
-        <a href="{{ url('/en/home')}}" class="btn btn-white btn-lg text-dark" style="min-width: 212.91px;">
+        <a href="{{ url('/en/home')}}" class="btn btn-success btn-lg text-light" style="min-width: 212.91px;">
           <i class="fa fa-graduation-cap"></i>
           &nbsp {{ __('English')}}
         </a>

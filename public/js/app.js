@@ -90312,6 +90312,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -90319,6 +90320,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['logout_user', 'tutor_img', 'home_tutor', 'locale', 'link-en', 'link-sn'],
     name: 'Logout',
     components: { LanguageSwitcher: __WEBPACK_IMPORTED_MODULE_0__components_LanguageSwitcher_vue___default.a },
+
     data: function data() {
         var lang = localStorage.getItem('lang') || 'en';
         return {
@@ -90455,7 +90457,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['locale', 'link-en', 'link-sn'],
+  props: ['locale', 'link-en', 'link-sn', 'linkEn', 'linkSn'],
   data: function data() {
     return {
       isVisible: false,
@@ -90905,17 +90907,21 @@ var render = function() {
       "nav",
       {
         staticClass:
-          "main-header elevation-2  navbar sideMenu navbar-expand navbar-bg navbar-white navbar-dark border-bottom border-dark"
+          "main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-dark navbar-white border-bottom border-dark"
       },
       [
         _vm._m(0),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "navbar-nav mt-1 " },
+          { staticClass: "navbar-nav mt-1 text-white" },
           [
             _c("language-switcher", {
-              attrs: { locale: "", "link-en": "", "link-sn": "" }
+              attrs: {
+                "link-en": _vm.linkEn,
+                locale: _vm.locale,
+                "link-sn": _vm.linkSn
+              }
             })
           ],
           1
@@ -90927,7 +90933,7 @@ var render = function() {
       "aside",
       {
         staticClass:
-          "main-sidebar sidebar-dark-primary sideMenu elevation-4 border-right border-dark"
+          "main-sidebar sidebar-dark-primary sideMenu elevation-4 border-right border-success"
       },
       [
         _vm._m(1),
@@ -91260,7 +91266,28 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("li", { staticClass: "nav-item" }, [
-                  _vm._m(5),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link text-light",
+                      attrs: {
+                        href: "logout--user",
+                        onclick:
+                          "event.preventDefault(); document.getElementById('logout-form').submit();"
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "nav-icon fa fa-power-off red" }),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s("Logout") +
+                            "\n              "
+                        )
+                      ])
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
                     "form",
@@ -91298,7 +91325,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(6)
+    _vm._m(5)
   ])
 }
 var staticRenderFns = [
@@ -91385,27 +91412,6 @@ var staticRenderFns = [
           _vm._v("\n                My Exams\n                "),
           _c("i", { staticClass: "right fas fa-angle-left" })
         ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "nav-link text-light",
-        attrs: {
-          href: "logout--user",
-          onclick:
-            "event.preventDefault(); document.getElementById('logout-form').submit();"
-        }
-      },
-      [
-        _c("i", { staticClass: "nav-icon fa fa-power-off red" }),
-        _vm._v(" "),
-        _c("p", [_vm._v("\n                Logout\n              ")])
       ]
     )
   },

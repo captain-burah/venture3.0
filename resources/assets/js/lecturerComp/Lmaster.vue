@@ -2,15 +2,16 @@
 <div class="wrapper" id="app">
 
   <!-- Navbar -->
-  <nav class="main-header elevation-2  navbar sideMenu navbar-expand navbar-bg navbar-white navbar-dark border-bottom border-dark">
+  <nav class="main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-dark navbar-white border-bottom border-dark">
     <!-- Left navbar links -->
       
       <ul class="navbar-nav mr-auto mb-0">
         <li class="nav-item mt-1">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i>&nbsp; &nbsp; Tutor Dashboard</a>
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+            <i class="fas fa-bars"></i>&nbsp; &nbsp; Tutor Dashboard</a>
         </li>
       </ul>
-      <div class="navbar-nav mt-1 ">
+      <div class="navbar-nav mt-1 text-white">
         <!--
         <p class="px-2 pt-1 mb-0 mt-1 text-secondary " for="language">Language</p>
         <select class="custom-select text-right bg-secondary ml-1" id="language" v-model="lang" @change="handleChange($event)">
@@ -19,16 +20,16 @@
           <option value="ta">Tamil</option>
         </select>
         -->
-        <language-switcher 
-              locale
-              link-en
-              link-sn
+        <language-switcher
+          :link-en="linkEn"
+          :locale="locale"
+          :link-sn="linkSn"
         ></language-switcher>
       </div>
   </nav>
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary sideMenu elevation-4 border-right border-dark">
+  <aside class="main-sidebar sidebar-dark-primary sideMenu elevation-4 border-right border-success">
     <!-- Brand Logo -->
     <a href="home_tutor" class="brand-link navbar-bg text-center">
       <span class="brand-text font-weight-light text-center">Enlighten Venture</span>
@@ -175,7 +176,7 @@
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="nav-icon fa fa-power-off red"></i>
               <p>
-                Logout
+                {{ ("Logout")}}
               </p>
             </a>
             <form id="logout-form" :action="logout_user" method="POST" style="display: none;">
@@ -225,7 +226,6 @@ import LanguageSwitcher from "../components/LanguageSwitcher.vue";
       components: { LanguageSwitcher },
 
       data: function(){
-        
         const lang = localStorage.getItem('lang') || 'en';
         return {
           lang: lang,

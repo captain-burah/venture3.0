@@ -152,11 +152,11 @@
       }
     </style>  
 </head>
-<body class="landing-page sidebar-collapse bg-dark">
+<body class="landing-page sidebar-collapse bg-light">
     <!-- Body -->
   <div id="app">
     <!--  Nav  -->
-    <nav class="navbar navbar-transparent bg-dark navbar-color-on-scroll fixed-top navbar-expand-md " 
+    <nav class="navbar navbar-transparent bg-dark text-dark navbar-color-on-scroll fixed-top navbar-expand-md " 
     color-on-scroll="100" id="sectionsNav">
         <div class="container ">
           <div class="navbar-translate">
