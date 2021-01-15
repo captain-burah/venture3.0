@@ -15,7 +15,7 @@ Route::get('/', function () {
     return redirect(app()->getLocale());
 });
 
-Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => 'setlocale'], function() {
+Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => ['setlocale', 'web']], function() {
 
     //---------------------- Newly Declared routes based on laravel inbuilt authentication system-----------------------
         Route::get('/', function(){
@@ -106,30 +106,25 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     //Route::post('tutor_register', 'Lecturer\LecturerController@store')->name('tutor-register');
     //Route::post('tutor_logout', 'Auth\LoginController@lecLogOut')->name('tutor-logout');
     
+    Route::middleware(['auth:lecturer'])->group(function () {
+        
+        Route::get('/setup', function () {              //---- Loading of the step page
+            return view('lecturer.setup.lecSetup');     //---- This is controlled by App/Exceptions/Handler.php
+        });
 
-
-
-
+        Route::get('/home_tutor', 'Lecturer\LecturerController@home_tutor')->name('home-tutor-auth:lecturer');
+        Route::get('/setup_finish', 'Lecturer\LecturerController@setupSubmit')->name('Tsetup-Submit');
+        //Route::get('/testPage', 'Lecturer\LecturerController@test');
     
-
-});
-
-Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => ['auth:lecturer','setlocale']], function() {
-//---------------------------- Group: Lecturer Auths------------------------------------------------------->
-    Route::get('/', function(){
-        return view('landing');
-    })->name('landing-page-vue');
-    
-    Route::get('/setup', function () {              //---- Loading of the step page
-        return view('lecturer.setup.lecSetup');     //---- This is controlled by App/Exceptions/Handler.php
     });
 
-    Route::get('/setup_finish', 'Lecturer\LecturerController@setupSubmit')->name('Tsetup-Submit');
-    //Route::get('/testPage', 'Lecturer\LecturerController@test');
 
 
-//--------------------------- /Group: Lecturer Auths------------------------------------------------------->
+    
+
 });
+
+
 
 
 
@@ -148,5 +143,5 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 //--------------------------------------------------------------------------------------------
 //Route::get('{path}','Student\StudentController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
 //Route::get('{path}','Lecturer\LecturerController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
-//Route::get('/{path}','Lecturer\LecturerController@dashboard')->where( 'path', '([A-z\d\-\/_.]+)?' );
-//Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
+//Route::get('{path}','Lecturer\LecturerController@dashboard')->where( 'path', '([A-z\d\-\/_.]+)?' );
+Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );

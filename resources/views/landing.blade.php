@@ -16,11 +16,11 @@
         </h1>
       </div>
       <div class="col-md-12 mx-auto animate__animated animate__fadeInDown animate__delay-2s animate__fast	800ms">
-        <a href="{{ ('/en/home')}}" class="btn btn-white btn-lg text-dark" style="min-width: 212.91px;">
+        <a href="{{ url('/en/home')}}" class="btn btn-white btn-lg text-dark" style="min-width: 212.91px;">
           <i class="fa fa-graduation-cap"></i>
           &nbsp {{ __('English')}}
         </a>
-        <a href="{{ ('/sn/home')}}" target="" class="btn btn-warning btn-lg text-dark" rel="nofollow" style="min-width: 212.91px;">
+        <a href="{{ url('/sn/home')}}" target="" class="btn btn-warning btn-lg text-dark" rel="nofollow" style="min-width: 212.91px;">
             <i class="fa fa-university"></i>
             &nbsp {{ __('සිංහල')}}
         </a>

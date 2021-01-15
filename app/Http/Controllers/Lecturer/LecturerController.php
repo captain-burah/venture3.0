@@ -38,13 +38,13 @@ class LecturerController extends Controller
         */
         //$lecturerName = Lecturer::findOrFail($id);
         
-        return app()->getLocale() . view('/lecturer.Lmaster');
+        return view('/lecturer.Lmaster');
     }
 
 //------------------ Going Home--------------------------------------
     public function home_tutor()
     {
-        return view('welcome', ['url' => '/tutors']);
+        return app()->getLocale() . view('joinAsTutor', ['url' => '/tutors']);
     }
 
 //------------------ After Registered--------------------------------------

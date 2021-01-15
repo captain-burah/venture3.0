@@ -11,19 +11,26 @@
         </li>
       </ul>
       <div class="navbar-nav mt-1 ">
+        <!--
         <p class="px-2 pt-1 mb-0 mt-1 text-secondary " for="language">Language</p>
         <select class="custom-select text-right bg-secondary ml-1" id="language" v-model="lang" @change="handleChange($event)">
           <option value="en">English</option>
           <option value="si">Sinhala</option>
           <option value="ta">Tamil</option>
         </select>
+        -->
+        <language-switcher 
+              locale
+              link-en
+              link-sn
+        ></language-switcher>
       </div>
   </nav>
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary sideMenu elevation-4 border-right border-dark">
     <!-- Brand Logo -->
-    <a href="/home_tutor" class="brand-link navbar-bg text-center">
+    <a href="home_tutor" class="brand-link navbar-bg text-center">
       <span class="brand-text font-weight-light text-center">Enlighten Venture</span>
     </a>
 
@@ -210,11 +217,15 @@
 
 </template>
 <script>
+import LanguageSwitcher from "../components/LanguageSwitcher.vue";
+
     export default {
-      props: ['logout_user', 'tutor_img'],
+      props: ['logout_user', 'tutor_img', 'home_tutor', 'locale', 'link-en', 'link-sn'],
       name: 'Logout',
-      
+      components: { LanguageSwitcher },
+
       data: function(){
+        
         const lang = localStorage.getItem('lang') || 'en';
         return {
           lang: lang,
