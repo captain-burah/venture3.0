@@ -161,6 +161,8 @@ window.Fire = Fire;
     return moment(created).format('MMMM Do YYYY, h:mm:ss a');
   })
 
+//-------------- Vue Translations-------------------------------------------------//
+  Vue.mixin(require('./trans'))
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

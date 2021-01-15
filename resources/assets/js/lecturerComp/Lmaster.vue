@@ -8,7 +8,7 @@
       <ul class="navbar-nav mr-auto mb-0">
         <li class="nav-item mt-1">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button">
-            <i class="fas fa-bars"></i>&nbsp; &nbsp; Tutor Dashboard</a>
+            <i class="fas fa-bars"></i>&nbsp; &nbsp; {{ __('Tutor Dashboard')}}</a>
         </li>
       </ul>
       <div class="navbar-nav mt-1 text-white">
@@ -176,7 +176,7 @@
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="nav-icon fa fa-power-off red"></i>
               <p>
-                {{ ("Logout")}}
+                {{ __("Logout")}}
               </p>
             </a>
             <form id="logout-form" :action="logout_user" method="POST" style="display: none;">
@@ -226,13 +226,12 @@ import LanguageSwitcher from "../components/LanguageSwitcher.vue";
       components: { LanguageSwitcher },
 
       data: function(){
-        const lang = localStorage.getItem('lang') || 'en';
+        //const lang = localStorage.getItem('lang') || 'en';
         return {
-          lang: lang,
+          //lang: lang,
           csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
       },
-
       methods: {
           logout() {
               axios.post('logout_user')
@@ -240,13 +239,13 @@ import LanguageSwitcher from "../components/LanguageSwitcher.vue";
                       window.location.href = 'tutor/login';
                   });
           },
-          handleChange(event){
-            localStorage.setItem('lang', event.target.value);
-            window.location.reload();
-          }
+          //handleChange(event){
+          //  localStorage.setItem('lang', event.target.value);
+          //  window.location.reload();
+          //}
       },
       mounted() {
-          console.log('Component mounted.')
+          console.log(this.__('Component mounted.'))
       },
 
   }

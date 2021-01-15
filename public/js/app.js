@@ -35368,6 +35368,9 @@ __WEBPACK_IMPORTED_MODULE_4_vue___default.a.filter('myDate', function (created) 
   return __WEBPACK_IMPORTED_MODULE_3_moment___default()(created).format('MMMM Do YYYY, h:mm:ss a');
 });
 
+//-------------- Vue Translations-------------------------------------------------//
+__WEBPACK_IMPORTED_MODULE_4_vue___default.a.mixin(__webpack_require__(330));
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -90322,26 +90325,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: { LanguageSwitcher: __WEBPACK_IMPORTED_MODULE_0__components_LanguageSwitcher_vue___default.a },
 
     data: function data() {
-        var lang = localStorage.getItem('lang') || 'en';
+        //const lang = localStorage.getItem('lang') || 'en';
         return {
-            lang: lang,
+            //lang: lang,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         };
     },
-
     methods: {
         logout: function logout() {
             axios.post('logout_user').catch(function (error) {
                 window.location.href = 'tutor/login';
             });
-        },
-        handleChange: function handleChange(event) {
-            localStorage.setItem('lang', event.target.value);
-            window.location.reload();
         }
     },
     mounted: function mounted() {
-        console.log('Component mounted.');
+        console.log(this.__('Component mounted.'));
     }
 });
 
@@ -90910,7 +90908,21 @@ var render = function() {
           "main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-dark navbar-white border-bottom border-dark"
       },
       [
-        _vm._m(0),
+        _c("ul", { staticClass: "navbar-nav mr-auto mb-0" }, [
+          _c("li", { staticClass: "nav-item mt-1" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: { "data-widget": "pushmenu", href: "#", role: "button" }
+              },
+              [
+                _c("i", { staticClass: "fas fa-bars" }),
+                _vm._v("    " + _vm._s(_vm.__("Tutor Dashboard")))
+              ]
+            )
+          ])
+        ]),
         _vm._v(" "),
         _c(
           "div",
@@ -90936,7 +90948,7 @@ var render = function() {
           "main-sidebar sidebar-dark-primary sideMenu elevation-4 border-right border-success"
       },
       [
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "sidebar" }, [
           _c("div", { staticClass: "user-panel mt-3 pb-3 mb-3 d-flex " }, [
@@ -90947,7 +90959,7 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _vm._m(2)
+            _vm._m(1)
           ]),
           _vm._v(" "),
           _c("nav", { staticClass: "mt-2 bg-transparent" }, [
@@ -90962,7 +90974,7 @@ var render = function() {
                 }
               },
               [
-                _vm._m(3),
+                _vm._m(2),
                 _vm._v(" "),
                 _c(
                   "li",
@@ -91042,7 +91054,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("li", { staticClass: "nav-item has-treeview " }, [
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("ul", { staticClass: "nav nav-treeview " }, [
                     _c(
@@ -91282,7 +91294,7 @@ var render = function() {
                       _c("p", [
                         _vm._v(
                           "\n                " +
-                            _vm._s("Logout") +
+                            _vm._s(_vm.__("Logout")) +
                             "\n              "
                         )
                       ])
@@ -91325,30 +91337,10 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(5)
+    _vm._m(4)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "navbar-nav mr-auto mb-0" }, [
-      _c("li", { staticClass: "nav-item mt-1" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { "data-widget": "pushmenu", href: "#", role: "button" }
-          },
-          [
-            _c("i", { staticClass: "fas fa-bars" }),
-            _vm._v("    Tutor Dashboard")
-          ]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -91616,6 +91608,59 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    methods: {
+
+        /**
+         * Translate the given key.
+         */
+        __: function __(key, replace) {
+            var translation = void 0,
+                translationNotFound = true;
+
+            try {
+                translation = key.split('.').reduce(function (t, i) {
+                    return t[i] || null;
+                }, window._translations[window._locale].php);
+
+                if (translation) {
+                    translationNotFound = false;
+                }
+            } catch (e) {
+                translation = key;
+            }
+
+            if (translationNotFound) {
+                translation = window._translations && window._translations[window._locale]['json'][key.toLowerCase()] ? window._translations[window._locale]['json'][key.toLowerCase()] : key;
+            }
+
+            _.forEach(replace, function (value, key) {
+                translation = translation.replace(':' + key, value);
+            });
+
+            return translation;
+        }
+    }
+};
 
 /***/ })
 /******/ ]);
