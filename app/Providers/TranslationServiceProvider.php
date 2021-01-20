@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Providers;
 
 use Illuminate\Support\Facades\App;
@@ -37,8 +36,8 @@ class TranslationServiceProvider extends ServiceProvider
 
     private function phpTranslations($locale)
     {
-        $path = resource_path("lang/$locale.json");
-
+        $path = resource_path("lang");
+    
         return collect(File::allFiles($path))->flatMap(function ($file) use ($locale) {
             $key = ($translation = $file->getBasename('.php'));
 

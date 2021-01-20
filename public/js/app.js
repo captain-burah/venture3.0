@@ -35369,7 +35369,7 @@ __WEBPACK_IMPORTED_MODULE_4_vue___default.a.filter('myDate', function (created) 
 });
 
 //-------------- Vue Translations-------------------------------------------------//
-__WEBPACK_IMPORTED_MODULE_4_vue___default.a.mixin(__webpack_require__(330));
+__WEBPACK_IMPORTED_MODULE_4_vue___default.a.mixin(__webpack_require__(315));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -90316,6 +90316,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -90905,7 +90910,7 @@ var render = function() {
       "nav",
       {
         staticClass:
-          "main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-dark navbar-white border-bottom border-dark"
+          "main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-dark \n  navbar-white border-bottom border-dark"
       },
       [
         _c("ul", { staticClass: "navbar-nav mr-auto mb-0" }, [
@@ -90945,28 +90950,33 @@ var render = function() {
       "aside",
       {
         staticClass:
-          "main-sidebar sidebar-dark-primary sideMenu elevation-4 border-right border-success"
+          "main-sidebar sidebar-dark-warning bg-dark elevation-4 border-right border-success",
+        staticStyle: { "background-color": "" }
       },
       [
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "sidebar" }, [
-          _c("div", { staticClass: "user-panel mt-3 pb-3 mb-3 d-flex " }, [
-            _c("div", { staticClass: "image" }, [
-              _c("img", {
-                staticClass: "img-circle elevation-2",
-                attrs: { src: _vm.tutor_img, alt: "User Image" }
-              })
-            ]),
-            _vm._v(" "),
-            _vm._m(1)
-          ]),
+          _c(
+            "div",
+            { staticClass: "user-panel my-3 d-flex rounded-pill border-0" },
+            [
+              _c("div", { staticClass: "image" }, [
+                _c("img", {
+                  staticClass: "img-circle elevation-2",
+                  attrs: { src: _vm.tutor_img, alt: "User Image" }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          ),
           _vm._v(" "),
           _c("nav", { staticClass: "mt-2 bg-transparent" }, [
             _c(
               "ul",
               {
-                staticClass: "nav nav-pills nav-sidebar  flex-column",
+                staticClass: "nav nav-pills nav-sidebar flex-column",
                 attrs: {
                   "data-widget": "treeview",
                   role: "menu",
@@ -90978,12 +90988,12 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "nav-item border-bottom border-secondary" },
+                  { staticClass: "nav-item  py-1 rounded" },
                   [
                     _c(
                       "router-link",
                       {
-                        staticClass: "nav-link text-light",
+                        staticClass: "nav-link text-light rounded-pill",
                         attrs: { to: "#studentcast" }
                       },
                       [
@@ -91004,12 +91014,12 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "nav-item" },
+                  { staticClass: "nav-item py-1" },
                   [
                     _c(
                       "router-link",
                       {
-                        staticClass: "nav-link text-light ",
+                        staticClass: "nav-link text-light rounded-pill",
                         attrs: { to: "/tutor" }
                       },
                       [
@@ -91031,12 +91041,12 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "nav-item" },
+                  { staticClass: "nav-item py-1" },
                   [
                     _c(
                       "router-link",
                       {
-                        staticClass: "nav-link text-light",
+                        staticClass: "nav-link text-light rounded-pill",
                         attrs: { to: "/Lessons" }
                       },
                       [
@@ -91053,18 +91063,19 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("li", { staticClass: "nav-item has-treeview " }, [
+                _c("li", { staticClass: "nav-item has-treeview py-1" }, [
                   _vm._m(3),
                   _vm._v(" "),
                   _c("ul", { staticClass: "nav nav-treeview " }, [
                     _c(
                       "li",
-                      { staticClass: "nav-item" },
+                      { staticClass: "nav-item py-1" },
                       [
                         _c(
                           "router-link",
                           {
-                            staticClass: "nav-link text-light offset-sm-1",
+                            staticClass:
+                              "nav-link text-light offset-sm-1 rounded-pill",
                             attrs: { to: "createPapers" }
                           },
                           [
@@ -91082,12 +91093,13 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "li",
-                      { staticClass: "nav-item" },
+                      { staticClass: "nav-item py-1" },
                       [
                         _c(
                           "router-link",
                           {
-                            staticClass: "nav-link text-light offset-sm-1",
+                            staticClass:
+                              "nav-link text-light offset-sm-1 rounded-pill",
                             attrs: { to: "/categories" }
                           },
                           [
@@ -91105,12 +91117,13 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "li",
-                      { staticClass: "nav-item" },
+                      { staticClass: "nav-item py-1" },
                       [
                         _c(
                           "router-link",
                           {
-                            staticClass: "nav-link text-light offset-sm-1",
+                            staticClass:
+                              "nav-link text-light offset-sm-1 rounded-pill",
                             attrs: { to: "/bank" }
                           },
                           [
@@ -91128,12 +91141,13 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "li",
-                      { staticClass: "nav-item" },
+                      { staticClass: "nav-item py-1" },
                       [
                         _c(
                           "router-link",
                           {
-                            staticClass: "nav-link text-light offset-sm-1",
+                            staticClass:
+                              "nav-link text-light offset-sm-1 rounded-pill",
                             attrs: { to: "/examAnalysis" }
                           },
                           [
@@ -91151,12 +91165,13 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "li",
-                      { staticClass: "nav-item" },
+                      { staticClass: "nav-item py-1" },
                       [
                         _c(
                           "router-link",
                           {
-                            staticClass: "nav-link text-light offset-sm-1",
+                            staticClass:
+                              "nav-link text-light offset-sm-1 rounded-pill",
                             attrs: { to: "/archive" }
                           },
                           [
@@ -91176,12 +91191,12 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "nav-item" },
+                  { staticClass: "nav-item py-1" },
                   [
                     _c(
                       "router-link",
                       {
-                        staticClass: "nav-link text-light",
+                        staticClass: "nav-link text-light rounded-pill",
                         attrs: { to: "/Schedules" }
                       },
                       [
@@ -91202,12 +91217,12 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "nav-item" },
+                  { staticClass: "nav-item py-1" },
                   [
                     _c(
                       "router-link",
                       {
-                        staticClass: "nav-link text-light",
+                        staticClass: "nav-link text-light rounded-pill",
                         attrs: { to: "/Layout" }
                       },
                       [
@@ -91228,12 +91243,12 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "nav-item" },
+                  { staticClass: "nav-item py-1" },
                   [
                     _c(
                       "router-link",
                       {
-                        staticClass: "nav-link text-light",
+                        staticClass: "nav-link text-light rounded-pill",
                         attrs: { to: "/Staff" }
                       },
                       [
@@ -91255,12 +91270,12 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "nav-item" },
+                  { staticClass: "nav-item py-1" },
                   [
                     _c(
                       "router-link",
                       {
-                        staticClass: "nav-link text-light",
+                        staticClass: "nav-link text-light rounded-pill",
                         attrs: { to: "/tutor/lecProfile" }
                       },
                       [
@@ -91268,7 +91283,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", [
                           _vm._v(
-                            "\n                Profile\n                \n              "
+                            "\n                " +
+                              _vm._s(_vm.__("Profile")) +
+                              "\n                \n              "
                           )
                         ])
                       ]
@@ -91277,13 +91294,13 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
+                _c("li", { staticClass: "nav-item py-1" }, [
                   _c(
                     "a",
                     {
-                      staticClass: "nav-link text-light",
+                      staticClass: "nav-link text-light rounded-pill",
                       attrs: {
-                        href: "logout--user",
+                        href: "javascript:void(0)",
                         onclick:
                           "event.preventDefault(); document.getElementById('logout-form').submit();"
                       }
@@ -91367,17 +91384,22 @@ var staticRenderFns = [
     return _c("div", { staticClass: "info" }, [
       _c("a", { staticClass: "d-block ", attrs: { href: "/tutor" } }, [
         _vm._v("Tutor Name Here")
-      ])
+      ]),
+      _vm._v(" "),
+      _c("hr", { staticClass: "m-0" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
+    return _c("li", { staticClass: "nav-item py-1" }, [
       _c(
         "a",
-        { staticClass: "nav-link text-light", attrs: { href: "/academy" } },
+        {
+          staticClass: "nav-link text-light rounded-pill",
+          attrs: { href: "/academy" }
+        },
         [
           _c("i", { staticClass: "nav-icon fas fa-school text-warning" }),
           _vm._v(" "),
@@ -91396,7 +91418,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "a",
-      { staticClass: "nav-link text-light ", attrs: { href: "#" } },
+      { staticClass: "nav-link text-light rounded-pill", attrs: { href: "#" } },
       [
         _c("i", { staticClass: "nav-icon fa fa-copy text-success" }),
         _vm._v(" "),
@@ -91607,26 +91629,6 @@ if (false) {
 /* 315 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */
-/***/ (function(module, exports) {
-
 module.exports = {
     methods: {
 
@@ -91661,6 +91663,12 @@ module.exports = {
         }
     }
 };
+
+/***/ }),
+/* 316 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

@@ -2,7 +2,8 @@
 <div class="wrapper" id="app">
 
   <!-- Navbar -->
-  <nav class="main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-dark navbar-white border-bottom border-dark">
+  <nav class="main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-dark 
+  navbar-white border-bottom border-dark">
     <!-- Left navbar links -->
       
       <ul class="navbar-nav mr-auto mb-0">
@@ -13,12 +14,12 @@
       </ul>
       <div class="navbar-nav mt-1 text-white">
         <!--
-        <p class="px-2 pt-1 mb-0 mt-1 text-secondary " for="language">Language</p>
-        <select class="custom-select text-right bg-secondary ml-1" id="language" v-model="lang" @change="handleChange($event)">
-          <option value="en">English</option>
-          <option value="si">Sinhala</option>
-          <option value="ta">Tamil</option>
-        </select>
+          <p class="px-2 pt-1 mb-0 mt-1 text-secondary " for="language">Language</p>
+          <select class="custom-select text-right bg-secondary ml-1" id="language" v-model="lang" @change="handleChange($event)">
+            <option value="en">English</option>
+            <option value="si">Sinhala</option>
+            <option value="ta">Tamil</option>
+          </select>
         -->
         <language-switcher
           :link-en="linkEn"
@@ -29,7 +30,8 @@
   </nav>
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary sideMenu elevation-4 border-right border-success">
+  <aside class="main-sidebar sidebar-dark-warning bg-dark elevation-4 border-right border-success"
+  style="background-color: ;">
     <!-- Brand Logo -->
     <a href="home_tutor" class="brand-link navbar-bg text-center">
       <span class="brand-text font-weight-light text-center">Enlighten Venture</span>
@@ -38,23 +40,27 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
+      <div class="user-panel my-3 d-flex rounded-pill border-0">
         <div class="image">
           <img :src="tutor_img" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="/tutor" class="d-block ">Tutor Name Here</a>
+          <hr class="m-0">
         </div>
       </div>
+      
 
       <!-- Sidebar Menu -->
       <nav class="mt-2 bg-transparent">
-        <ul class="nav nav-pills nav-sidebar  flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- 
+            Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library 
+          -->
           
-          <li class="nav-item">
-            <a href="/academy" class="nav-link text-light">
+          <li class="nav-item py-1">
+            <a href="/academy" class="nav-link text-light rounded-pill">
               <i class="nav-icon fas fa-school text-warning"></i>
               <p>
                 My Academy
@@ -62,8 +68,8 @@
               </p>
             </a>
           </li>
-          <li class="nav-item border-bottom border-secondary">
-            <router-link to="#studentcast" class="nav-link text-light">
+          <li class="nav-item  py-1 rounded">
+            <router-link to="#studentcast" class="nav-link text-light rounded-pill">
               <i class="nav-icon fas fa-hashtag text-danger"></i>
               <p>
                 Studentcast
@@ -73,8 +79,8 @@
           </li>
           
           <!------ Sub-Menu ----->
-          <li class="nav-item">
-            <router-link to="/tutor" class="nav-link text-light ">
+          <li class="nav-item py-1">
+            <router-link to="/tutor" class="nav-link text-light rounded-pill">
               <i class="nav-icon fas fa-tachometer-alt text-info"></i>
               <p>
                 Dashboard
@@ -83,8 +89,8 @@
             </router-link>
           </li>
           
-          <li class="nav-item">
-            <router-link to="/Lessons" class="nav-link text-light">
+          <li class="nav-item py-1">
+            <router-link to="/Lessons" class="nav-link text-light rounded-pill">
               <i class="nav-icon fas fa-book purple"></i>
               <p>
                 Lesson Builder
@@ -92,8 +98,8 @@
               </p>
             </router-link>
           </li>
-          <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link text-light ">
+          <li class="nav-item has-treeview py-1">
+            <a href="#" class="nav-link text-light rounded-pill">
               <i class="nav-icon fa fa-copy text-success"></i>
               <p>
                 My Exams
@@ -101,40 +107,40 @@
               </p>
             </a>
             <ul class="nav nav-treeview ">
-              <li class="nav-item">
-                <router-link to="createPapers" class="nav-link text-light offset-sm-1">
+              <li class="nav-item py-1">
+                <router-link to="createPapers" class="nav-link text-light offset-sm-1 rounded-pill">
                   <i class="fas fa-angle-right nav-icon text-light"></i>
                   <p>Create Paper</p>
                 </router-link>
               </li>
-              <li class="nav-item">
-                <router-link to="/categories" class="nav-link text-light offset-sm-1">
+              <li class="nav-item py-1">
+                <router-link to="/categories" class="nav-link text-light offset-sm-1 rounded-pill">
                   <i class="fas fa-angle-right nav-icon text-light "></i>
                   <p>Categories</p>
                 </router-link>
               </li>
-              <li class="nav-item">
-                <router-link to="/bank" class="nav-link text-light offset-sm-1">
+              <li class="nav-item py-1">
+                <router-link to="/bank" class="nav-link text-light offset-sm-1 rounded-pill">
                   <i class="fas fa-angle-right nav-icon text-light "></i>
                   <p>Question Bank</p>
                 </router-link>
               </li>
-              <li class="nav-item">
-                <router-link to="/examAnalysis" class="nav-link text-light offset-sm-1">
+              <li class="nav-item py-1">
+                <router-link to="/examAnalysis" class="nav-link text-light offset-sm-1 rounded-pill">
                   <i class="fas fa-angle-right nav-icon text-light "></i>
                   <p>Exam Analysis</p>
                 </router-link>
               </li>
-              <li class="nav-item">
-                <router-link to="/archive" class="nav-link text-light offset-sm-1">
+              <li class="nav-item py-1">
+                <router-link to="/archive" class="nav-link text-light offset-sm-1 rounded-pill">
                   <i class="fas fa-angle-right nav-icon  text-light"></i>
                   <p>Archive</p>
                 </router-link>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <router-link to="/Schedules" class="nav-link text-light">
+          <li class="nav-item py-1">
+            <router-link to="/Schedules" class="nav-link text-light rounded-pill">
               <i class="nav-icon fas fa-edit text-warning"></i>
               <p>
                 My Schedules
@@ -142,8 +148,8 @@
               </p>
             </router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/Layout" class="nav-link text-light">
+          <li class="nav-item py-1">
+            <router-link to="/Layout" class="nav-link text-light rounded-pill">
               <i class="nav-icon fa fa-cog text-success"></i>
               <p>
                 Site Layout
@@ -151,8 +157,8 @@
               </p>
             </router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/Staff" class="nav-link text-light">
+          <li class="nav-item py-1">
+            <router-link to="/Staff" class="nav-link text-light rounded-pill">
               <i class="fas fa-users-cog nav-icon text-secondary"></i>
               <p>
                 Staff Management
@@ -161,18 +167,17 @@
             </router-link>
           </li>
           <!------ Sub-Menu ----->
-          <li class="nav-item">
-            <router-link to="/tutor/lecProfile" class="nav-link text-light">
+          <li class="nav-item py-1">
+            <router-link to="/tutor/lecProfile" class="nav-link text-light rounded-pill">
               <i class="nav-icon fas fa-user orange"></i>
               <p>
-                Profile
+                {{ __('Profile')}}
                 
               </p>
             </router-link>
           </li>
-          <li class="nav-item">
-            
-            <a class="nav-link text-light" href="logout--user" 
+          <li class="nav-item py-1">
+            <a class="nav-link text-light rounded-pill" href="javascript:void(0)" 
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="nav-icon fa fa-power-off red"></i>
               <p>
