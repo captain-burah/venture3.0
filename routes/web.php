@@ -26,7 +26,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::post('/tutor/register', 'Auth\RegisterController@createLec')->name('tutor-createDB');
         Route::get('/login/tutor', 'Auth\LoginController@showlecLoginForm')->name('tutor-login');
         Route::post('/tutor/login', 'Auth\LoginController@lecLogin')->name('tutor-verify');
-        Route::post('/student/login', 'Auth\LoginController@stuLogin')->name('student-verify');
+        Route::post('/student/login', 'Auth\LoginController@userLogin')->name('student-verify');
         Route::get('/testPage', 'Lecturer\LecturerController@test');
         Route::get('/about_us', 'HomeController@aboutUs')->name('about_us');
         
@@ -110,7 +110,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         
         Route::get('/setup', function () {              //---- Loading of the step page
             return view('lecturer.setup.lecSetup');     //---- This is controlled by App/Exceptions/Handler.php
-        });
+        })->name('tutor-setupPage');
 
         Route::get('/home_tutor', 'Lecturer\LecturerController@home_tutor')->name('home-tutor-auth:lecturer');
         Route::post('/setup_finish', 'Lecturer\LecturerController@setupSubmit')->name('Tsetup-Submit');
@@ -118,6 +118,14 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     
     });
 
+
+    //---------------------------- Group: Student Auths------------------------------------------------------->
+    Route::middleware(['auth'])->group(function() {
+        Route::get('/setup', function () {              //---- Loading of the step page
+            return view('lecturer.setup.lecSetup');     //---- This is controlled by App/Exceptions/Handler.php
+        })->name('student-setupPage');
+    });
+    //--------------------------- /Group: Student Auths------------------------------------------------------->
 
 
     
@@ -128,13 +136,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
 
 
-//---------------------------- Group: Student Auths------------------------------------------------------->
-        Route::group(['middleware' => 'auth'], function() {
-            Route::get('/', function () {
-                return view('home');
-            });
-        });
-//--------------------------- /Group: Student Auths------------------------------------------------------->
+
 
 
 

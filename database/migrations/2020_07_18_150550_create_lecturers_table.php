@@ -21,7 +21,6 @@ class CreateLecturersTable extends Migration
             $table->string('password');
             $table->string('regStatus')->default("false");
             //$table->string('privacyPolicy');
-
             $table->rememberToken();
             $table->timestamps();
         });
