@@ -2,8 +2,8 @@
 <html  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/apple-icon.png')}}">
-    <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-icon.png')}}">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -182,7 +182,7 @@
             &copy;
               <script>
                 document.write(new Date().getFullYear())
-              </script> developed by <a href="https://www.instagram.com/captain_burah" target="_blank" class="text-dark" >
+              </script> developed by <a href="{{ url('https://www.instagram.com/captain_burah')}}" target="_blank" class="text-dark" >
               Captain Burah
             </a> for a better world.
           </div>

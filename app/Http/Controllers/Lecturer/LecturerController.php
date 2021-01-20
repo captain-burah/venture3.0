@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Session;
 
 class LecturerController extends Controller
@@ -60,7 +62,57 @@ class LecturerController extends Controller
 
 //----------------- Tutor Setup Page Submission ----------------------------
     public function setupSubmit(Request $request){
-        
+        try {
+            $validate = $this->validate($request, [
+                'profession'  => 'required|string|max:191',
+                'experience'  => 'required|string|max:191',
+                'address01'  => 'required|string|max:191',
+                'address02'  => 'required|string|max:191',
+                'address03'  => 'required|string|max:191',
+                'address04'  => 'required|string|max:191',
+                'contact'  => 'required|string|max:191',
+                'dob'  => 'required|date|before:-10 years',
+                'qualification'  => 'required|string|max:191',
+                'school'  => 'required|string|max:191',
+                'achievements'  => 'required|string|max:191',
+                //'privacyPolicy' => 'required|string',
+            ]);
+        }   catch (\Exception $exception){
+                $message1 = '424';
+                $message2 = 'Validation Failed';
+                $message3 = 'Failled to validate records for user '.$request->email;
+                return view('errors.notFound', compact('message1', 'message2', 'message3') );
+        }
+        try{
+            Lecturer::where(
+                'lec_email', '=', $request['email'])
+            ->create([
+                'profession'  => $request['profession'],
+                'experience'  => $request['experience'],
+                'address01'  => $request['address01'],
+                'address02'  => $request['address02'],
+                'address03'  => $request['address03'],
+                'address04'  => $request['address04'],
+                'contact'  => $request['contact'],
+                'dob'  => $request['dob'],
+                'qualifications' => $request['qualification'],
+                'school'  => $request['school'],
+                'achievements'  => $request['achievements'],
+                
+            ]);
+            
+        } catch (\Exception $exception) {
+            $message1 = '500';
+            $message2 = 'Internal Server';
+            $message3 = 'Failled to update database record for '.$request->email;
+            return view('errors.notFound', compact('message1', 'message2', 'message3'));
+        }
+
+        //$user = new LecturerInfo();
+        //$user->lec_email = $request['email'];
+        //$user->gender = $request['gender'];
+        //$user->push();
+        return app()->getLocale() . '/tutor';
     }
 
 //----------------- Tutor Setup Page Submission ----------------------------

@@ -19,7 +19,8 @@
                         
                     </div>
                     <div class="card-body p-0">
-                        <form id="regForm" action="/setup_finish" method="GET">
+                        <form id="regForm" action="{{ url(app()->getLocale() . '/setup_finish') }}" method="POST">
+                            @csrf
                             <div class="tab-content text-center ">
                                 <p class="col-md-11 ml-auto mr-auto text-center p-3">
                                     All information gathered will be used for validation analysis, with respect to professional practices in data privacy, to create a better world.
@@ -207,6 +208,7 @@
                                             </button>
                                         </div>
                                     <!------ Profile Picture-------------------->
+                                    <input type="email" class="" name="email" value="{{ Auth::user()->email }}" style="display: none">
                                 </div>
                                                                 
 

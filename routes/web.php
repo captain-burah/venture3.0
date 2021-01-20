@@ -113,7 +113,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         });
 
         Route::get('/home_tutor', 'Lecturer\LecturerController@home_tutor')->name('home-tutor-auth:lecturer');
-        Route::get('/setup_finish', 'Lecturer\LecturerController@setupSubmit')->name('Tsetup-Submit');
+        Route::post('/setup_finish', 'Lecturer\LecturerController@setupSubmit')->name('Tsetup-Submit');
         //Route::get('/testPage', 'Lecturer\LecturerController@test');
     
     });
