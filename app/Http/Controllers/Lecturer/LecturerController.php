@@ -62,31 +62,35 @@ class LecturerController extends Controller
 
 //----------------- Tutor Setup Page Submission ----------------------------
     public function setupSubmit(Request $request){
-        try {
-            $validate = $this->validate($request, [
-                'profession'  => 'required|string|max:191',
-                'experience'  => 'required|string|max:191',
-                'address01'  => 'required|string|max:191',
-                'address02'  => 'required|string|max:191',
-                'address03'  => 'required|string|max:191',
-                'address04'  => 'required|string|max:191',
-                'contact'  => 'required|string|max:191',
-                'dob'  => 'required|date|before:-10 years',
-                'qualification'  => 'required|string|max:191',
-                'school'  => 'required|string|max:191',
-                'achievements'  => 'required|string|max:191',
+        //try {
+        Validator::make($request->all(), [
+            'profession'  => 'required|string|max:191',
+            'experience'  => 'required|string|max:191',
+            'address01'  => 'required|string|max:191',
+            'address02'  => 'required|string|max:191',
+            'address03'  => 'required|string|max:191',
+            'address04'  => 'required|string|max:191',
+            'contact'  => 'required|string|max:191',
+            'dob'  => 'required|date|before: -5 years',
+            'qualification'  => 'required|string|max:191',
+            'school'  => 'required|string|max:191',
+            'achievements'  => 'required|string|max:191',
+        ])->validate();
+            
+            //$validate = $this->validate($request, [
+                
                 //'privacyPolicy' => 'required|string',
-            ]);
-        }   catch (\Exception $exception){
-                $message1 = '424';
-                $message2 = 'Validation Failed';
-                $message3 = 'Failled to validate records for user '.$request->email;
-                return view('errors.notFound', compact('message1', 'message2', 'message3') );
-        }
+            //]);
+        //}   catch (\Exception $exception){
+        //        $message1 = '424';
+        //        $message2 = 'Validation Failed';
+        //        $message3 = 'Failled to validate records for user '.$request->email;
+        //        return view('errors.notFound', compact('message1', 'message2', 'message3') );
+        //}
         try{
-            Lecturer::where(
+            LecturerInfo::where(
                 'lec_email', '=', $request['email'])
-            ->create([
+            ->update([
                 'profession'  => $request['profession'],
                 'experience'  => $request['experience'],
                 'address01'  => $request['address01'],
@@ -112,7 +116,7 @@ class LecturerController extends Controller
         //$user->lec_email = $request['email'];
         //$user->gender = $request['gender'];
         //$user->push();
-        return app()->getLocale() . '/tutor';
+        return redirect(app()->getLocale() . '/tutor');
     }
 
 //----------------- Tutor Setup Page Submission ----------------------------

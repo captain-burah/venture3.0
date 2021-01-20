@@ -21,12 +21,21 @@
                     <div class="card-body p-0">
                         <form id="regForm" action="{{ url(app()->getLocale() . '/setup_finish') }}" method="POST">
                             @csrf
-                            <div class="tab-content text-center ">
+                            <div class="tab-content text-center">
                                 <p class="col-md-11 ml-auto mr-auto text-center p-3">
                                     All information gathered will be used for validation analysis, with respect to professional practices in data privacy, to create a better world.
                                 </p>
-                                
-
+                                @if ($errors->any())
+                                    <div class="col-md-5 alert mx-auto alert-danger p-0 m-0 text-center rounded">
+                                        <ul class="list-group rounded py-0">
+                                            @foreach ($errors->all() as $error)
+                                                <li class="list-group-item mx-auto py-1">
+                                                    <h5 class="mx-auto py-1 my-1">Validation Error! {{ $error }}</h5>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <!---------------------------- First Tab: -------------------------->
                                 <div class="tab ">
                                     <h3 class="text-dark">I am a</h3>
