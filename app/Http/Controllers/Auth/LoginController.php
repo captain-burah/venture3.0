@@ -78,11 +78,23 @@ class LoginController extends Controller
             
             //we must validate the "tutor setup page" here before displaying
             //the "dashboard" with an if clause accessing the DB lec table column name "regStatus"
-            $getArray = Lecturer::select('regStatus')->where('email', $request->email)->first();
+            try 
+            {
+                //read the database attributes userType & regStatus from database
+                $getArray = Lecturer::select('regStatus')->where('email', $request->email)->first();
+            } 
+            catch (\Exception $exception)
+            {
+                //catch any errors while retrieving regStatus
+                $message1 = '500';
+                $message2 = 'Faulty Server Script';
+                $message3 = 'Failled to retrieve registration status of '.$request->email;
+                return view('errors.notFound', compact('message1', 'message2', 'message3'));
+            }
 
             if ($getArray->regStatus == 'false') {
                 //redirect to SETUP page
-                return redirect(app()->getLocale() . '/setup');
+                return redirect(app()->getLocale() . '/tutor_setup');
             } 
             elseif ($getArray->regStatus == 'true') {
                 //redirect to TUTOR DASHBOARD page
@@ -104,55 +116,48 @@ class LoginController extends Controller
             'email'   => 'required|email',
             'password' => 'required|min:8'
         ]);
-
+        //check who is trynna log-in
         if (Auth::guard()->attempt([
             'email' => $request->email, 
             'password' => $request->password], $request->get('remember'))) 
-            { 
+        {
             try 
             {
                 //read the database attributes userType & regStatus from database
-                $getArray = User::select('userType', 'regStatus')->where('email', $request->email)->first();
+                $studentStatus = User::select('regStatus')->where('email', $request->email)->first();
             } 
             catch (\Exception $exception)
             {
-                //catch any errors while reading database
+                //catch any errors while retrieving regStatus
                 $message1 = '500';
-                $message2 = 'Faulty Database';
-                $message3 = 'Failled to validate user '.$request->email;
+                $message2 = 'Faulty Server Script';
+                $message3 = 'Failled to retrieve registration status of '.$request->email;
                 return view('errors.notFound', compact('message1', 'message2', 'message3'));
             }
 
-            //check if USER is a STUDENT or TUTOR
-            if ($getArray->userType == 'student') {
+            //check if STUDENT has completed submission form
+            if ($studentStatus->regStatus == 'false') {
 
-                //check if STUDENT has completed submission form
-                if ($getArray->regStatus == 'false') {
+                //redirect to STUDENT setup page
+                return redirect(app()->getLocale() . '/setup')->with('userType', ['student']);
+            }
+            elseif ($studentStatus->regStatus == 'true') {
 
-                    //redirect to TUTOR setup page
-                    return redirect(app()->getLocale() . '/setup')->with('userType', ['student']);
-                }
                 //redirect to STUDENT Dashboard page
                 return redirect(app()->getLocale() . '/student_dashboard');
             } 
-            elseif ($getArray->userType == 'tutor') {
-                //check if TUTOR has completed submission form
-                if ($getArray->regStatus == 'false') {
-
-                    //redirect to TUTOR setup page
-                    return redirect(app()->getLocale() . '/setup')->with('userType', ['tutor']);
-                }
-                //redirect to TUTOR Dashboard page
-                return redirect(app()->getLocale() . '/tutor');
-            } 
             else {
-                $message1 = '404';
-                $message2 = 'Something went really wrong!';
-                $message3 = 'User Authenticated. Condition loop-back failled. User: '.$request->email;
+
+                //catch any errors while retrieving regStatus
+                $message1 = '500';
+                $message2 = 'Faulty Server Script';
+                $message3 = 'Registration status in DB has been altered. User '.$request->email;
                 return view('errors.notFound', compact('message1', 'message2', 'message3'));
             };
+        } else {
+            return back()->withInput($request->only('email', 'remember'));
         }
-        return back()->withInput($request->only('email', 'remember'));
+            
     }
  
 }

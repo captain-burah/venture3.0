@@ -93,12 +93,13 @@
 </head>
 
 
-<body class="bg-info login-page sidebar-collapse">
-    <nav class="navbar  navbar-expand-lg" id="sectionsNav">
+<body class="bg-white login-page sidebar-collapse">
+    <nav class="navbar navbar-expand-lg " id="sectionsNav">
         <div class="container ">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="{{ url(app()->getLocale() . '/home') }}">
-                Enlighten Venture  </a>
+                    Enlighten Venture
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -112,23 +113,23 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="navbar-brand">
-                            <span class="text-capitalize">Welcome {{ Auth::user()->fname }} {{ Auth::user()->lname }}</span>
+                            <span class="text-capitalize">{{ __('Welcome')}} {{ Auth::user()->fname }} {{ Auth::user()->lname }}</span>
                         </a>
                     </li>
-                    <li class="dropdown nav-item">
+                    <li class="dropdown nav-item ">
                         <a href="#" class="dropdown-toggle nav-link text-capitalize" data-toggle="dropdown">
-                            <i class="material-icons">apps</i> Choose Your Language
+                        <i class="material-icons">language</i> {{__('Language')}}
                         </a>
                         <div class="dropdown-menu dropdown-with-icons">
-                            <a href="../index.html" class="dropdown-item">
-                                <i class="material-icons">layers</i>English
-                            </a>
-                            <a href="#l" class="dropdown-item">
-                                <i class="material-icons">content_paste</i> Sinhala
-                            </a>
-                            <a href="#l" class="dropdown-item">
-                                <i class="material-icons">content_paste</i> Tamil
-                            </a>
+                            @foreach (config('app.available_locales') as $locale)
+                                <a @if (app()->getLocale() == $locale) 
+                                    style="text-decoration: underline;" 
+                                    class="dropdown-item text-white bg-success" @endif 
+                                href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}" class="dropdown-item">
+                                    
+                                    {{ strtoupper($locale )}}
+                                </a>
+                            @endforeach
                         </div>
                     </li>
                 </ul>

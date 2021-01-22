@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 
-
 class Lecturer extends Authenticatable
 {
     use HasApiTokens, Notifiable; 
@@ -32,8 +31,8 @@ class Lecturer extends Authenticatable
         'password', 'remember_token',
     ]; 
 
-    public function lecturerInfo()
-    {
-        return $this->hasOne('App\LecturerInfo', 'lec_email', 'email');
-    }
+    //public function lecturerInfo()
+    //{
+    //    return $this->hasOne('App\LecturerInfo', 'lec_email', 'email');
+    //}
 }

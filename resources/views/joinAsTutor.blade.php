@@ -14,19 +14,19 @@
               <div class="">
                 <a href="{{ url(app()->getLocale() . '/tutor_registration')}}" 
                   class="btn btn-rose btn-lg mobile-view text-left" rel="nofollow" style="min-width: 293.11px;">
-                  <i class="fa fa-play"></i>&nbsp {{ __(' Hurry! Join now')}}
+                  <i class="fa fa-play"></i>&nbsp {{ __(' Register Now!')}}
                 </a>
                 <a href="#" class="btn btn-info btn-lg text-left" 
                 style="min-width: 293.11px;">
-                  <i class="fa fa-university"></i>&nbsp {{ __('Enter Academy')}}
+                  <i class="fa fa-university"></i>&nbsp {{ __('Open Academy')}}
                 </a>
                 <a href="#" target="" class="btn btn-primary btn-lg text-left" rel="nofollow" 
                 style="min-width: 293.11px;">
-                    <i class="fa fa-hashtag"></i>&nbsp {{ __('Enter StudentCast')}}
+                    <i class="fa fa-hashtag"></i>&nbsp {{ __('StudentCast Forum')}}
                 </a>
                 <a href="#" target="_blank" class="btn btn-warning btn-lg text-left" rel="nofollow" 
                 style="min-width: 293.11px;">
-                    <i class="fa fa-graduation-cap"></i>&nbsp {{ __('View Tutor Panel')}}
+                    <i class="fa fa-graduation-cap"></i>&nbsp {{ __('Tutor Panel')}}
                 </a>
                 
             </div>
@@ -36,8 +36,8 @@
             <h1 class="title text-right">{{ __('Free Registrations Are Now Open')}}</h1>
             
             <a href="{{ url(app()->getLocale() . '/tutor_registration')}}"
-            class="btn btn-rose btn-raised btn-lg text-left " style="min-width: 293.11px;">
-              <i class="fa fa-play"></i>&nbsp {{ __(' Hurry! Join now')}}
+            class="btn btn-rose btn-raised btn-lg text-left" style="min-width: 293.11px;">
+              <i class="fa fa-play"></i>&nbsp {{ __(' Register Now!')}}
             </a>
           </div>
       </div>

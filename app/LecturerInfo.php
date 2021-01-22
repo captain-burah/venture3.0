@@ -16,8 +16,13 @@ class LecturerInfo extends Model
         'address03', 'address04'
     ];
 
-    public function lecturer()
+    //public function lecturer()
+    // {
+    //    return $this->belongsTo('App\Lecturer', 'lec_email');
+    //}
+
+    public function user()
     {
-        return $this->belongsTo('App\Lecturer', 'lec_email');
+        return $this->belongsTo('App\User', 'lec_email');
     }
 }

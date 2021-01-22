@@ -32,7 +32,7 @@ class CreateLecturerInfosTable extends Migration
             $table->string('address04')->nullable(true);
             $table->rememberToken();
             $table->timestamps();
-
+            
             $table->foreign('lec_email')->references('email')->on('lecturers')->onDelete('cascade');
         });
     }

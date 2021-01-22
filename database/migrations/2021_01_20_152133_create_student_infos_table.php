@@ -18,11 +18,10 @@ class CreateStudentInfosTable extends Migration
             $table->string('stu_email')->unique()->index();
             $table->string('profileImg')->default('profile.png');
             $table->string('bio')->nullable(true);
+            $table->string('status')->nullable(true);
             $table->string('gender')->nullable(true);
             $table->string('contact')->nullable(true);
             $table->date('dob')->nullable(true);
-            $table->string('profession')->nullable(true);
-            $table->string('experience')->nullable(true);
             $table->string('qualifications')->nullable(true);
             $table->string('school')->nullable(true);
             $table->string('achievements')->nullable(true);
@@ -34,6 +33,7 @@ class CreateStudentInfosTable extends Migration
             $table->timestamps();
 
             $table->foreign('stu_email')->references('email')->on('users')->onDelete('cascade');
+
         });
     }
 

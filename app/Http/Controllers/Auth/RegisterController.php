@@ -80,20 +80,15 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'fname' => $request['fname'],
-            'lname' => $request['lname'],
-            'email' => $request['email'],
-            'userType' => $request['userType'],
-            'password' => Hash::make($request['password']),
+            'fname' => $data['fname'],
+            'lname' => $data['lname'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
     }
+
+
     
-
-
-
-
-
-
 
 
     //--------------- Tutor Controllers ----------------
@@ -131,7 +126,7 @@ class RegisterController extends Controller
                 //$user->lec_email = $request['email'];
                 //$user->gender = $request['gender'];
                 //$user->push();
-                return app()->getLocale() . '/tutor/login';
+                return redirect(app()->getLocale() . '/login/tutor');
             }
         //Else statement not required, Laravel redirects USER back with flash messages
         }

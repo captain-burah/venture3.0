@@ -29,8 +29,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::post('/student/login', 'Auth\LoginController@userLogin')->name('student-verify');
         Route::get('/testPage', 'Lecturer\LecturerController@test');
         Route::get('/about_us', 'HomeController@aboutUs')->name('about_us');
-        
-    //---------------------- Newly Declared routes based on laravel inbuilt authentication system-----------------------
+    //---------------------- Newly Declared routes based on laravel inbuilt authentication system----------------------->
 
 
 
@@ -108,7 +107,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     
     Route::middleware(['auth:lecturer'])->group(function () {
         
-        Route::get('/setup', function () {              //---- Loading of the step page
+        Route::get('/tutor_setup', function () {              //---- Loading of the step page
             return view('lecturer.setup.lecSetup');     //---- This is controlled by App/Exceptions/Handler.php
         })->name('tutor-setupPage');
 
@@ -121,7 +120,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
     //---------------------------- Group: Student Auths------------------------------------------------------->
     Route::middleware(['auth'])->group(function() {
-        Route::get('/setup', function () {              //---- Loading of the step page
+        Route::get('/student_setup', function () {              //---- Loading of the step page
             return view('lecturer.setup.lecSetup');     //---- This is controlled by App/Exceptions/Handler.php
         })->name('student-setupPage');
     });
