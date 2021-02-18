@@ -29,7 +29,21 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::post('/student/login', 'Auth\LoginController@userLogin')->name('student-verify');
         Route::get('/testPage', 'Lecturer\LecturerController@test');
         Route::get('/about_us', 'HomeController@aboutUs')->name('about_us');
+        Route::get('/pay-as-you-go', 'HomeController@payg')->name('payg');
+
     //---------------------- Newly Declared routes based on laravel inbuilt authentication system----------------------->
+
+
+
+
+    //---------------------- Tutor Register Routes ----------------------->
+    Route::get('/free_plan', 'HomeController@free_plan')->name('tutor-free_plan');
+    Route::get('/pay_as_you_go', 'HomeController@pay_as_you_go')->name('tutor-pay_as_you_go');
+    Route::get('/beginner_plan', 'HomeController@beginner_plan')->name('tutor-beginner_plan');
+    Route::get('/professional_plan', 'HomeController@professional_plan')->name('tutor-professional_plan');
+    Route::get('/master_plan', 'HomeController@master_plan')->name('tutor-master_plan');
+    //---------------------- Tutor Register Routes ----------------------->
+
 
 
 

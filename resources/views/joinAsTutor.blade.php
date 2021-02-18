@@ -47,10 +47,13 @@
 
   <!--- Body  --->
   <div class="main main-raised border border-primary">
-    <div class="container">
+    <div class="container-fluid">
+
       <!---   Section 01  Features --->
       <div class="pt-1 section-feature" id="featureSection">
         <div class="text-center">
+          
+          <!-- Heaing -->
           <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
             <h1 class="title">{{ __('What do you get?')}}</h1>
@@ -63,46 +66,133 @@
             </div>
           </div>
           <div class="features">
-            <div class="row">
+
+            <!-- Row 01 -->
+            <div class="row "> 
+              <div class="col-md-4">
+                <div class="info">
+                <div class="icon icon-info">
+                  <i class="material-icons">chat</i>
+                </div>
+                <h4 class="info-title">StudentCast</h4>
+                <p>A discussion forum that connects tutors and students together. All 
+                  discussions have been categorized under subjects where tutors will
+                  be notified of their respective subjects.
+                </p>
+                </div>
+              </div>
               
-            <div class="col-md-4">
-              <div class="info">
-              <div class="icon icon-info">
-                <i class="material-icons">chat</i>
+              <div class="col-md-4">
+                <div class="info">
+                <div class="icon icon-success">
+                  <i class="material-icons">verified_user</i>
+                </div>
+                <h4 class="info-title">Virtual Learning Environment</h4>
+                <p>
+                  A user friendly environment with unrealistic facilities to satisfy 
+                  both the students and tutors, to function all your everyday needs.
+                </p>
+                </div>
               </div>
-              <h4 class="info-title">StudentCast</h4>
-              <p>A discussion forum that connects tutors and students together. All 
-                discussions have been categorized under subjects where tutors will
-                be notified of their respective subjects.
-              </p>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="info">
-              <div class="icon icon-success">
-                <i class="material-icons">verified_user</i>
-              </div>
-              <h4 class="info-title">Virtual Learning Environment</h4>
-              <p>
-                A user friendly environment with unrealistic facilities to satisfy 
-                both the students and tutors, to function all your everyday needs.
-              </p>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="info">
-              <div class="icon icon-danger">
-                <i class="material-icons">people_outline</i>
-              </div>
-              <h4 class="info-title">Free Registrations</h4>
-              <p>
-                All tutors and students can register for free. Use this opportunity 
-                to explore the interface and feel the experience of this masterpiece.
-              </p>
+              
+              <div class="col-md-4">
+                <div class="info">
+                <div class="icon icon-danger">
+                  <i class="material-icons">people_outline</i>
+                </div>
+                <h4 class="info-title">Free Registrations</h4>
+                <p>
+                  All tutors and students can register for free. Use this opportunity 
+                  to explore the interface and feel the experience of this masterpiece.
+                </p>
+                </div>
               </div>
             </div>
+
+            <!-- Row Two -->
+            <div class="row bg-dark"> 
+              <div class="col-md-4">
+                <div class="info">
+                <div class="icon icon-warning">
+                  <i class="material-icons">menu_book</i>
+                </div>
+                <h4 class="info-title text-light">Create Your Courses</h4>
+                <p>You have the ability to create any course material by choosing a set of lessons and examinations 
+                  the way as you wish to have it.
+                </p>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="info">
+                <div class="icon icon-warning">
+                  <i class="material-icons">task</i>
+                </div>
+                <h4 class="info-title text-light">Create Your Assessments</h4>
+                <p>
+                  You can create your examinations, quizes or assessments for students using the Exam Builder in our system
+                  or you could upload your examination using a format by downloading our CSV file.
+                </p>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="info">
+                <div class="icon icon-warning">
+                  <i class="material-icons">menu_book</i>
+                </div>
+                <h4 class="info-title text-light">Create your Lessons</h4>
+                <p>
+                  With this module, you can easily create your own lesson using the lesson builder or 
+                  you could upload your lesson contents supported in, MP4, AVI, MOV, GIF, JPEG, JPG, PNG, PDF, DOCX, PPTX.
+                </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row Three -->
+            <div class="row"> 
+              <div class="col-md-4">
+                <div class="info">
+                <div class="icon icon-success">
+                  <i class="material-icons">monetization_on</i>
+                </div>
+                <h4 class="info-title">Payment Module</h4>
+                <p>
+                  Your payments are made easy using the online payment module called "Payhere.lk", a subsidiary of 
+                  Sampath Bank PVT. LTD. The payments will reach to our system and will then be credited to your account 
+                  within 7 working days.
+                </p>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="info">
+                <div class="icon icon-rose">
+                  <i class="material-icons">task</i>
+                </div>
+                <h4 class="info-title">Manage Your Tasks</h4>
+                <p>
+                  Students need to engage in your course material frequently. You can do that by using our
+                  task manager to create tasks and assignments for students to perform and submit when they are 
+                  completed.
+                </p>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="info">
+                <div class="icon icon-success">
+                  <i class="material-icons">request_quote</i>
+                </div>
+                <h4 class="info-title">View Reports</h4>
+                <p>
+                  Create reports on your students progress, view your payment history and determin your growth 
+                  rate with just a click.
+                </p>
+                </div>
+              </div>
+              
             </div>
           </div>
           </div>
@@ -122,37 +212,40 @@
             your product. Keep you user engaged by providing meaningful information.
             Remember that by this time, the user is curious, otherwise he wouldn't 
             scroll to get here. Add a button if you want the user to see more.
-          </h5>
+          </h5> <br>
           </div>
         </div>
         <!---------- Description Plan ----------->
         <!---------- Starter Plan ----------->
-        <div class="row col-md-8 mx-1 mx-auto">
-          <div class="card border border-warning">
-            <div class="card-header card-header-warning">
-              <h3 class="card-title">Starter Plan</h3>
+        <div class="container-fluid row col-md-6 mx-1 mx-auto">
+          <div class="card border border-danger">
+            <div class="card-header card-header-danger py-2">
+              <h3 class="card-title">Free Plan</h3>
+              <h4 class="category">Students: Unlimited</h4>
             </div>
             <div class="card-body">
+              <p>
+                {{ __('All tutors will recieve 14 days free, to use the system without selecting a subscription 
+                package with unlimited students. Tutors will be restricted with the following options.')}}
+              </p>
               <h5>
-                Storage: Unlimited
-                <br><hr class="bg-warning">
+                Storage: 500 MB
+                <br><hr class="bg-danger">
                 
-                Personalised Subdomain
-                <br><hr class="bg-warning">
+                No Subdomain
+                <br><hr class="bg-danger">
                             
-                Fast & Easy Exam & Lesson Module
-                <br><hr class="bg-warning">
+                Staff Accounts: 2
+                <br><hr class="bg-danger">
                             
-                Staff Accounts: 10
-                <br><hr class="bg-warning">
-                            
-                Transaction fee: 03 %
-                <br><hr class="bg-warning">
-                
-                Minimum LKR 2,500 /mo onwards
+                Transaction Fee: 10 %
+                <br><hr class="bg-danger">
+
+                Free for 14 days
+                <br>
               </h5>
-              <a href="#" class="btn btn-white border border-warning text-warning text-capitalize">
-                <h5 class="p-0 m-0">Go with Starter Plan</h5>
+              <a href="{{ url(app()->getLocale() . '/free_plan')}}" class="btn btn-white border border-danger text-danger text-capitalize">
+                <h5 class="p-0 m-0">Proceed with Free Plan</h5>
               </a>
             </div>
           </div>
@@ -181,7 +274,7 @@
                     <br><hr class="bg-warning">
                     
                   </h5>
-                  <a href="#" class="btn btn-white border border-warning text-dark  text-capitalize">
+                  <a href="{{ url(app()->getLocale() . '/pay-as-you-go') }}" class="btn btn-white border border-warning text-dark  text-capitalize">
                     <h5 class="p-0 m-0 font-weight-bold ">Read More</h5>
                   </a>
                 </div>
@@ -296,160 +389,6 @@
     </div>
     <!---   /Section 02  PayAsYouGo --->
 
-    <!---   Section 03  Contact Us --->
-        <div class="section section-whoAreWe" style="background-image: url({{ asset('img/bg19.jpg')}}); 
-        background-size: cover; background-position: top center; min-height: 700px;"  id="WhoAreWe">
-          <div class="container">
-            <h1 class="title text-center">The Team</h1>
-            <!--- Khaazen --->
-            <div class="row">
-              <div class="col-md-4 mx-auto">
-                <div class="card bg-dark image-preview mx-auto" style="width: 20rem;">
-                  <img class="image-preview__image card-img-top img-raised rounded-circle img-fluid mt-3" 
-                  src="{{ asset('img/faces/tkb.jpeg')}}" rel="nofollow" alt="Card image cap"
-                  style="">
-                  <div class="card-header card-header-info">
-                    <h4 class="text-center description p-0 m-0 text-white">Tuan Burah</h4>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="mt-0 description text-center">CEO, Developer & Founder of Enlighten Venture</h5>
-                    <p class="description text-center">
-                      Member of British Computer Society Royale Charter (MBCS)<br>
-                      Matrix Institute of Information Technology (MIIT)
-                    </p>
-                    <div class="row col-md-8 mx-auto">
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--- Khaazen --->
-            <div class="row ">
-              <!--- Yoshell --->
-              <div class="col-md-4 my-auto mx-auto">
-                <div class="card bg-dark image-preview mx-auto" style="width: 20rem;">
-                  <img class="image-preview__image card-img-top img-raised rounded-circle img-fluid mt-3" 
-                  src="{{ asset('img/faces/dave.jpg')}}" rel="nofollow" alt="Card image cap"
-                  style="">
-                  <div class="card-header card-header-info">
-                    <h4 class="text-center description p-0 m-0 text-white">Yoshell Delile</h4>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="mt-0 description text-center">Founder of Enlighten Venture</h5>
-                    <p class="description text-center">
-                      B.Sc. in Agriculture Resource Management & Technology <br> University of Ruhuna Faculty of Agriculture (URFA)
-                    </p>
-                    <div class="row col-md-8 mx-auto">
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--- Yoshell --->
-              <!--- Hansaka --->
-              <div class="col-md-4 my-auto mx-auto">
-                <div class="card bg-dark image-preview mx-auto" style="width: 20rem;">
-                  <img class="image-preview__image card-img-top img-raised rounded-circle img-fluid mt-3" 
-                  src="{{ asset('img/faces/marc.jpg')}}" rel="nofollow" alt="Card image cap"
-                  style="">
-                  <div class="card-header card-header-info" style="width: 10rem;">
-                    <h4 class="text-center description p-0 m-0 text-white">Hansaka Chathurangana</h4>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="mt-0 description text-center">Founder of Enlighten Venture</h5>
-                    <p class="description text-center">
-                      Chartered Accountant Audit <br> Institute of Chatered Accountants of Sri Lanka
-                    </p>
-                    <div class="row col-md-8 mx-auto">
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--- Hansaka --->
-              <!--- Aatiqa --->
-              <div class="col-md-4 my-auto mx-auto">
-                <div class="card bg-dark image-preview mx-auto" style="width: 20rem;">
-                  
-                  <img class="image-preview__image card-img-top img-raised rounded-circle img-fluid mt-3" 
-                  src="{{ asset('img/faces/avatar.jpg')}}" rel="nofollow" alt="Card image cap"
-                  style="">
-                  <div class="card-header card-header-rose">
-                    <h4 class="text-center description p-0 m-0 text-white">Aatiqa Burah</h4>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="mt-0 description text-center">Designer & Founder of Enlighten Venture</h5>
-                    <p class="description text-center">
-                      Ba. in Information Technology <br> University of Colombo School of Computing (UCSC)
-                    </p>
-                    <div class="row col-md-8 mx-auto">
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                      <div class="col-md-4 mx-auto">
-                        <a class="nav-link p-2 text-center text-white" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Instagram">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--- Aatiqa --->
-            </div>            
-          </div>
-        </div>
-    <!---   /Section 03  Contact Us --->
   </div>
   <!--- Body  --->
 

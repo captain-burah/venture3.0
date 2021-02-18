@@ -195,11 +195,6 @@
                       <i class="material-icons">attach_money</i> Pricing
                       </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)" onclick="scrollToWhoAreWe()">
-                        <i class="material-icons">supervisor_account</i> Who are we?
-                    </a>
-                  </li>
                   <li class="nav-item">  <!---- Register item--->
                       @if (Route::has('login')) <!-- if the route has already processed the 'login' route -->
                       <div>
@@ -341,14 +336,6 @@
         if ($('.section-PayAsYouGo').length != 0) {
           $("html, body").animate({
             scrollTop: $('.section-PayAsYouGo').offset().top
-          }, 1000);
-        }
-      }
-      
-      function scrollToContactUs() {
-        if ($('.section-ContactUs').length != 0) {
-          $("html, body").animate({
-            scrollTop: $('.section-ContactUs').offset().top
           }, 1000);
         }
       }

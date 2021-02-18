@@ -162,7 +162,7 @@ window.Fire = Fire;
   })
 
 //-------------- Vue Translations-------------------------------------------------//
-  Vue.mixin(require('./trans'))
+  //Vue.mixin(require('./trans'))
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

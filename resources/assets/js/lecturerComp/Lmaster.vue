@@ -9,7 +9,7 @@
       <ul class="navbar-nav mr-auto mb-0">
         <li class="nav-item mt-1">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button">
-            <i class="fas fa-bars"></i>&nbsp; &nbsp; {{ __('Tutor Dashboard')}}</a>
+            <i class="fas fa-bars"></i>&nbsp; &nbsp; Tutor Dashboard</a>
         </li>
       </ul>
       <div class="navbar-nav mt-1 text-white">
@@ -171,7 +171,7 @@
             <router-link to="/tutor/lecProfile" class="nav-link text-light rounded-pill">
               <i class="nav-icon fas fa-user orange"></i>
               <p>
-                {{ __('Profile')}}
+                Profile
                 
               </p>
             </router-link>
@@ -181,7 +181,7 @@
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="nav-icon fa fa-power-off red"></i>
               <p>
-                {{ __("Logout")}}
+               Logout
               </p>
             </a>
             <form id="logout-form" :action="logout_user" method="POST" style="display: none;">

@@ -7,9 +7,6 @@
    id="coverSection">
     <div class="row container text-center mx-auto my-auto d-flex align-content-center flex-wrap" >
       <div class="col-md-12">
-        
-       
-
         <h1 class="cover-heading mx-auto mb-5 mt-0 text-dark animate__animated animate__fadeInUp animate__delay-1s"
         style="font-size: 4.5em">
         {{ __('Enlighten Venture')}}

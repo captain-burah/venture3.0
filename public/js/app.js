@@ -35369,7 +35369,7 @@ __WEBPACK_IMPORTED_MODULE_4_vue___default.a.filter('myDate', function (created) 
 });
 
 //-------------- Vue Translations-------------------------------------------------//
-__WEBPACK_IMPORTED_MODULE_4_vue___default.a.mixin(__webpack_require__(315));
+//Vue.mixin(require('./trans'))
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -90913,21 +90913,7 @@ var render = function() {
           "main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-dark \n  navbar-white border-bottom border-dark"
       },
       [
-        _c("ul", { staticClass: "navbar-nav mr-auto mb-0" }, [
-          _c("li", { staticClass: "nav-item mt-1" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: { "data-widget": "pushmenu", href: "#", role: "button" }
-              },
-              [
-                _c("i", { staticClass: "fas fa-bars" }),
-                _vm._v("    " + _vm._s(_vm.__("Tutor Dashboard")))
-              ]
-            )
-          ])
-        ]),
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "div",
@@ -90954,7 +90940,7 @@ var render = function() {
         staticStyle: { "background-color": "" }
       },
       [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _c("div", { staticClass: "sidebar" }, [
           _c(
@@ -90968,7 +90954,7 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(2)
             ]
           ),
           _vm._v(" "),
@@ -90984,7 +90970,7 @@ var render = function() {
                 }
               },
               [
-                _vm._m(2),
+                _vm._m(3),
                 _vm._v(" "),
                 _c(
                   "li",
@@ -91064,7 +91050,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("li", { staticClass: "nav-item has-treeview py-1" }, [
-                  _vm._m(3),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("ul", { staticClass: "nav nav-treeview " }, [
                     _c(
@@ -91283,9 +91269,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", [
                           _vm._v(
-                            "\n                " +
-                              _vm._s(_vm.__("Profile")) +
-                              "\n                \n              "
+                            "\n                Profile\n                \n              "
                           )
                         ])
                       ]
@@ -91295,28 +91279,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("li", { staticClass: "nav-item py-1" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link text-light rounded-pill",
-                      attrs: {
-                        href: "javascript:void(0)",
-                        onclick:
-                          "event.preventDefault(); document.getElementById('logout-form').submit();"
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "nav-icon fa fa-power-off red" }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(_vm.__("Logout")) +
-                            "\n              "
-                        )
-                      ])
-                    ]
-                  ),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c(
                     "form",
@@ -91354,10 +91317,30 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(4)
+    _vm._m(6)
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "navbar-nav mr-auto mb-0" }, [
+      _c("li", { staticClass: "nav-item mt-1" }, [
+        _c(
+          "a",
+          {
+            staticClass: "nav-link",
+            attrs: { "data-widget": "pushmenu", href: "#", role: "button" }
+          },
+          [
+            _c("i", { staticClass: "fas fa-bars" }),
+            _vm._v("    Tutor Dashboard")
+          ]
+        )
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -91426,6 +91409,27 @@ var staticRenderFns = [
           _vm._v("\n                My Exams\n                "),
           _c("i", { staticClass: "right fas fa-angle-left" })
         ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "nav-link text-light rounded-pill",
+        attrs: {
+          href: "javascript:void(0)",
+          onclick:
+            "event.preventDefault(); document.getElementById('logout-form').submit();"
+        }
+      },
+      [
+        _c("i", { staticClass: "nav-icon fa fa-power-off red" }),
+        _vm._v(" "),
+        _c("p", [_vm._v("\n               Logout\n              ")])
       ]
     )
   },
@@ -91627,45 +91631,6 @@ if (false) {
 
 /***/ }),
 /* 315 */
-/***/ (function(module, exports) {
-
-module.exports = {
-    methods: {
-
-        /**
-         * Translate the given key.
-         */
-        __: function __(key, replace) {
-            var translation = void 0,
-                translationNotFound = true;
-
-            try {
-                translation = key.split('.').reduce(function (t, i) {
-                    return t[i] || null;
-                }, window._translations[window._locale].php);
-
-                if (translation) {
-                    translationNotFound = false;
-                }
-            } catch (e) {
-                translation = key;
-            }
-
-            if (translationNotFound) {
-                translation = window._translations && window._translations[window._locale]['json'][key.toLowerCase()] ? window._translations[window._locale]['json'][key.toLowerCase()] : key;
-            }
-
-            _.forEach(replace, function (value, key) {
-                translation = translation.replace(':' + key, value);
-            });
-
-            return translation;
-        }
-    }
-};
-
-/***/ }),
-/* 316 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

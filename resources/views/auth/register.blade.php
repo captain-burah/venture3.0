@@ -64,11 +64,13 @@
                     <!---------------------- SignUp Body -------------------------------->
                     <div class="card-body px-3">
                     @isset($url)
-                    <form class="form" method="POST" id="tutorForm" action="{{ url(app()->getLocale() . '/tutor/register') }}" 
-                    aria-label="{{ __('Register') }}" name="tutorForm">
+                        <form class="form" method="POST" id="tutorForm" action="{{ url(app()->getLocale() . '/tutor/register') }}" 
+                        aria-label="{{ __('Register') }}" name="tutorForm">
+
+                        <input type="text" name="tutor-plan" value="{{$plan}}" class="form-control" style="display: none;"> 
                     @else
-                    <form class="form" method="POST" id="studentForm" action="" 
-                    aria-label="{{ __('Register')}}" name="studentForm">
+                        <form class="form" method="POST" id="studentForm" action="" 
+                        aria-label="{{ __('Register')}}" name="studentForm">  
                     @endisset
                         @csrf
                         <div class="form-group-row">
@@ -114,6 +116,53 @@
                         </div>
                         <!--  /Email  -->
 
+                        <!-- Subscription -->
+                            @isset($url)
+                                <div class="form-group-row p-0">
+                                    <div class="input-group col-md-12 m-0 p-0 text-right">
+                                        <select class="custom-select" id="profession" name="profession" data-toggle="tooltip" 
+                                        data-placement="top" title="state your profession" tabindex="0" onchange="yesnoCheck(this);">
+                                            @if ($plan == 'free')
+                                                <option value="free" selected="selected">Free Subcription</option>
+                                                <option value="pay_as_you_go">Pay-As-You-Go</option>
+                                                <option value="beginners">Beginners Subsription</option>
+                                                <option value="professional">Professionals Subscription</option>
+                                                <option value="master">Masters Subsription</option>
+
+                                            @elseif ($plan == 'pay_as_you_go')
+                                                <option value="free">Free Subcription</option>
+                                                <option value="pay_as_you_go" selected="selected">Pay-As-You-Go</option>
+                                                <option value="beginners">Beginners Subsription</option>
+                                                <option value="professional">Professionals Subscription</option>
+                                                <option value="master">Masters Subsription</option>
+
+                                            @elseif ($plan == 'beginner_plan')
+                                                <option value="free" >Free Subcription</option>
+                                                <option value="pay_as_you_go">Pay-As-You-Go</option>
+                                                <option value="beginners" selected="selected">Beginners Subsription</option>
+                                                <option value="professional">Professionals Subscription</option>
+                                                <option value="master">Masters Subsription</option>
+
+                                            @elseif ($plan == 'professional_plan')
+                                                <option value="free" >Free Subcription</option>
+                                                <option value="pay_as_you_go">Pay-As-You-Go</option>
+                                                <option value="beginners">Beginners Subsription</option>
+                                                <option value="professional" selected="selected">Professionals Subscription</option>
+                                                <option value="master">Masters Subsription</option>
+
+                                            @elseif ($plan == 'master_plan')
+                                                <option value="free" >Free Subcription</option>
+                                                <option value="pay_as_you_go">Pay-As-You-Go</option>
+                                                <option value="beginners">Beginners Subsription</option>
+                                                <option value="professional">Professionals Subscription</option>
+                                                <option value="master" selected="selected">Masters Subsription</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                            @endisset
+                        <!-- /Subscription -->
+
                         <!--  /Gender  -->
                             <!-- <div class="form-group row mb-0">
                                 <div class="form-group col-md-12">
@@ -152,6 +201,7 @@
                             </div>
                             <!--  Password  -->
                         </div>
+                        
                         <div class="form-group p-0">
                             <input type="checkbox"/> {{ __("I have read & agreed to the ")}} 
                             <a href="">{{ __("Privacy Policy")}}</a>{{ __(" article and i give my consent to withold & use my information.")}}
