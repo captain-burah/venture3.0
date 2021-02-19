@@ -8,23 +8,15 @@
       <div class="row ">
           <div class="col-md-5 text-center">
               <div class="brand mobile-view">
-                  <h3 class="">{{ __('Free Registrations Are Now Open')}}</h3>
+                  <h3 class="">{{ __('Free Registrations Now Open')}}</h3>
                   <div class="separator line-separator text-white  pb-0 pt-0">♦</div>
               </div>
               <div class="">
-                <a href="{{ url(app()->getLocale() . '/tutor_registration')}}" 
-                  class="btn btn-rose btn-lg mobile-view text-left" rel="nofollow" style="min-width: 293.11px;">
-                  <i class="fa fa-play"></i>&nbsp {{ __(' Register Now!')}}
-                </a>
-                <a href="#" class="btn btn-info btn-lg text-left" 
-                style="min-width: 293.11px;">
-                  <i class="fa fa-university"></i>&nbsp {{ __('Open Academy')}}
-                </a>
                 <a href="#" target="" class="btn btn-primary btn-lg text-left" rel="nofollow" 
                 style="min-width: 293.11px;">
                     <i class="fa fa-hashtag"></i>&nbsp {{ __('StudentCast Forum')}}
                 </a>
-                <a href="#" target="_blank" class="btn btn-warning btn-lg text-left" rel="nofollow" 
+                <a href="#" target="_blank" class="btn btn-warning btn-lg text-left text-dark" rel="nofollow" 
                 style="min-width: 293.11px;">
                     <i class="fa fa-graduation-cap"></i>&nbsp {{ __('Tutor Panel')}}
                 </a>
@@ -33,12 +25,7 @@
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-6 text-right mobile-hide" >
-            <h1 class="title text-right">{{ __('Free Registrations Are Now Open')}}</h1>
-            
-            <a href="{{ url(app()->getLocale() . '/tutor_registration')}}"
-            class="btn btn-rose btn-raised btn-lg text-left" style="min-width: 293.11px;">
-              <i class="fa fa-play"></i>&nbsp {{ __(' Register Now!')}}
-            </a>
+            <h1 class="title text-right">{{ __('Free Registrations Now Open')}}</h1>
           </div>
       </div>
     </div>

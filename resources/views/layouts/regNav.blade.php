@@ -2,7 +2,9 @@
     <div class="container ">
       <div class="navbar-translate">
         <a class="navbar-brand" href="/Landing">
-          Enlighten Venture  </a>
+          <img src="{{asset('img/favicon/5.png')}}" alt="logo" style="height: 32px; width: 32px;" class="mx-1">
+          {{ config('app.name', 'Laravel') }}  
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
          aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>

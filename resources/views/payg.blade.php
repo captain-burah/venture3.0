@@ -13,9 +13,13 @@
               <div class="brand mobile-view">
                   <h3 class="">{{ __('Pay-As-You-Go?')}}</h3>
                   <div class="separator line-separator text-white  pb-0 pt-0">♦</div>
+                  <a href="{{ url(app()->getLocale() . '/pay_as_you_go') }}" class="btn btn-warning btn-lg text-left text-dark" 
+                    style="min-width: 293.11px;">
+                      <i class="fa fa-user-plus"></i>&nbsp {{ __('Register Now!')}}
+                  </a>
               </div>
               <div class="my-auto py-auto">
-                <a href="#" class="btn btn-warning btn-lg text-left text-dark" 
+                <a href="{{ url(app()->getLocale() . '/pay_as_you_go') }}" class="btn btn-warning btn-lg text-left text-dark" 
                 style="min-width: 293.11px;">
                   <i class="fa fa-user-plus"></i>&nbsp {{ __('Register Now!')}}
                 </a>
@@ -31,7 +35,7 @@
     <div class="container-fluid">
 
       <!---   Section 01  Features --->
-      <div class="pt-1 section-feature" id="featureSection">
+      <div class="pt-1 section-feature pb-2" id="featureSection">
         <div class="text-center">
 
           <!-- Heaing -->
@@ -72,7 +76,7 @@
                 <div class="icon icon-warning">
                   <i class="material-icons">backup</i>
                 </div>
-                <h4 class="info-title text-light">Free 01 GB Storage</h4>
+                <h4 class="info-title text-light">Free 500 MB Cloud Storage</h4>
                 <p>
                   This limit of storage is provided just for you to learn and understand the functionalities of EV.
                   In order to use more storage you will need to purchase an additional storage slot, which would then be added to your 
@@ -138,11 +142,147 @@
               </div>
 
           </div>
-          </div>
         </div>
+      </div>
       <!---   /Section 01  Features --->
-    </div>
 
+
+      <!---   Section 02  Table --->
+      <div class="pt-5 section-feature">
+        <div class="text-center">
+
+            <!-- Row One -->
+            <div class="row">
+              <h1 class="description col-md-12 text-center ">{{ __('Storage Capacity')}}</h1>
+              <table class="table">
+                <caption class="mx-3 text-dark">*The storage slot you purchase will be a 
+                  recurring cost added to your monthly statements. Note: once activated this action cannot be undone. 
+                  For more information please reach our assistance.</caption>
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Storage Capacity</th>
+                    <th scope="col">Price (LKR)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">First 500 MB</th>
+                    <td>Free</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+ 500 MB additional storage</th>
+                    <td>500</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+ 02 GB additional storage</th>
+                    <td>1,600</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+ 05 GB additional storage</th>
+                    <td>3000</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+
+            <!-- Row Two -->
+            <div class="row ">
+              <h1 class="description col-md-12 text-center">{{ __('Student Enrollments')}}</h1>
+              <table class="table">
+                <caption class="mx-3 text-dark">*The student slot you purchase will become a 
+                  recurring cost added to your monthly statements. Note: once activated, this action cannot be undone. 
+                  For more information please reach our assistance.</caption>
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Student Enrollments</th>
+                    <th scope="col">Price (LKR)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">First 25 students</th>
+                    <td>Free</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+ 25 additional students</th>
+                    <td>2,500</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+ 100 additional students</th>
+                    <td>3,999</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+ 200 additional students</th>
+                    <td>4,499</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+ 250 additional students</th>
+                    <td>7,999</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+ 500 additional students</th>
+                    <td>9,999</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Row Three -->
+            <div class="row ">
+              <h1 class="description col-md-12 text-center">{{ __('Staff Accounts')}}</h1>
+              <table class="table">
+                <caption class="mx-3 text-dark">*The staff account slot you purchase will become a 
+                  recurring cost added to your monthly statements. Note: once activated, this action cannot be undone. 
+                  For more information please reach our assistance.</caption>
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Staff Accounts</th>
+                    <th scope="col">Price (LKR)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">01 staff account</th>
+                    <td>Free</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+ 01 additional staff account</th>
+                    <td>500</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <!-- Row Four -->
+            <div class="row ">
+              <h1 class="description col-md-12 text-center">{{ __('Personalized Subdomain')}}</h1>
+              <table class="table">
+                <caption class="mx-3 text-dark">
+                  *This purchase will become a recurring cost added to your monthly statements. 
+                  Note: once you cancel this operation, your registered subdomain cannot be retrieved or 
+                  used again by you or another party. For more information please reach our assistance.
+                </caption>
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Subdomains</th>
+                    <th scope="col">Price (LKR)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Activate Personalized Subdomain</th>
+                    <td>1,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+        </div>
+      </div>
+      <!---   /Section 01  Features --->
+
+    </div>
   </div>
   <!--- Body  --->
 
