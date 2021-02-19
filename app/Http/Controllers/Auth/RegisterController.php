@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Admin;
 use App\Lecturer;
 use App\LecturerInfo;
+
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -132,4 +134,53 @@ class RegisterController extends Controller
         }
     //--------------- Tutor Controllers ----------------
 
+
+
+
+
+
+
+    //--------------- Admin Controllers ----------------
+        public function admin_view_reg()
+        {
+            return view('auth.registerAdmin');
+        }
+        
+
+        protected function admin_register(Request $request)
+        {
+            $validate = $this->validate($request, [
+                'fname'  => 'required|string|max:191',
+                'lname'  => 'required|string|max:191',
+                'email'  => 'required|string|email|max:191|unique:admins',
+                'password' => 'required|string|min:6|confirmed',
+                'password_confirmation' => 'required| min:6',
+                //'privacyPolicy' => 'required|string',
+            ]);
+            if ($validate == true){
+                try{
+                    Admin::create([
+                        'fname' => $request['fname'],
+                        'lname' => $request['lname'],
+                        'email' => $request['email'],
+                        'password' => Hash::make($request['password']),
+                    ]);
+                } catch (\Exception $exception) {
+                    //catch any errors while retrieving regStatus
+                    $message1 = '500';
+                    $message2 = 'Faulty Server Script';
+                    $message3 = 'Failled to create database query of '.$request->email;
+                    return view('errors.notFound', compact('message1', 'message2', 'message3'));
+                }
+                //$user = new LecturerInfo();
+                //$user->lec_email = $request['email'];
+                //$user->gender = $request['gender'];
+                //$user->push();
+                
+                //return redirect(app()->getLocale() . '/admin');
+                return redirect()->route('admin-login-view', app()->getLocale());
+            }
+        //Else statement not required, Laravel redirects USER back with flash messages
+        }
+    //--------------- Admin Controllers ----------------
 }

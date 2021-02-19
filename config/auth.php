@@ -46,6 +46,11 @@ return [
             'provider' => 'lecturers', 
         ],
 
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins', 
+        ],
+
         'api' => [
             'driver' => 'passport',
             'provider' => 'users',
@@ -71,6 +76,11 @@ return [
     */
 
     'providers' => [
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
+
         'lecturers' => [
             'driver' => 'eloquent',
             'model' => App\Lecturer::class,

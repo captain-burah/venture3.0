@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 use Auth;
 use Session;
-use Illuminate\Support\Facades\DB;
+use App\Admin;
 use App\Lecturer;
-use Illuminate\Support\Collection;
+
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 class LoginController extends Controller
 {
     /*
@@ -47,6 +50,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('guest:lecturer')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     } 
 
     public function logout(Request $request)
@@ -58,13 +62,17 @@ class LoginController extends Controller
         return redirect( app()->getLocale() . '/login');
     }
 
+
+
+
+
+
 //------------------ Tutor Login Form -----------------------
     public function showLecLoginForm()
     {
         return view('auth.login', ['url' => '/tutor']);
         //return view('auth.login', ['url' => '/tutor']);
     }
-
 
 //------------------ Tutor Login -----------------------
     public function lecLogin(Request $request)
@@ -110,6 +118,11 @@ class LoginController extends Controller
     }
 
 
+
+
+
+
+//------------------ Student Login -----------------------
     public function userLogin(Request $request)
     {
         $this->validate($request, [
@@ -158,6 +171,32 @@ class LoginController extends Controller
             return back()->withInput($request->only('email', 'remember'));
         }
             
+    }
+
+
+
+
+
+
+//------------------ Admin Login Form -----------------------
+    public function admin()
+    {
+        return view('auth.loginAdmin');
+    }
+
+//------------------ admin Login -----------------------
+    public function admin_login(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:8'
+        ]);
+
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+            return redirect(app()->getLocale() . '/admin_panel');
+        }
+        return back()->withInput($request->only('email', 'remember'));
     }
  
 }

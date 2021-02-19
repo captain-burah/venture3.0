@@ -147,6 +147,11 @@ Vue.component(
   'test-vue', 
   require('./components/test.vue')
 );
+
+Vue.component(
+  'admin-panel', 
+  require('./admin/Dashboard.vue')
+);
 //------------- Vue Custom Event-------------------------------------------------//
 let Fire = new Vue();
 window.Fire = Fire;

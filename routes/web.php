@@ -36,6 +36,8 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
 
 
+
+
     //---------------------- Tutor Register Routes ----------------------->
     Route::get('/free_plan', 'HomeController@free_plan')->name('tutor-free_plan');
     Route::get('/pay_as_you_go', 'HomeController@pay_as_you_go')->name('tutor-pay_as_you_go');
@@ -65,6 +67,16 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
 
 
+    //--------------------------- Test Routes ------------------------------------------------>
+        Route::get('/tester', function(){
+            return view('test');
+        });
+
+
+
+
+
+
     //--------------------------- Academy Routes Auths------------------------------------------------->
         //Route::get('/landing', 'HomeController@Landing')->name('landing'); //------- Home Page
         //------- Student Sign-Up uses laravel default /register route---//
@@ -82,7 +94,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         });
 
 
-        Route::get('/welcome', function(){
+        Route::get('/welcome', function(){ 
             return view('/welcome');
         });
     //--------------------------- /Academy Routes Auths------------------------------------------------->
@@ -132,6 +144,27 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     });
 
 
+
+
+    //--------------------------- Admin Routes------------------------------------------------>
+        Route::get('/admin', 'Auth\LoginController@admin')->name('admin-login-view');
+        Route::post('/admin', 'Auth\LoginController@admin_login')->name('admin-login');
+        
+        Route::get('/admin_reg', 'Auth\RegisterController@admin_view_reg')->name('admin-register-view');
+        Route::post('/admin_reg', 'Auth\RegisterController@admin_register')->name('admin-register');
+
+        Route::get('/admin_panel', 'AdminController@dashboard')->name('admin-dash');
+
+        Route::middleware(['auth:admin'])->group(function () {
+            
+
+        
+        });
+    //--------------------------- Admin Routes------------------------------------------------>
+
+
+
+    
     //---------------------------- Group: Student Auths------------------------------------------------------->
     Route::middleware(['auth'])->group(function() {
         Route::get('/student_setup', function () {              //---- Loading of the step page
