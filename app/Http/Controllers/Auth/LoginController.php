@@ -38,7 +38,7 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        return app()->getLocale() . '/login';
+        return app()->getLocale() . '/';
     }
 
     /**
@@ -53,7 +53,7 @@ class LoginController extends Controller
         $this->middleware('guest:admin')->except('logout');
     } 
 
-    public function logout(Request $request)
+    public function lec_logout(Request $request)
     {
         $this->guard('lecturer')->logout();
 
@@ -63,6 +63,18 @@ class LoginController extends Controller
     }
 
 
+
+
+
+
+    public function admin_logout(Request $request)
+    {
+        $this->guard('admin')->logout();
+        
+        $request->session()->invalidate();
+
+        return redirect()->route('/admin', app()->getLocale());
+    }
 
 
 

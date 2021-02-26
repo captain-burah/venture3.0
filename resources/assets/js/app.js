@@ -108,15 +108,31 @@ let routes = [
   
     
 
-    { path: '/tutor', component: require('./lecturerComp/Dashboard.vue')},
-    { path: '/tutor/lecProfile',  component: require('./lecturerComp/Profile.vue')},
-    //{ path: '/Lessons',  component: require('./lecturerComp/MyLessons.vue')},
-    { path: '/Schedules',  component: require('./lecturerComp/MySchedules.vue')},
-    { path: '/Layout',  component: require('./lecturerComp/SiteLayout.vue')},
-    { path: '/Staff',  component: require('./lecturerComp/StaffMgt.vue')},
+  { path: '/tutor', component: require('./lecturerComp/Dashboard.vue')},
+  { path: '/tutor/lecProfile',  component: require('./lecturerComp/Profile.vue')},
+  //{ path: '/Lessons',  component: require('./lecturerComp/MyLessons.vue')},
+  { path: '/Schedules',  component: require('./lecturerComp/MySchedules.vue')},
+  { path: '/Layout',  component: require('./lecturerComp/SiteLayout.vue')},
+  { path: '/Staff',  component: require('./lecturerComp/StaffMgt.vue')},
+
+
+
+
+
+
+  
+  
+
+  { path: '/admin_info',  component: require('./admin/InfoMgt.vue')},
+  { path: '/',  component: require('./admin/DashBody.vue')},
 
      
 ]
+
+
+
+
+
 //------------- Vue Components-------------------------------------------------//
 Vue.component(
   'passport-clients',
@@ -147,11 +163,13 @@ Vue.component(
   'test-vue', 
   require('./components/test.vue')
 );
+    //----------------- Admin Components-----------------------------------------//
+      Vue.component(
+        'admin-panel',
+        require('./admin/Dashboard.vue')
+      );
 
-Vue.component(
-  'admin-panel', 
-  require('./admin/Dashboard.vue')
-);
+    //----------------- /Admin Components-----------------------------------------//
 //------------- Vue Custom Event-------------------------------------------------//
 let Fire = new Vue();
 window.Fire = Fire;
@@ -176,7 +194,7 @@ window.Fire = Fire;
  */
 
 const router = new VueRouter({
-  mode: 'history',
+  //mode: 'history',
   routes // short for `routes: routes`
 })
 

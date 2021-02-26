@@ -153,6 +153,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::get('/admin_reg', 'Auth\RegisterController@admin_view_reg')->name('admin-register-view');
         Route::post('/admin_reg', 'Auth\RegisterController@admin_register')->name('admin-register');
 
+        Route::post('/admin_logout', 'Auth\LoginController@admin_logout')->name('admin-logout');
         Route::get('/admin_panel', 'AdminController@dashboard')->name('admin-dash');
 
         Route::middleware(['auth:admin'])->group(function () {

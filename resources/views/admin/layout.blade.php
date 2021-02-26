@@ -20,8 +20,8 @@
   <link href="{{ asset('vendor/nucleo/css/nucleo.css')}}" rel="stylesheet">
   <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
   <!-- Argon CSS -->
-  <link type="text/css" href="{{ asset('css/argon.css?v=1.0.0')}}" rel="stylesheet">
-  
+  <link type="text/css" href="{{ asset('css/argon.css?')}}" rel="stylesheet">
+
 </head>
 
 
@@ -35,9 +35,10 @@
   
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script rel="stylesheet" src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('vendor/jquery/dist/jquery.min.js')}}"></script>
+  <script rel="stylesheet" src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+  
 
   <!-- Optional JS -->
   <script src="{{ asset('vendor/chart.js/dist/Chart.min.js')}}"></script>
@@ -45,6 +46,7 @@
 
   <!-- Argon JS -->
   <script src="{{ asset('js/argon.js?v=1.0.0')}}"></script>
+
   
 </body>
 </html>

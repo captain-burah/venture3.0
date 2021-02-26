@@ -20,6 +20,9 @@ class RedirectIfAuthenticated
         if ($guard == "lecturer" && Auth::guard($guard)->check()) {
             return redirect( app()->getLocale() . '/tutor');
         }
+        if ($guard == "admin" && Auth::guard($guard)->check()) {
+            return redirect( app()->getLocale() . '/admin_panel');
+        }
         if (Auth::guard($guard)->check()) {
             return redirect( app()->getLocale() .'/student_dashboard');
         }
