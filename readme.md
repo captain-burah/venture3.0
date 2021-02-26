@@ -1,9 +1,9 @@
 <h1 align="center">Enlight</h1>
 
 <p align="center">
-<a href="https://www.instagram.com/captain_burah">Instagram</a>
-<a href="https://www.linkedin.com/in/tuan-burah/">LinkedIn</a>
-<a href="https://github.com/captain-burah">Git Hub</a>
+<a href="https://www.instagram.com/captain_burah">Instagram</a> | 
+<a href="https://www.linkedin.com/in/tuan-burah/">LinkedIn</a> | 
+<a href="https://github.com/captain-burah">Git Hub</a> | 
 <a href="https://stackoverflow.com/users/14991937/captain-burah">Stack Overflow</a>
 </p>
 
@@ -42,7 +42,7 @@ Back-end
 - Vue-router
 - NPM
 
-Fron-end
+Front-end
 - Vue Js
 - Chart Js
 - Popper Js
@@ -51,7 +51,6 @@ Fron-end
 - Font Awesome
 - Vue-Progress Bar
 - CK Editor
-- 
 - Bootstrap 4
 - Material-kit
 - Admin LTE 3
