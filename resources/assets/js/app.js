@@ -117,14 +117,10 @@ let routes = [
 
 
 
-
-
-
   
   
-
+  { path: '/Analytics',  component: require('./admin/DashBody.vue')},
   { path: '/admin_info',  component: require('./admin/InfoMgt.vue')},
-  { path: '/',  component: require('./admin/DashBody.vue')},
 
      
 ]
@@ -169,6 +165,10 @@ Vue.component(
         require('./admin/Dashboard.vue')
       );
 
+      Vue.component(
+        'analytics-component', 
+        require('./admin/charts/analytics.vue')
+      .default);
     //----------------- /Admin Components-----------------------------------------//
 //------------- Vue Custom Event-------------------------------------------------//
 let Fire = new Vue();

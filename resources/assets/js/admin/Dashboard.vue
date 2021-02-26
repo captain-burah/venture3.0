@@ -27,7 +27,6 @@
     <div class="container-fluid mt--7" id="app">
         <!-- for example router view -->
         <router-view></router-view>
-        
       <!-- Charts -->
 
       <!-- Footer -->

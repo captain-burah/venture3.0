@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
             return redirect( app()->getLocale() . '/tutor');
         }
         if ($guard == "admin" && Auth::guard($guard)->check()) {
-            return redirect( app()->getLocale() . '/admin_panel');
+            return redirect( '/admin/dashboard');
         }
         if (Auth::guard($guard)->check()) {
             return redirect( app()->getLocale() .'/student_dashboard');

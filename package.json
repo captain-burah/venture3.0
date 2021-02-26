@@ -28,11 +28,13 @@
         "admin-lte": "^3.0.0-alpha.2",
         "ajv": "^6.9.1",
         "ajv-keywords": "^3.5.2",
+        "chart.js": "^2.9.4",
         "imagemin": "^5.0.0",
         "moment": "^2.26.0",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^9.17.2",
         "vform": "^1.0.1",
+        "vue-chartjs": "^3.5.1",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.3.2"
     }

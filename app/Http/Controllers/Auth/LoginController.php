@@ -206,7 +206,7 @@ class LoginController extends Controller
 
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-            return redirect(app()->getLocale() . '/admin_panel');
+            return redirect('/admin/dashboard');
         }
         return back()->withInput($request->only('email', 'remember'));
     }

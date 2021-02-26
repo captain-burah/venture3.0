@@ -65,7 +65,7 @@
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link to="/" class="nav-link" >
+            <router-link to="/Analytics" class="nav-link" >
               <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </router-link>
           </li>
