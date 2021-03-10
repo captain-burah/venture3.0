@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <analytics></analytics>
+                    <analytics class="text-light"></analytics>
                 </div>
             </div>
         </div>

@@ -46,7 +46,11 @@
 
   <!-- Argon JS -->
   <script src="{{ asset('js/argon.js?v=1.0.0')}}"></script>
-
+  <!-- 
+    <script>
+      window._locale = "{{ url('admin') }} ";
+    </script>
+  -->
   
 </body>
 </html>

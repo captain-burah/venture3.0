@@ -29,7 +29,7 @@
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>
                 </a>
-                <form id="logout-form" :action="logout_user" method="POST" style="display: none;">
+                <form id="logout-form-nav" :action="logout_user" method="POST" style="display: none;">
                   <input type="hidden" name="_token" :value="csrf">
                   
                 </form>

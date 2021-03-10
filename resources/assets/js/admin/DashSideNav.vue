@@ -34,7 +34,7 @@
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>
                 </a>
-                <form id="logout-form" :action="logout_user" method="POST" style="display: none;">
+                <form id="logout-form-side" :action="logout_user" method="POST" style="display: none;">
                   <input type="hidden" name="_token" :value="csrf">
                   
                 </form>
@@ -66,7 +66,7 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <router-link to="/Analytics" class="nav-link" >
-              <i class="ni ni-tv-2 text-primary"></i> Dashboard
+              <i class="ni ni-tv-2 text-primary"></i> Analytics
             </router-link>
           </li>
           <li class="nav-item">

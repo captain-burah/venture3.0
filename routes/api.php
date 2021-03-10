@@ -17,17 +17,27 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();    
 });
 
+Route::middleware('auth:api')->get('/admin', function (Request $request) {
+    return $request->admin();    
+});
+
 Route::middleware('auth:api')->get('/exampapers', function (Request $request) {
     return $request->exampapers();    
 });
 
-Route::group(['middleware' => 'auth:api'], function() {
-    Route::apiResources([
-        'user'=> 'API\UserController',
-        'exampapers'=> 'API\ExamPapers',
+//--------- This is for authenticated users only -----------------
+    Route::group(['middleware' => 'auth:api'], function() {
+        Route::apiResources([
+            'user'=> 'API\UserController',
+            'exampapers'=> 'API\ExamPapers',
+            'admin'=> 'API\StorageController',
+        ]);
+        Route::get('profile', 'API\UserController@profile');
+        Route::put('profile', 'API\UserController@updateProfile');
+    });
+//--------- This is for authenticated users only -----------------
 
-        
-    ]);
-    Route::get('profile', 'API\UserController@profile');
-    Route::put('profile', 'API\UserController@updateProfile');
-});
+
+Route::apiResources([
+    'storage' => 'API\StorageController',
+]);

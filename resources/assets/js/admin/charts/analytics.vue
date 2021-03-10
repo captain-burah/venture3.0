@@ -27,11 +27,11 @@
           datasets: [
             {
               label: 'Data One',
-              backgroundColor: '#f87979',
+              backgroundColor: '#ffffff',
               data: [this.getRandomInt(), this.getRandomInt()]
             }, {
-              label: 'Data One',
-              backgroundColor: '#f87979',
+              label: 'Data Two',
+              backgroundColor: '#ffffff',
               data: [this.getRandomInt(), this.getRandomInt()]
             }
           ]

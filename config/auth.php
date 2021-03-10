@@ -55,6 +55,7 @@ return [
             'driver' => 'passport',
             'provider' => 'users',
             
+            
         ],
     ],
 

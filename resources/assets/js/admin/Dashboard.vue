@@ -24,9 +24,12 @@
 
     
     <!-- Page content -->
-    <div class="container-fluid mt--7" id="app">
+    <div class="container-fluid mt--7 px-0" id="app">
         <!-- for example router view -->
         <router-view></router-view>
+
+        
+        <vue-progress-bar></vue-progress-bar>
       <!-- Charts -->
 
       <!-- Footer -->
