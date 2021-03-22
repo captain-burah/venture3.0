@@ -14,7 +14,7 @@
             <div class="pb-5 mb-5 pt-4 pt-4 bg-info"></div>
         </div>
       <div class="row">
-        <div class="col-lg-4 col-md-6 ml-auto mr-auto my-auto section-LecReg" id="LecReg">
+        <div class="col-lg-6 col-md-6 ml-auto mr-auto my-auto section-LecReg" id="LecReg">
             <div class="card my-auto">
               <!---------------------- SignUp Heading -------------------------------->
                 @isset($url)
@@ -24,11 +24,12 @@
                 @endisset
                 @csrf
                 <div 
-                @isset($url)
-                    class="card-header card-header-info text-center"
-                @else
-                    class="card-header card-header-warning text-center"
-                @endisset>
+                    @isset($url)
+                        class="card-header card-header-info text-center"
+                    @else
+                        class="card-header card-header-warning text-center"
+                    @endisset>
+
                     @isset($url)
                         <h3 class="card-title mb-0 pb-0 font-weight-bold"><i class="fa fa-graduation-cap"></i>&nbsp {{ __('Tutor Login') }}</h3>
                         <span class="mb-0 pb-0" style="font-size: .9rem;">
@@ -53,6 +54,12 @@
     
               <!---------------------- SignUp Body -------------------------------->
                 <div class="card-body col-md-12">
+                    <div class="row col-md-12 mx-auto">
+                        @if($errors->any())
+                            <p class="text-light bg-danger px-2 text-center">{{$errors->first('message')}}</p>
+                        @endif
+                    </div>
+                    
                     <!--  E-mail Address  -->
                     <div class="form-group-row">
                         <div class="form-group col-md-12 p-0">
@@ -60,13 +67,12 @@
                                 <span class="input-group-text pr-2"><i class="material-icons">mail</i></span>
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" 
                                 name="email" value="{{ old('email') }}" placeholder="{{ __('E-mail Address')}}" required autofocus>
-                                
-                            </div>
-                            @if ($errors->has('email'))
+                                @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
+                            </div>
                         </div>
                     </div>
                     <!--  E-mail Address  -->
@@ -102,16 +108,22 @@
 
                     <div class="col-md-12 mx-auto text-center">
                             <button
-                            @isset($url)
-                                type="submit" class="btn btn-block btn-info mb-3"
-                            @else
-                                type="submit" class="btn btn-block btn-warning mb-3"
-                            @endisset >
-                                {{ __('Login') }}
+                                @isset($url)
+                                    type="submit" class="btn btn-block btn-info mb-3"
+                                @else
+                                    type="submit" class="btn btn-block btn-warning mb-3"
+                                @endisset >
+                                    {{ __('Login') }}
                             </button>
 
-                            <a class="text-primary" href="{{ route('register', app()->getLocale()) }}">
-                                <h5><b>{{ __('Create account') }}</b></h5>
+                            <a class="text-primary" 
+                                @isset($url)
+                                    href="{{ url(app()->getLocale() . '/tutor_registration') }}"
+                                @else
+                                    href="{{ route('register', app()->getLocale() )}}"
+                                @endisset
+                                >
+                                    <h5><b>{{ __('Create account') }}</b></h5>
                             </a>
                             <div class="text-right">
                                 <a class="btn btn-link text-left mx-0 px-0 pb-0 mb-0" href="{{ route('password.request', app()->getLocale()) }}">

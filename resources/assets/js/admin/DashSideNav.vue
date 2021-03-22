@@ -71,9 +71,53 @@
           </li>
           <li class="nav-item">
             <router-link to="/admin_info" class="nav-link" >
-              <i class="ni ni-bulb-61 text-blue"></i> Information Mgt
+              <i class="ni ni-bulb-61 text-blue"></i> Pay As You go Settings
             </router-link>
           </li>
+
+          <li class="nav-item py-1">
+            <a href="#" class="nav-link text-light rounded-pill">
+              <i class="nav-icon fa fa-copy text-success"></i>
+              <p>
+                My Exams
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="navbar-nav">
+              <li class="nav-item py-1">
+                <router-link to="createPapers" class="nav-link text-light offset-sm-1 rounded-pill">
+                  <i class="fas fa-angle-right nav-icon text-light"></i>
+                  <p>Create Paper</p>
+                </router-link>
+              </li>
+              <li class="nav-item py-1">
+                <router-link to="/categories" class="nav-link text-light offset-sm-1 rounded-pill">
+                  <i class="fas fa-angle-right nav-icon text-light "></i>
+                  <p>Categories</p>
+                </router-link>
+              </li>
+              <li class="nav-item py-1">
+                <router-link to="/bank" class="nav-link text-light offset-sm-1 rounded-pill">
+                  <i class="fas fa-angle-right nav-icon text-light "></i>
+                  <p>Question Bank</p>
+                </router-link>
+              </li>
+              <li class="nav-item py-1">
+                <router-link to="/examAnalysis" class="nav-link text-light offset-sm-1 rounded-pill">
+                  <i class="fas fa-angle-right nav-icon text-light "></i>
+                  <p>Exam Analysis</p>
+                </router-link>
+              </li>
+              <li class="nav-item py-1">
+                <router-link to="/archive" class="nav-link text-light offset-sm-1 rounded-pill">
+                  <i class="fas fa-angle-right nav-icon  text-light"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+
+
           <li class="nav-item">
             <a class="nav-link" href="">
               <i class="ni ni-pin-3 text-orange"></i> Tutor Requests

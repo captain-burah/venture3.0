@@ -2,36 +2,19 @@
 <div class="wrapper" id="app">
 
   <!-- Navbar -->
-  <nav class="main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-dark 
-  navbar-white border-bottom border-dark">
-    <!-- Left navbar links -->
-      
+  <nav class="main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-light
+        navbar-white border-bottom border-dark">
+          <!-- Left navbar links -->
       <ul class="navbar-nav mr-auto mb-0">
-        <li class="nav-item mt-1">
+          <li class="nav-item mt-1">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button">
-            <i class="fas fa-bars"></i>&nbsp; &nbsp; Tutor Dashboard</a>
-        </li>
+              <i class="fas fa-bars"></i>&nbsp; &nbsp; Dashboard</a>
+          </li>
       </ul>
-      <div class="navbar-nav mt-1 text-white">
-        <!--
-          <p class="px-2 pt-1 mb-0 mt-1 text-secondary " for="language">Language</p>
-          <select class="custom-select text-right bg-secondary ml-1" id="language" v-model="lang" @change="handleChange($event)">
-            <option value="en">English</option>
-            <option value="si">Sinhala</option>
-            <option value="ta">Tamil</option>
-          </select>
-        -->
-        <language-switcher
-          :link-en="linkEn"
-          :locale="locale"
-          :link-sn="linkSn"
-        ></language-switcher>
-      </div>
   </nav>
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-warning bg-dark elevation-4 border-right border-success"
-  style="background-color: ;">
+  <aside class="main-sidebar sidebar-dark-warning bg-dark elevation-4 border-right">
     <!-- Brand Logo -->
     <a href="home_tutor" class="brand-link navbar-bg text-center">
       <span class="brand-text font-weight-light text-center">Enlighten Venture</span>

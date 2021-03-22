@@ -37,7 +37,9 @@ Route::middleware('auth:api')->get('/exampapers', function (Request $request) {
     });
 //--------- This is for authenticated users only -----------------
 
-
 Route::apiResources([
     'storage' => 'API\StorageController',
+    'enroll' => 'API\StudentEnrollController',
+    'staffinfo' => 'API\StaffInfoController',
+    'subdomaininfo' => 'API\SubDomainInfoController',
 ]);

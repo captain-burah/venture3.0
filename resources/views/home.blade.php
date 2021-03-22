@@ -407,40 +407,43 @@
           <div class="owl-carousel owl-theme owl-loaded loop2 border-right border-left border-secondary">
             <div class="item mx-2 my-auto">
               <div class="info py-4 mt-3">  
-                <p class="text-light text-center fontClass my-2" style="font-size: 2.0em">{{ __('Jonathon Williams')}}</p>
+                <p class="text-light text-center fontClass my-2" style="font-size: 2.0em">{{ __('Subhani Anandaviel')}}</p>
                 <p class="text-justify text-white">
-                  Brilliant client! Highly recommend!
-                  Thank you for the opportunity and trust for giving me this wonderful app.
-                  It was fun and interesting working with EV and hope others can 
-                  work with it too. I will spread this message as much as i could.
+                  Brilliant! Highly recommend!
+                  I'd like to thank the developer for giving me the opportunity & entrusting me to test this 
+                  this wonderful app with my students.
+                  It was fun and interesting working with EV and I hope others would  
+                  work with it too. I will spread the message as much as i could.
+                </p>
+                <p class="text-light text-center fontClass" style="font-size: 1.2em">
+                  -Undergraduate and A/L tutor-
                 </p>
               </div>
             </div>
             <div class="item mx-2 my-auto">
               <div class="info py-4 mt-3">  
-                <p class="text-light text-center fontClass my-2" style="font-size: 2.0em">{{ __('Abraham Lincoln')}}</p>
+                <p class="text-light text-center fontClass my-2" style="font-size: 2.0em">{{ __('Wajira Patabandige')}}</p>
                 <p class="text-white text-justify">
-                  Our users should leave the VLE confident, articulate, 
-                  well-balanced and able to think for themselves. 
-                  They should be comfortable both in operations and in their 
-                  functionality. We are ambitious and determined, 
-                  yet sensitive to the needs of our users, supporting the 
-                  critical and creative thinkers, who are ready to make a 
-                  positive difference to their country and to the world.
+                  As a tutor, I have found this app very useful to suffice my daily needs in my field, 
+                  amidst the difficulties we face in the current pandemic. I hope other lecturers would 
+                  take my word, as i am completely satisfied with EV.
+                </p>
+                <p class="text-light text-center fontClass" style="font-size: 1.2em">
+                  -Advanced Level Combined Mathematics-
                 </p>
               </div>
             </div>
             <div class="item mx-2 my-auto">
               <div class="info py-4 mt-3">  
-                <p class="text-light text-center fontClass my-2" style="font-size: 2.0em">{{ __('William Shakespear')}}</p>
+                <p class="text-light text-center fontClass my-2" style="font-size: 2.0em">{{ __('Sandun Warnakulasooriya')}}</p>
                 <p class="text-white text-justify">
-                  Our users should leave the VLE confident, articulate, 
-                  well-balanced and able to think for themselves. 
-                  They should be comfortable both in operations and in their 
-                  functionality. We are ambitious and determined, 
-                  yet sensitive to the needs of our users, supporting the 
-                  critical and creative thinkers, who are ready to make a 
-                  positive difference to their country and to the world.
+                  මෙවැනි පද්ධතියක් නිර්මාණ කරපු පුද්ගලයාට මම ස්තුති කරනවා. 
+                  මම LMS විශාල ප්‍රමාණයක් පාවිච්චි කර ඇති  නමුත් මෙය ඒවා අතරින් සුවිශේෂී වේ. 
+                  මම උපාධි අපේක්ෂකයෙක් වන අතර 10 ශ්‍රේණිය සදහා ඉතිහාසය උගන්වන ගුරුවරයෙකි. 
+                  මෙම අනගි පද්ධතිය අපිට ළමුන් සමග විශේෂාංග රැසක් භාවිතා කරමින් සම්බන්ධ වීමට අවස්ථාව සලසයි
+                </p>
+                <p class="text-light text-center fontClass" style="font-size: 1.2em">
+                  -Undergraduate and O-Level Tutor-
                 </p>
               </div>
             </div>

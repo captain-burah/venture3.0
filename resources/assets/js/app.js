@@ -8,6 +8,10 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+import store from "./store"
+
+
 //-------------- Vue SweetAlert v2-------------------------------------------------->
 import swal from 'sweetalert2';
 window.swal = swal;
@@ -119,8 +123,8 @@ let routes = [
 
   
   
-  { path: '/Analytics',  component: require('./admin/DashBody.vue')},
-  { path: '/admin_info',  component: require('./admin/InfoMgt.vue')},
+  { path: '/Analytics',  component: require('./admin/Analytics.vue')},
+  { path: '/payg',  component: require('./admin/PAYG.vue')},
 
      
 ]
@@ -159,7 +163,14 @@ Vue.component(
   'test-vue', 
   require('./components/test.vue')
 );
-    //----------------- Admin Components-----------------------------------------//
+
+Vue.component(
+  'payg-info', 
+  require('./homePage/paygSubs.vue')
+);
+
+
+  //----------------- Admin Components-----------------------------------------//
       Vue.component(
         'admin-panel',
         require('./admin/Dashboard.vue')
@@ -169,7 +180,7 @@ Vue.component(
         'analytics-component', 
         require('./admin/charts/analytics.vue')
       .default);
-    //----------------- /Admin Components-----------------------------------------//
+  //----------------- /Admin Components-----------------------------------------//
 //------------- Vue Custom Event-------------------------------------------------//
 let Fire = new Vue();
 window.Fire = Fire;
@@ -187,6 +198,13 @@ window.Fire = Fire;
 //-------------- Vue Translations-------------------------------------------------//
   //Vue.mixin(require('./trans'))
 
+
+
+//-------------- Vue Translations-------------------------------------------------//
+
+
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -201,5 +219,6 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });

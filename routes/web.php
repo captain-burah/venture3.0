@@ -22,11 +22,14 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
             return view('landing');
         })->name('landing-page');
         Auth::routes();
-        Route::get('/tutor_registration', 'Auth\RegisterController@showlecRegisterForm')->name('tutor-register');
-        Route::post('/tutor/register', 'Auth\RegisterController@createLec')->name('tutor-createDB');
-        Route::get('/login/tutor', 'Auth\LoginController@showlecLoginForm')->name('tutor-login');
-        Route::post('/tutor/login', 'Auth\LoginController@lecLogin')->name('tutor-verify');
-        Route::post('/student/login', 'Auth\LoginController@userLogin')->name('student-verify');
+        Route::get('/tutor_registration', 'Auth\RegisterController@showlecRegisterForm')->name('tutor-regForm');
+        Route::post('/tutor/register', 'Auth\RegisterController@createLec')->name('tutor-regSubmit');
+
+        Route::get('/login/tutor', 'Auth\LoginController@showlecLoginForm')->name('tutor-loginForm');
+        Route::post('/tutor/login', 'Auth\LoginController@lecLogin')->name('tutor-LogSubmit');
+
+        Route::post('/student/login', 'Auth\LoginController@userLogin')->name('student-logSubmit');
+
         Route::get('/testPage', 'Lecturer\LecturerController@test');
         Route::get('/about_us', 'HomeController@aboutUs')->name('about_us');
         Route::get('/pay-as-you-go', 'HomeController@payg')->name('payg');
@@ -171,7 +174,6 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
     //--------------------------- Admin Routes------------------------------------------------>
     Route::prefix('admin')->group(function(){
-        Auth::routes();
         Route::get('/', 'Auth\LoginController@admin')->name('admin-login-view');
         Route::post('/admin', 'Auth\LoginController@admin_login')->name('admin-login');
         
@@ -185,8 +187,6 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
     Route::middleware(['auth:admin'])->group(function () {
         
-
-    
     });
 //--------------------------- Admin Routes------------------------------------------------>
 

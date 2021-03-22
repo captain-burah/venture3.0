@@ -16,36 +16,44 @@
   <!-- Favicon -->
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-  <!-- Icons -->
-  <link href="{{ asset('vendor/nucleo/css/nucleo.css')}}" rel="stylesheet">
-  <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
-  <!-- Argon CSS -->
-  <link type="text/css" href="{{ asset('css/argon.css?')}}" rel="stylesheet">
-
+  <!-- Icons 
+    <link href="{{ asset('vendor/nucleo/css/nucleo.css')}}" rel="stylesheet">
+    <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+  -->
+  <!-- Argon CSS 
+    <link type="text/css" href="{{ asset('css/argon.css?')}}" rel="stylesheet">
+  -->
+  <link href="{{ asset('css/app.css')}}" type="text/css" rel="stylesheet">
 </head>
 
 
-<body class="">
+<body class="hold-transition sidebar-mini control-sidebar-slide-open dark-mode">
   <div id="app">
     <main>
       @yield('adminContent')
     </main>
-    
   </div>
   
-  <!-- Argon Scripts -->
-  <!-- Core -->
-  <script src="{{ asset('vendor/jquery/dist/jquery.min.js')}}"></script>
   <script rel="stylesheet" src="{{ asset('js/app.js') }}"></script>
-  <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
   
-
-  <!-- Optional JS -->
   <script src="{{ asset('vendor/chart.js/dist/Chart.min.js')}}"></script>
   <script src="{{ asset('vendor/chart.js/dist/Chart.extension.js')}}"></script>
 
-  <!-- Argon JS -->
+
+  <!-- Argon Scripts 
+  Core 
+  <script src="{{ asset('vendor/jquery/dist/jquery.min.js')}}"></script>
+  
+  <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+  
+
+  Optional JS 
+  <script src="{{ asset('vendor/chart.js/dist/Chart.min.js')}}"></script>
+  <script src="{{ asset('vendor/chart.js/dist/Chart.extension.js')}}"></script>
+
+   Argon JS 
   <script src="{{ asset('js/argon.js?v=1.0.0')}}"></script>
+  -->
   <!-- 
     <script>
       window._locale = "{{ url('admin') }} ";

@@ -126,7 +126,8 @@ class LoginController extends Controller
             
             //return redirect('/tutor');
         }
-        return back()->withInput($request->only('email', 'remember'));
+        return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors(
+            ['message'=> "The email is not registered. Please go through our registration process in order to login."]);
     }
 
 
@@ -180,7 +181,8 @@ class LoginController extends Controller
                 return view('errors.notFound', compact('message1', 'message2', 'message3'));
             };
         } else {
-            return back()->withInput($request->only('email', 'remember'));
+            return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors(
+                ['message'=> "The email is not registered. Please go through our registration process in order to login."]);
         }
             
     }

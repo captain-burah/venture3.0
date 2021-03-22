@@ -14,19 +14,6 @@
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <style>
-    .navbar-bg{
-      background-color: #339933;
-    }
-    .bg-wallColor{
-      background-color: #ddeeea;
-    }
-    .sideMenu{
-      background-color: #1a1a1a;
-      
-    }
-    .headblast{
-      text-shadow: 1px 1px #000;
-    }
   </style>
 </head>
 <body class="hold-transition sidebar-mini">

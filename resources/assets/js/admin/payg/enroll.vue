@@ -1,13 +1,13 @@
 <template>
 <div>
-    <div class="card">
+    <div class="card shadow">
         <div class="card-header border-0">
             <div class="row align-items-center">
                 <div class="col">
-                    <h2 class="card-title mb-0">Storage Capacity</h2>
+                    <h2 class="card-title mb-0">Student Enrollments</h2>
                 </div>
                 <div class="card-tools">
-                    <button class="btn btn-success" @click="newModal">
+                    <button class="btn btn-success" @click="newModalEnroll">
                         <!-- data-toggle="modal" data-target="#addUser" -->
                         Add New
                         <i class="fas fa-user-plus fa-fw"></i>
@@ -15,24 +15,24 @@
                 </div>
             </div>
             <div class="card-body table-responsive px-0">
-            <table class="table align-items-center text-nowrap">
+            <table class="table align-items-center text-nowrap ">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">Capacity</th>
+                    <th scope="col">Enrollments</th>
                     <th scope="col">Price (LKR)</th>
                     <th scope="col">Modify</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="storage in storageAccounts" :key="storage.id">
-                    <td>{{storage.desc}}</td>
-                    <td>{{storage.price}}</td>
+                <tr v-for="student in enrollAccounts" :key="student.id">
+                    <td>{{student.desc}}</td>
+                    <td>{{student.price}}</td>
                     <td>
-                        <a href="#" @click="editModal(storage)">
+                        <a href="#" @click="editModalEnroll(student)">
                             <i class="fa fa-edit"></i>
                         </a>
                         /
-                        <a href="#" @click="deleteStorage(storage.id)">
+                        <a href="#" @click="deleteEnroll(student.id)">
                             <i class="fa fa-trash text-danger"></i>
                         </a>
                     </td>
@@ -46,38 +46,38 @@
     
 
     <!-- Modal -->
-        <div class="modal fade" id="addStorage" tabindex="-1" role="dialog" aria-labelledby="addStorage" 
+        <div class="modal fade" id="addEnroll" tabindex="-1" role="dialog" aria-labelledby="addEnroll" 
         aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" v-show="!editMode" id="addStock">Add New Storage Info</h5>
-                        <h5 class="modal-title" v-show="editMode" id="addStock">Update Storage Info</h5>
+                        <h5 class="modal-title" v-show="!editModeEnroll" id="addEnroll">Add New Enrollment Info</h5>
+                        <h5 class="modal-title" v-show="editModeEnroll" id="addEnroll">Update Enrollment Info</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form @submit.prevent="editMode ? updateStorage() : createStorage()" :value="csrf">
+                    <form @submit.prevent="editModeEnroll ? updateEnroll() : createEnroll()" :value="csrf">
                     <div class="modal-body">
                         <!--  Desc  -->
                         <div class="form-group">
-                            <input v-model="storageForm.desc" type="text" name="name" placeholder="Description"
-                                class="form-control" :class="{ 'is-invalid': storageForm.errors.has('name') }">
-                            <has-error :form="storageForm" field="name"></has-error>
+                            <input v-model="enrollForm.desc" type="text" name="name" placeholder="Description"
+                                class="form-control" :class="{ 'is-invalid': enrollForm.errors.has('name') }">
+                            <has-error :form="enrollForm" field="name"></has-error>
                         </div>
                         <!--  Desc  -->
                         <!--  Price  -->
                         <div class="form-group">
-                            <input v-model="storageForm.price" type="text" name="size" placeholder="Price (LKR)"
-                                class="form-control" :class="{ 'is-invalid': storageForm.errors.has('size') }">
-                            <has-error :form="storageForm" field="size"></has-error>
+                            <input v-model="enrollForm.price" type="text" name="size" placeholder="Price (LKR)"
+                                class="form-control" :class="{ 'is-invalid': enrollForm.errors.has('size') }">
+                            <has-error :form="enrollForm" field="size"></has-error>
                         </div>
                         <!--  Price  -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button v-show="editMode" type="submit" class="btn btn-success">Update</button>
-                        <button v-show="!editMode" type="submit" class="btn btn-primary">Create</button>
+                        <button v-show="editModeEnroll" type="submit" class="btn btn-success">Update</button>
+                        <button v-show="!editModeEnroll" type="submit" class="btn btn-primary">Create</button>
                     </div>
                     </form>
                 </div>
@@ -91,9 +91,9 @@
         data: function(){
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                editMode: true,
-                storageAccounts: {},
-                storageForm: new Form({
+                editModeEnroll: true,
+                enrollAccounts: {},
+                enrollForm: new Form({
                     id: '',
                     desc: '',
                     price: '',
@@ -101,36 +101,36 @@
             }
         },
         methods: {
-            editModal(storage){
-                this.editMode = true;
-                this.storageForm.reset();
-                $('#addStorage').modal('show');
-                this.storageForm.fill(storage);
+            editModalEnroll(storage){
+                this.editModeEnroll = true;
+                this.enrollForm.reset();
+                $('#addEnroll').modal('show');
+                this.enrollForm.fill(storage);
             },
-            newModal(){
-                this.editMode = false;
-                this.storageForm.reset();
-                $('#addStorage').modal('show');
+            newModalEnroll(){
+                this.editModeEnroll = false;
+                this.enrollForm.reset();
+                $('#addEnroll').modal('show');
             },
-            updateStorage(){
+            updateEnroll(){
                 this.$Progress.start();
-                this.storageForm.put('api/storage/'+this.storageForm.id)
+                this.enrollForm.put('api/enroll/'+this.enrollForm.id)
                 .then(() => {
-                    $('#addStorage').modal('hide');
+                    $('#addEnroll').modal('hide');
                     //success
                     swal.fire(
                         'Update!',
                         'Information has been updated.',
                         'success'
                     )
-                    setTimeout(function(){this.loadStorage()}.bind(this), 1000);
+                    setTimeout(function(){this.loadEnroll()}.bind(this), 1000);
                     this.$Progress.finish();
                 })
                 .catch(() => {
                     this.$Progress.fail();
                 });
             },
-            deleteStorage(id){
+            deleteEnroll(id){
                 swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -142,32 +142,32 @@
                     }).then((result) => {
                         if (result.value) {
                             //Send request to server
-                            this.storageForm.delete('api/storage/'+id).then(() => {
+                            this.enrollForm.delete('api/enroll/'+id).then(() => {
                                 swal.fire(
                                 'Deleted!',
                                 'Stock deleted.',
                                 'success'
                                 )
-                            setTimeout(function(){this.loadStorage()}.bind(this), 1000);
+                            setTimeout(function(){this.loadEnroll()}.bind(this), 1000);
                             }).catch(() => {
                                 swal("Failed!", "There was something wrong.", "Warning");
                             });
                         }
                     })
             },
-            loadStorage() {
-                axios.get("api/storage").then(({data}) => (this.storageAccounts = data.data));
+            loadEnroll() {
+                axios.get("api/enroll").then(({data}) => (this.enrollAccounts = data.data));
             },
-            createStorage() {
+            createEnroll() {
                 this.$Progress.start();
-                this.storageForm.post('api/storage')
+                this.enrollForm.post('api/enroll')
                 .then(()=>{
-                    $('#addStorage').modal('hide');
+                    $('#addEnroll').modal('hide');
                     Toast.fire({
                         icon: 'success',
-                        title: 'Stock Added!'
+                        title: 'Enrollment Info. Added!'
                     });
-                    setTimeout(function(){this.loadStorage()}.bind(this), 1500);
+                    setTimeout(function(){this.loadEnroll()}.bind(this), 1500);
                     this.$Progress.finish();
                 })
                 .catch(()=>{
@@ -175,12 +175,12 @@
                         icon: 'error',
                         title: 'Failled to Add Stock!'
                     });
-                    setTimeout(function(){this.loadStorage()}.bind(this), 1500);
+                    setTimeout(function(){this.loadEnroll()}.bind(this), 1500);
                 })
             }
         },
         created() { 
-            this.loadStorage();
+            this.loadEnroll();
         },
     }
 </script>

@@ -4,35 +4,18 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Payg_storage;
-use Illuminate\Support\Facades\Hash;
- 
-class StorageController extends Controller
+use App\Payg_student; 
+
+class StudentEnrollController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
-
     public function index()
     {
-        return Payg_storage::latest()->paginate(10);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Payg_student::latest()->paginate(10);
     }
 
     /**
@@ -43,14 +26,13 @@ class StorageController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'desc'  => 'required|string|max:191',
             'price'  => 'required|max:191',
             
         ]);
 
-        return Payg_storage::create([
+        return Payg_student::create([
             'desc' => $request['desc'],
             'price' => $request['price']
         ]);
@@ -68,17 +50,6 @@ class StorageController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -87,14 +58,14 @@ class StorageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $storage = Payg_storage::findOrFail($id);
+        $student = Payg_student::findOrFail($id);
 
         $this->validate($request, [
             'desc'  => 'required|string|max:191',
             'price'  => 'required|max:191',
         ]);
 
-        $storage->update($request->all());
+        $student->update($request->all());
 
         return['message' => 'updating'];
     }
@@ -107,8 +78,8 @@ class StorageController extends Controller
      */
     public function destroy($id)
     {
-        $user = Payg_storage::findOrFail($id);
+        $user = Payg_student::findOrFail($id);
         $user->delete();
-        return ['message' => 'User Deleted'];
+        return ['message' => 'Student Deleted'];
     }
 }

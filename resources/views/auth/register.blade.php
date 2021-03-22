@@ -65,7 +65,7 @@
                     <div class="card-body px-3">
                     @isset($url)
                         <form class="form" method="POST" id="tutorForm" action="{{ url(app()->getLocale() . '/tutor/register') }}" 
-                        aria-label="{{ __('Register') }}" name="tutorForm">
+                        aria-label="{{ __('Register') }}" name="tutorForm"> 
 
                         <input type="text" name="tutor-plan" value="{{$plan}}" class="form-control" style="display: none;"> 
                     @else

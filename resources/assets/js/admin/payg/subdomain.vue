@@ -1,13 +1,13 @@
 <template>
 <div>
-    <div class="card">
+    <div class="card shadow">
         <div class="card-header border-0">
             <div class="row align-items-center">
                 <div class="col">
-                    <h2 class="card-title mb-0">Storage Capacity</h2>
+                    <h2 class="card-title mb-0">Personalized Subdomain</h2>
                 </div>
                 <div class="card-tools">
-                    <button class="btn btn-success" @click="newModal">
+                    <button class="btn btn-success" @click="newModalSubdomain">
                         <!-- data-toggle="modal" data-target="#addUser" -->
                         Add New
                         <i class="fas fa-user-plus fa-fw"></i>
@@ -18,21 +18,21 @@
             <table class="table align-items-center text-nowrap">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">Capacity</th>
+                    <th scope="col">Subdomain</th>
                     <th scope="col">Price (LKR)</th>
                     <th scope="col">Modify</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="storage in storageAccounts" :key="storage.id">
-                    <td>{{storage.desc}}</td>
-                    <td>{{storage.price}}</td>
+                <tr v-for="domain in subdomainAccounts" :key="domain.id">
+                    <td>{{domain.desc}}</td>
+                    <td>{{domain.price}}</td>
                     <td>
-                        <a href="#" @click="editModal(storage)">
+                        <a href="#" @click="editModalSubdomain(domain)">
                             <i class="fa fa-edit"></i>
                         </a>
                         /
-                        <a href="#" @click="deleteStorage(storage.id)">
+                        <a href="#" @click="deleteSubdomain(domain.id)">
                             <i class="fa fa-trash text-danger"></i>
                         </a>
                     </td>
@@ -46,38 +46,38 @@
     
 
     <!-- Modal -->
-        <div class="modal fade" id="addStorage" tabindex="-1" role="dialog" aria-labelledby="addStorage" 
+        <div class="modal fade" id="addSubdomain" tabindex="-1" role="dialog" aria-labelledby="addEnroll" 
         aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" v-show="!editMode" id="addStock">Add New Storage Info</h5>
-                        <h5 class="modal-title" v-show="editMode" id="addStock">Update Storage Info</h5>
+                        <h5 class="modal-title" v-show="!editModeSubdomain" id="addSubdomain">Add New Subdomain Info</h5>
+                        <h5 class="modal-title" v-show="editModeSubdomain" id="addSubdomain">Update Subdomain Info</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form @submit.prevent="editMode ? updateStorage() : createStorage()" :value="csrf">
+                    <form @submit.prevent="editModeSubdomain ? updateSubdomain() : createSubdomain()" :value="csrf">
                     <div class="modal-body">
                         <!--  Desc  -->
                         <div class="form-group">
-                            <input v-model="storageForm.desc" type="text" name="name" placeholder="Description"
-                                class="form-control" :class="{ 'is-invalid': storageForm.errors.has('name') }">
-                            <has-error :form="storageForm" field="name"></has-error>
+                            <input v-model="subdomainForm.desc" type="text" name="name" placeholder="Description"
+                                class="form-control" :class="{ 'is-invalid': subdomainForm.errors.has('name') }">
+                            <has-error :form="subdomainForm" field="name"></has-error>
                         </div>
                         <!--  Desc  -->
                         <!--  Price  -->
                         <div class="form-group">
-                            <input v-model="storageForm.price" type="text" name="size" placeholder="Price (LKR)"
-                                class="form-control" :class="{ 'is-invalid': storageForm.errors.has('size') }">
-                            <has-error :form="storageForm" field="size"></has-error>
+                            <input v-model="subdomainForm.price" type="text" name="size" placeholder="Price (LKR)"
+                                class="form-control" :class="{ 'is-invalid': subdomainForm.errors.has('size') }">
+                            <has-error :form="subdomainForm" field="size"></has-error>
                         </div>
                         <!--  Price  -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button v-show="editMode" type="submit" class="btn btn-success">Update</button>
-                        <button v-show="!editMode" type="submit" class="btn btn-primary">Create</button>
+                        <button v-show="editModeSubdomain" type="submit" class="btn btn-success">Update</button>
+                        <button v-show="!editModeSubdomain" type="submit" class="btn btn-primary">Create</button>
                     </div>
                     </form>
                 </div>
@@ -91,9 +91,9 @@
         data: function(){
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                editMode: true,
-                storageAccounts: {},
-                storageForm: new Form({
+                editModeSubdomain: true,
+                subdomainAccounts: {},
+                subdomainForm: new Form({
                     id: '',
                     desc: '',
                     price: '',
@@ -101,36 +101,36 @@
             }
         },
         methods: {
-            editModal(storage){
-                this.editMode = true;
-                this.storageForm.reset();
-                $('#addStorage').modal('show');
-                this.storageForm.fill(storage);
+            editModalSubdomain(storage){
+                this.editModeSubdomain = true;
+                this.subdomainForm.reset();
+                $('#addSubdomain').modal('show');
+                this.subdomainForm.fill(storage);
             },
-            newModal(){
-                this.editMode = false;
-                this.storageForm.reset();
-                $('#addStorage').modal('show');
+            newModalSubdomain(){
+                this.editModeSubdomain = false;
+                this.subdomainForm.reset();
+                $('#addSubdomain').modal('show');
             },
-            updateStorage(){
+            updateSubdomain(){
                 this.$Progress.start();
-                this.storageForm.put('api/storage/'+this.storageForm.id)
+                this.subdomainForm.put('api/subdomaininfo/'+this.subdomainForm.id)
                 .then(() => {
-                    $('#addStorage').modal('hide');
+                    $('#addSubdomain').modal('hide');
                     //success
                     swal.fire(
                         'Update!',
                         'Information has been updated.',
                         'success'
                     )
-                    setTimeout(function(){this.loadStorage()}.bind(this), 1000);
+                    setTimeout(function(){this.loadSubdomain()}.bind(this), 1000);
                     this.$Progress.finish();
                 })
                 .catch(() => {
                     this.$Progress.fail();
                 });
             },
-            deleteStorage(id){
+            deleteSubdomain(id){
                 swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -142,32 +142,32 @@
                     }).then((result) => {
                         if (result.value) {
                             //Send request to server
-                            this.storageForm.delete('api/storage/'+id).then(() => {
+                            this.subdomainForm.delete('api/subdomaininfo/'+id).then(() => {
                                 swal.fire(
                                 'Deleted!',
-                                'Stock deleted.',
+                                'Settings Deleted.',
                                 'success'
                                 )
-                            setTimeout(function(){this.loadStorage()}.bind(this), 1000);
+                            setTimeout(function(){this.loadSubdomain()}.bind(this), 1000);
                             }).catch(() => {
                                 swal("Failed!", "There was something wrong.", "Warning");
                             });
                         }
                     })
             },
-            loadStorage() {
-                axios.get("api/storage").then(({data}) => (this.storageAccounts = data.data));
+            loadSubdomain() {
+                axios.get("api/subdomaininfo").then(({data}) => (this.subdomainAccounts = data.data));
             },
-            createStorage() {
+            createSubdomain() {
                 this.$Progress.start();
-                this.storageForm.post('api/storage')
+                this.subdomainForm.post('api/subdomaininfo')
                 .then(()=>{
-                    $('#addStorage').modal('hide');
+                    $('#addSubdomain').modal('hide');
                     Toast.fire({
                         icon: 'success',
-                        title: 'Stock Added!'
+                        title: 'Enrollment Info. Added!'
                     });
-                    setTimeout(function(){this.loadStorage()}.bind(this), 1500);
+                    setTimeout(function(){this.loadSubdomain()}.bind(this), 1500);
                     this.$Progress.finish();
                 })
                 .catch(()=>{
@@ -175,12 +175,12 @@
                         icon: 'error',
                         title: 'Failled to Add Stock!'
                     });
-                    setTimeout(function(){this.loadStorage()}.bind(this), 1500);
+                    setTimeout(function(){this.loadSubdomain()}.bind(this), 1500);
                 })
             }
         },
         created() { 
-            this.loadStorage();
+            this.loadSubdomain();
         },
     }
 </script>

@@ -228,9 +228,11 @@
     <!--  Nav  -->
 
     <!-- Body -->
-    <main>
+    <div id="app">
+      <main>
         @yield('content')
-    </main>
+      </main>
+    </div>
     <!-- Body -->
 
     <!---------- Footer ----------->
@@ -274,6 +276,7 @@
     <!--   Core JS Files   -->
     <script src="{{ asset('js/core/popper.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('js/core/jquery.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('js/app.js')}}" type="text/javascript"></script>
     <script src="{{ asset('js/core/bootstrap-material-design.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('js/plugins/moment.min.js')}}"></script>
     <script src="{{('https://cdn.jsdelivr.net/npm/sweetalert2@10')}}"></script>
