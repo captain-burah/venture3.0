@@ -417,7 +417,7 @@
                 </p>
                 <p class="text-light text-center fontClass" style="font-size: 1.2em">
                   -Undergraduate and A/L tutor-
-                </p>
+                </p> 
               </div>
             </div>
             <div class="item mx-2 my-auto">
