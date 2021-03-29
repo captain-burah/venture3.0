@@ -212,7 +212,7 @@ window.Fire = Fire;
  */
 
 const router = new VueRouter({
-  mode: 'history',
+  //mode: 'history',
   //base: `/${window._locale}/`,
   routes // short for `routes: routes`
 })

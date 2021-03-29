@@ -43,10 +43,9 @@
                                 <span> Logout</span>
                             </a>
                             <form id="logout-form-nav" :action="logout_user" method="POST" style="display: none;">
-                            <input type="hidden" name="_token" :value="csrf">
-                            
+                                <input type="hidden" name="_token" :value="csrf">
+                                @csrf
                             </form>
-
                     </div>
                 </li>
             </ul>

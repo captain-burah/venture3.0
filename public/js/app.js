@@ -35395,7 +35395,7 @@ __WEBPACK_IMPORTED_MODULE_5_vue___default.a.filter('myDate', function (created) 
  */
 
 var router = new __WEBPACK_IMPORTED_MODULE_7_vue_router__["a" /* default */]({
-  mode: 'history',
+  //mode: 'history',
   //base: `/${window._locale}/`,
   routes: routes // short for `routes: routes`
 });
@@ -96309,7 +96309,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['brand1', 'user1', 'logout_user1', 'username1'],
+    props: ['brand1', 'user1', 'logout_user1', 'username1', 'logout_base'],
     components: { sidebar: __WEBPACK_IMPORTED_MODULE_2__Sidebar_vue___default.a, foot: __WEBPACK_IMPORTED_MODULE_0__Footer_vue___default.a, navbar: __WEBPACK_IMPORTED_MODULE_1__Navbar_vue___default.a },
 
     data: function data() {
@@ -96557,7 +96557,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['user', 'logout_user', 'username'],
@@ -96638,7 +96637,10 @@ var render = function() {
                     _c("input", {
                       attrs: { type: "hidden", name: "_token" },
                       domProps: { value: _vm.csrf }
-                    })
+                    }),
+                    _vm._v(
+                      "\n                            @csrf\n                        "
+                    )
                   ]
                 )
               ]
@@ -97429,7 +97431,7 @@ var render = function() {
     { staticClass: "wrapper", attrs: { id: "app" } },
     [
       _c("navbar", {
-        attrs: { username: _vm.username1, logout_user: _vm.logout_user1 }
+        attrs: { username: _vm.username1, logout_user: _vm.logout_base }
       }),
       _vm._v(" "),
       _c("sidebar", { attrs: { user: _vm.user1, username: _vm.username1 } }),

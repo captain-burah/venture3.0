@@ -5,11 +5,10 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Payg_storage;
-use Illuminate\Support\Facades\Hash;
  
 class StorageController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -17,7 +16,7 @@ class StorageController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api_admin');
     }
 
     public function index()

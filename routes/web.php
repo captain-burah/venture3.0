@@ -174,16 +174,16 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
     //--------------------------- Admin Routes------------------------------------------------>
     Route::prefix('admin')->group(function(){
-        Route::get('/', 'Auth\LoginController@admin')->name('admin-login-view');
-        Route::post('/admin', 'Auth\LoginController@admin_login')->name('admin-login');
+        Route::get('/', 'Auth\Admin\AdminLoginController@admin')->name('admin-login-view');
+        Route::post('/admin', 'Auth\Admin\AdminLoginController@admin_login')->name('admin-login');
         
         Route::get('/admin_reg', 'Auth\RegisterController@admin_view_reg')->name('admin-register-view');
         Route::post('/admin_reg', 'Auth\RegisterController@admin_register')->name('admin-register');
 
-        Route::post('/admin_logout', 'Auth\LoginController@admin_logout')->name('admin-logout');
+        Route::post('/admin_logout', 'Auth\Admin\AdminLoginController@admin_logout')->name('admin.logout');
         Route::get('/dashboard', 'AdminController@dashboard')->name('admin-dash');    
     });
-    
+     
 
     Route::middleware(['auth:admin'])->group(function () {
         
@@ -203,4 +203,4 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 //Route::get('{path}','Lecturer\LecturerController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
 //Route::get('{path}','Lecturer\LecturerController@dashboard')->where( 'path', '([A-z\d\-\/_.]+)?' );
 Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
-Route::get('{locale}/admin/{path}','AdminController@dashboard')->where( 'path', '([A-z\d\-\/_.]+)?' );
+Route::get('/admin/{path}','AdminController@dashboard')->where( 'path', '([A-z\d\-\/_.]+)?' );

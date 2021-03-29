@@ -381,14 +381,14 @@
           <br>
           <div class="row">  
             <div class="owl-carousel owl-theme owl-loaded loop1">
-              <div class="item"><img src="{{ asset('img/logos/airbnb.svg')}}" class="mx-1"></div>
+              
               <div class="item"><img src="{{ asset('img/logos/cb.png')}}" class="mx-1"></div>
+              <div class="item"><img src="{{ asset('img/logos/sampath.svg')}}" class="mx-1"></div>
               <div class="item"><img src="{{ asset('img/logos/lp.png')}}" class="mx-1"></div>
+              <div class="item"><img src="{{ asset('img/logos/cybergate.png')}}" class="mx-1"></div>
               <div class="item"><img src="{{ asset('img/logos/dhl2.png')}}" class="mx-1"></div>
               <div class="item"><img src="{{ asset('img/logos/tkb.png')}}" class="mx-1"></div>
               <div class="item"><img src="{{ asset('img/logos/studentcast.png')}}" class="mx-1"></div>
-              <div class="item"><h4>7</h4></div>
-              <div class="item"><h4>8</h4></div>
             </div>
           </div>
         </div>
@@ -422,7 +422,7 @@
             </div>
             <div class="item mx-2 my-auto">
               <div class="info py-4 mt-3">  
-                <p class="text-light text-center fontClass my-2" style="font-size: 2.0em">{{ __('Wajira Patabandige')}}</p>
+                <p class="text-light text-center fontClass my-2" style="font-size: 2.0em">{{ __('Wajira Samarakoon')}}</p>
                 <p class="text-white text-justify">
                   As a tutor, I have found this app very useful to suffice my daily needs in my field, 
                   amidst the difficulties we face in the current pandemic. I hope other lecturers would 

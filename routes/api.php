@@ -31,6 +31,7 @@ Route::middleware('auth:api')->get('/exampapers', function (Request $request) {
             'user'=> 'API\UserController',
             'exampapers'=> 'API\ExamPapers',
             'admin'=> 'API\StorageController',
+            'storage' => 'API\StorageController',
         ]);
         Route::get('profile', 'API\UserController@profile');
         Route::put('profile', 'API\UserController@updateProfile');
@@ -38,7 +39,7 @@ Route::middleware('auth:api')->get('/exampapers', function (Request $request) {
 //--------- This is for authenticated users only -----------------
 
 Route::apiResources([
-    'storage' => 'API\StorageController',
+    
     'enroll' => 'API\StudentEnrollController',
     'staffinfo' => 'API\StaffInfoController',
     'subdomaininfo' => 'API\SubDomainInfoController',

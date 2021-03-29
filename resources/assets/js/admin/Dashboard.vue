@@ -4,7 +4,7 @@
   <!-- Navbar -->
   <navbar 
     :username="username1"
-    :logout_user="logout_user1"
+    :logout_user="logout_base"
   ></navbar>
 
   <!-- Main Sidebar Container -->
@@ -42,7 +42,7 @@ import navbar from './Navbar.vue';
 import sidebar from './Sidebar.vue';
 
     export default {
-      props: ['brand1', 'user1', 'logout_user1', 'username1' ],
+      props: ['brand1', 'user1', 'logout_user1', 'username1', 'logout_base' ],
       components: { sidebar, foot, navbar  },
 
       data: function(){

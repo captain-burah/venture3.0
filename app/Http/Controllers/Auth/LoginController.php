@@ -70,10 +70,10 @@ class LoginController extends Controller
     public function admin_logout(Request $request)
     {
         $this->guard('admin')->logout();
-        
+
         $request->session()->invalidate();
 
-        return redirect()->route('/admin', app()->getLocale());
+        return $this->loggedOut($request) ?: redirect('/admin');
     }
 
 
@@ -192,25 +192,6 @@ class LoginController extends Controller
 
 
 
-//------------------ Admin Login Form -----------------------
-    public function admin()
-    {
-        return view('auth.loginAdmin');
-    }
 
-//------------------ admin Login -----------------------
-    public function admin_login(Request $request)
-    {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:8'
-        ]);
-
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
-            return redirect('/admin/dashboard');
-        }
-        return back()->withInput($request->only('email', 'remember'));
-    }
  
 }

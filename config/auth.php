@@ -54,9 +54,12 @@ return [
         'api' => [
             'driver' => 'passport',
             'provider' => 'users',
-            
-            
         ],
+        
+        'api_admin' => [
+            'driver' => 'passport',
+            'provider' => 'admins',
+        ]
     ],
 
     /*
@@ -115,6 +118,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
         ],
