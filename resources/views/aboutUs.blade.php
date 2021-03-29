@@ -121,7 +121,7 @@
                 <h4 class="text-center description p-0 m-0 text-white">Aatiqa Burah</h4>
               </div>
               <div class="card-body">
-                <h5 class="mt-0 description text-center">Designer & Founder of Enlighten Venture</h5>
+                <h5 class="mt-0 description text-center">Designer & Co-founder of Enlighten Venture</h5>
                 <p class="description text-center">
                   Ba. in Information Technology <br> University of Colombo School of Computing (UCSC)
                 </p>
@@ -160,7 +160,7 @@
                 <h4 class="text-center description p-0 m-0 text-white">Yoshell Delile</h4>
               </div>
               <div class="card-body">
-                <h5 class="mt-0 description text-center">Founder of Enlighten Venture</h5>
+                <h5 class="mt-0 description text-center">Co-founder of Enlighten Venture</h5>
                 <p class="description text-center">
                   B.Sc. in Agriculture Resource Management & Technology <br> University of Ruhuna Faculty of Agriculture (URFA)
                 </p>
@@ -195,7 +195,7 @@
                 <h4 class="text-center description p-0 m-0 text-white">Hansaka Chathurangana</h4>
               </div>
               <div class="card-body">
-                <h5 class="mt-0 description text-center">Founder of Enlighten Venture</h5>
+                <h5 class="mt-0 description text-center">Co-founder of Enlighten Venture</h5>
                 <p class="description text-center">
                   Chartered Accountant Audit <br> Institute of Chatered Accountants of Sri Lanka
                 </p>
