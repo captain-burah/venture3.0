@@ -13,6 +13,12 @@ class StaffInfoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth:api_admin');
+    }
+    
     public function index()
     {
         return Payg_staff::latest()->paginate(10);

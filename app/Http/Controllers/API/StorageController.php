@@ -16,7 +16,7 @@ class StorageController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api_admin');
+        
     }
 
     public function index()
@@ -31,7 +31,7 @@ class StorageController extends Controller
      */
     public function create()
     {
-        //
+        $this->middleware('auth:api_admin');
     }
 
     /**
@@ -42,7 +42,7 @@ class StorageController extends Controller
      */
     public function store(Request $request)
     {
-
+        $this->middleware('auth:api_admin');
         $this->validate($request, [
             'desc'  => 'required|string|max:191',
             'price'  => 'required|max:191',
@@ -86,6 +86,7 @@ class StorageController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->middleware('auth:api_admin');
         $storage = Payg_storage::findOrFail($id);
 
         $this->validate($request, [
@@ -106,6 +107,7 @@ class StorageController extends Controller
      */
     public function destroy($id)
     {
+        $this->middleware('auth:api_admin');
         $user = Payg_storage::findOrFail($id);
         $user->delete();
         return ['message' => 'User Deleted'];

@@ -91,4 +91,8 @@ class HomeController extends Controller
             'plan' => 'master_plan'
         ])->with($plan);
     }
+
+    public function estimate(){
+        return view('estimate');
+    }
 }

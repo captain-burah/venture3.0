@@ -6,25 +6,42 @@
   style="background-image: url({{ asset('img/bg8.jpg')}}); transform: translate3d(0px, 0px, 0px);">
     <div class="container">
       <div class="row mx-auto">
+
         <div class="col-md-6 text-center mobile-hide" >
             <h1 class="title text-center">{{ __('Pay-As-You-Go?')}}</h1>
+        </div>
+
+        <div class=" col-md-6 text-center my-auto" >
+          <div class="brand mobile-view">
+            <h3 class="">{{ __('Pay-As-You-Go?')}}</h3>
+            <div class="separator line-separator text-white  pb-0 pt-0">♦</div>
           </div>
-          <div class="col-md-6 text-center my-auto">
+          <div class="card ml-auto" style="width: 22rem;">
+            <div class="card-body">
               <div class="brand mobile-view">
-                  <h3 class="">{{ __('Pay-As-You-Go?')}}</h3>
-                  <div class="separator line-separator text-white  pb-0 pt-0">♦</div>
-                  <a href="{{ url(app()->getLocale() . '/pay_as_you_go') }}" class="btn btn-warning btn-lg text-left text-dark" 
+                  <a href="{{ url(app()->getLocale() . '/pay_as_you_go') }}" 
+                    class="btn btn-primary btn-lg text-left " 
                     style="min-width: 293.11px;">
                       <i class="fa fa-user-plus"></i>&nbsp {{ __('Register Now!')}}
                   </a>
               </div>
               <div class="my-auto py-auto">
-                <a href="{{ url(app()->getLocale() . '/pay_as_you_go') }}" class="btn btn-warning btn-lg text-left text-dark" 
+                <a href="{{ url(app()->getLocale() . '/createEstimate') }}" 
+                  class="btn btn-warning btn-lg text-left text-dark" 
                 style="min-width: 293.11px;">
-                  <i class="fa fa-user-plus"></i>&nbsp {{ __('Register Now!')}}
+                <i class="fa fa-calculator"></i>&nbsp {{ __('Create Estimate')}}
                 </a>
             </div>
+            <div class="my-auto py-auto mobile-hide">
+              <a href="{{ url(app()->getLocale() . '/pay_as_you_go') }}" 
+                class="btn btn-primary btn-lg text-left " 
+              style="min-width: 293.11px;">
+                <i class="fa fa-user-plus"></i>&nbsp {{ __('Register Now!')}}
+              </a>
+            </div>
           </div>
+        </div>
+        </div>
       </div>
     </div>
   </div>
@@ -145,6 +162,20 @@
         </div>
       </div>
       <!---   /Section 01  Features --->
+
+
+
+      <!---   Section 02  Estimation --->
+      <div class="pt-1 section-feature pb-2" id="featureSection">
+        <div class="text-center">
+          <div class="row text-center">
+            <div class="col-md-10 ml-auto mr-auto pt-3">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 
       <!---   Section 02  Table --->

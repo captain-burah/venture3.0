@@ -42,6 +42,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
 
     //---------------------- Tutor Register Routes ----------------------->
+    Route::get('/createEstimate', 'HomeController@estimate')->name('create-estimate');
     Route::get('/free_plan', 'HomeController@free_plan')->name('tutor-free_plan');
     Route::get('/pay_as_you_go', 'HomeController@pay_as_you_go')->name('tutor-pay_as_you_go');
     Route::get('/beginner_plan', 'HomeController@beginner_plan')->name('tutor-beginner_plan');

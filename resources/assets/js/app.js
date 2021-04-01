@@ -169,6 +169,10 @@ Vue.component(
   require('./homePage/paygSubs.vue')
 );
 
+Vue.component(
+  'estimation-calculator', 
+  require('./homePage/estimation.vue')
+);
 
   //----------------- Admin Components-----------------------------------------//
       Vue.component(
