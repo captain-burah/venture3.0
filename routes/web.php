@@ -33,6 +33,8 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::get('/testPage', 'Lecturer\LecturerController@test');
         Route::get('/about_us', 'HomeController@aboutUs')->name('about_us');
         Route::get('/pay-as-you-go', 'HomeController@payg')->name('payg');
+        
+        
 
     //---------------------- Newly Declared routes based on laravel inbuilt authentication system----------------------->
 
@@ -183,7 +185,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
         Route::post('/admin_logout', 'Auth\Admin\AdminLoginController@admin_logout')->name('admin.logout');
         Route::get('/dashboard', 'AdminController@dashboard')->name('admin-dash');    
-    });
+    }); 
      
 
     Route::middleware(['auth:admin'])->group(function () {
@@ -203,5 +205,19 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 //Route::get('{path}','Student\StudentController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
 //Route::get('{path}','Lecturer\LecturerController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
 //Route::get('{path}','Lecturer\LecturerController@dashboard')->where( 'path', '([A-z\d\-\/_.]+)?' );
+
+Route::group(['prefix' => '{any}', 'where' => ['any' => '^(?!api\/)[\/\w\.\,-]*']], function(){
+
+    Route::get('/', function(){
+        return view('academy');
+    })->name('academy');
+    
+    // Route::get('/academy/{id}', function($id){
+    //     return view('academic', [ 'id' => $id ]);
+    // })->name('academic');
+});
+
+
+
 Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
 Route::get('/admin/{path}','AdminController@dashboard')->where( 'path', '([A-z\d\-\/_.]+)?' );

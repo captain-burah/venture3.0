@@ -42,12 +42,12 @@ return [
         ],
 
         'lecturer' => [
-            'driver' => 'session',
+            'driver' => 'passport',
             'provider' => 'lecturers', 
         ],
 
         'admin' => [
-            'driver' => 'session',
+            'driver' => 'passport',
             'provider' => 'admins', 
         ],
 

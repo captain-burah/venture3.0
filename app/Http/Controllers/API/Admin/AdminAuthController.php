@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminAuthController extends Controller
 {
@@ -32,4 +33,21 @@ class AdminAuthController extends Controller
             return response()->json('Something went wrong on the server.', $e->getCode());
         }
     }
+
+
+    public function admin_login2(Request $request)
+    {
+        $login = $request->validate([
+            'email'   => 'required|email',
+            'password' => 'required|min:8'
+        ]);
+
+        if ( !Auth::guard('admin')->attempt( $login ) ) {
+            return response(['message' => 'Invalid Login Credentials.']);
+        }
+        $accessTokens = Auth::admin()->createToken('authToken')->accessToken;
+
+        return response(['user' => Auth::admin(), 'access_token' => $accessTokens]);
+    }
+
 }

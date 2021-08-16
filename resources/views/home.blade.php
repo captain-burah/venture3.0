@@ -20,7 +20,7 @@
                 style="min-width: 293.11px;">
                     <i class="fa fa-graduation-cap"></i>&nbsp {{ __('Tutor Login')}}
                 </a>
-                <a href="#" target="_blank" class="btn btn-warning btn-lg text-dark text-left" rel="nofollow" 
+                <a href="{{ url('/academy')}}" target="_blank" class="btn btn-warning btn-lg text-dark text-left" rel="nofollow" 
                 style="min-width: 293.11px;">
                     <i class="fa fa-university"></i>&nbsp {{ __('Open Academy')}}
                 </a>

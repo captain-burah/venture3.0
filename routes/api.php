@@ -44,3 +44,5 @@ Route::middleware('auth:api')->get('/exampapers', function (Request $request) {
     });
 //--------- This is for authenticated users only -----------------
 Route::get('storage', 'API\StorageController@index');
+ROute::post('login_admin', 'API\Admin\AdminAuthController@admin_login2');
+Route::apiResource('academies', 'Api\AcademicController')->only(['index', 'show']);

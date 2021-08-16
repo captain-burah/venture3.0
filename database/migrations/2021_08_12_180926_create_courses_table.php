@@ -16,6 +16,16 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            $table->string('name');
+            $table->string('tutor');
+            $table->string('duration');
+            $table->string('description');
+            $table->string('thumbnail')->default('thumbnail.png');
+            $table->string('cover')->default('cover.png');
+
+            $table->integer('lecturer_id')->unsigned()->index();
+            $table->foreign('lecturer_id')->references('id')->on('lecturers');
         });
     }
 

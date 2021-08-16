@@ -1,15 +1,9 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 
 window.Vue = require('vue');
 
 import store from "./store"
+import router from "./routes";
 
 
 //-------------- Vue SweetAlert v2-------------------------------------------------->
@@ -62,72 +56,14 @@ Vue.use( CKEditor );
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-let routes = [
-  { path: '/academy', component: require('./components/Academy.vue')},
 
-  //------------------ Student-------------------------------//
-  { path: '/student_dashboard', component: require('./components/Dashboard.vue')},
-  { path: '/profile', component: require('./components/Profile.vue') },
-  { path: '/users', component: require('./components/Users.vue') },
-  { path: '/students', component: require('./components/Students.vue') },
-  { path: '/developer', component: require('./components/Developer.vue') },
-  { path: '/mylessons', component: require('./components/Lessons.vue') },
-  { path: '/exams', component: require('./components/Exams.vue') },
-  { path: '/orders', component: require('./components/Orders.vue') },
-  { path: '/results', component: require('./components/Results.vue') },
-  { path: '/assignments', component: require('./components/Assignments.vue') },
-  { path: '/Student_Reg', component: require('./components/Student_Reg.vue') },
 
+
+
+
+// let routes = [
   
-  
-  //------------------ Lecturer-------------------------------//
-  { path: '/Lessons', component: require('./lecturerComp/Lessons/Lesson.vue'), 
-    children: [
-      { path: '/', component: require('./lecturerComp/Lessons/Overview.vue') },
-      { path: 'Overview', component: require('./lecturerComp/Lessons/Overview.vue') },
-      { path: 'Analysis', component: require('./lecturerComp/Lessons/Analysis.vue') },
-      { path: 'Syllabus', component: require('./lecturerComp/Lessons/Syllabus.vue') },
-      
-    ] },
-  
-  { path: '/CreateLessons', component: require('./lecturerComp/Lessons/CreateLessons/CreateLesson.vue'),
-  children: [
-    { path: '/', component: require('./lecturerComp/Lessons/CreateLessons/WelcomePage.vue') },
-    { path: 'Design', component: require('./lecturerComp/Lessons/CreateLessons/Design.vue') },
-    { path: 'Content', component: require('./lecturerComp/Lessons/CreateLessons/Content.vue') },
-  
-  ] },
-
-
-  { path: '/createPapers', component: require('./lecturerComp/createPapers/CreatePaper.vue'), 
-    children: [
-      { path: '/', component: require('./lecturerComp/createPapers/WelcomePage.vue') },
-
-      { path: 'questions', component: require('./lecturerComp/createPapers/Questions.vue') },
-      { path: 'exams', component: require('./lecturerComp/createPapers/Exams.vue') },
-      { path: 'intro-exit', component: require('./lecturerComp/createPapers/Intro-Exit.vue') },
-      { path: 'grading', component: require('./lecturerComp/createPapers/Grading.vue') },
-    
-    ] },
-  
-    
-
-  { path: '/tutor', component: require('./lecturerComp/Dashboard.vue')},
-  { path: '/tutor/lecProfile',  component: require('./lecturerComp/Profile.vue')},
-  //{ path: '/Lessons',  component: require('./lecturerComp/MyLessons.vue')},
-  { path: '/Schedules',  component: require('./lecturerComp/MySchedules.vue')},
-  { path: '/Layout',  component: require('./lecturerComp/SiteLayout.vue')},
-  { path: '/Staff',  component: require('./lecturerComp/StaffMgt.vue')},
-
-
-
-  
-  
-  { path: '/Analytics',  component: require('./admin/Analytics.vue')},
-  { path: '/payg',  component: require('./admin/PAYG.vue')},
-
-     
-]
+// ]
 
 
 
@@ -174,6 +110,15 @@ Vue.component(
   require('./homePage/estimation.vue')
 );
 
+Vue.component(
+  'academy-page', 
+  require('./components/Academy.vue')
+);
+Vue.component(
+  'academic-page', 
+  require('./components/academy/Academic.vue')
+);
+
   //----------------- Admin Components-----------------------------------------//
       Vue.component(
         'admin-panel',
@@ -207,19 +152,11 @@ window.Fire = Fire;
 //-------------- Vue Translations-------------------------------------------------//
 
 
-
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const router = new VueRouter({
-  //mode: 'history',
-  //base: `/${window._locale}/`,
-  routes // short for `routes: routes`
-})
+// const router = new VueRouter({
+//   //mode: 'history',
+//   //base: `/${window._locale}/`,
+//   routes // short for `routes: routes`
+// })
 
 const app = new Vue({
     el: '#app',
