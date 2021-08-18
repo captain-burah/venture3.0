@@ -20,7 +20,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'fname', 'lname', 'email', 'userType', 'password', 'regStatus'
-    ];
+    ]; 
 
     /**
      * The attributes that should be hidden for arrays.
@@ -34,5 +34,15 @@ class User extends Authenticatable
     public function studentInfo()
     {
         return $this->hasOne('App\StudentInfo', 'stu_email', 'email');
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

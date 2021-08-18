@@ -21,6 +21,7 @@ class AcademicIndexResource extends JsonResource
             'description' => $this->description,
             'thumbnail' => $this->thumbnail,
             'cover' => $this->cover,
+            'price' => $this->price,
         ];
     }
 }

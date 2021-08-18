@@ -2,7 +2,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import store from "./store"
+import store from "./store/index";
 import router from "./routes";
 
 
@@ -55,18 +55,6 @@ Vue.use( CKEditor );
 //-------------- Vue-Routers--------------------------------------------------//
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
-
-
-
-
-
-
-// let routes = [
-  
-// ]
-
-
-
 
 
 //------------- Vue Components-------------------------------------------------//
@@ -143,14 +131,6 @@ window.Fire = Fire;
   Vue.filter('myDate', function(created){
     return moment(created).format('MMMM Do YYYY, h:mm:ss a');
   })
-
-//-------------- Vue Translations-------------------------------------------------//
-  //Vue.mixin(require('./trans'))
-
-
-
-//-------------- Vue Translations-------------------------------------------------//
-
 
 // const router = new VueRouter({
 //   //mode: 'history',

@@ -16,5 +16,6 @@ $factory->define(App\Lecturer::class, function (Faker $faker) {
         'email' => $faker->email,
         'password' => $faker->password,
         'regStatus' => $faker->randomElement($reg_status),
+        'remember_token' => str_random(10),
     ];
 });

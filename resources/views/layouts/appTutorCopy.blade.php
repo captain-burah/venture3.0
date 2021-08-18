@@ -262,7 +262,9 @@
                   </a>
               </li>
           @endforeach
+          
           </ul>
+          
         </div>
         <div class="col-md-6">
           <div class="row col-md-12 pb-5">
@@ -312,6 +314,11 @@
 <!---------- Footer ----------->
 
   <!--  Scripts -->
+    <!-- PayPal script -->
+    <script src = "https://www.paypal.com/sdk/js?client-id=AaWDUX9QLm6ZzIUwbMbWyvpwmVJ4ucREyZR4F3xF-5MTm5N3b3qE5anFUj2WMEsnWE8c3JAGamA8OJ-m">
+    </script>
+    <!-- PayPal script -->
+
     <!--   Core JS Files   -->
     <script src="{{ asset('js/core/popper.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('js/core/jquery.min.js')}}" type="text/javascript"></script>

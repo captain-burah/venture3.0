@@ -1,7 +1,7 @@
 <template>
 
     <div class="card bg-white image-preview mx-auto">
-
+        
         <router-link :to="{ name: 'academic', params: {id } }">
         <!-- <a :href="academic_url/id "> -->
             <img src="/img/faces/christian.jpg" 
@@ -23,6 +23,9 @@
                 {{ description }}
             </h4>
         </div>
+        <div class="card-footer text-muted mx-auto">
+            <p v-text="formatCurrency(price)"></p>
+        </div>
     </div>
 
     <!-- <div class="card w-100">
@@ -38,12 +41,13 @@
 <script>
 
 export default {
-    props: {'name': String, 'description': String, 'tutor': String, 'thumbnail': String, 'id': Number},
-    data() {
-        return {
-            // url: this.academic_url + "/" + this.id,
-        };
-    },
+    props: {'name': String, 'description': String, 'tutor': String, 'thumbnail': String, 'id': Number, 'price': Number},
+    methods: {
+        formatCurrency(price){
+            price = (price / 100);
+            return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR"});
+        }
+    }
     
     };
 </script>

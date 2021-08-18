@@ -23,9 +23,10 @@ class CreateCoursesTable extends Migration
             $table->string('description');
             $table->string('thumbnail')->default('thumbnail.png');
             $table->string('cover')->default('cover.png');
+            $table->integer('price')->default('0');
 
             $table->integer('lecturer_id')->unsigned()->index();
-            $table->foreign('lecturer_id')->references('id')->on('lecturers');
+            $table->foreign('lecturer_id')->references('id')->on('lecturers')->onDelete('cascade');;
         });
     }
 

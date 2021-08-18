@@ -22,7 +22,13 @@ const routes = [
                 path: ":id",
                 component:require('./components/academy/Academic.vue'),
                 name: "academic",
-            }
+            },
+            {   
+                path: "checkout",
+                component:require('./components/academy/Checkout.vue'),
+                name: "checkout",
+            },
+
         ]
     },
 

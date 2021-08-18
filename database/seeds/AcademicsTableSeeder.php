@@ -19,5 +19,10 @@ class AcademicsTableSeeder extends Seeder
             $courses = collect([$course]);
             $lecturer->courses()->saveMany($courses);
         });
+        
+        foreach(Course::all() as $course) {
+            $users = App\User::inRandomOrder()->take(rand(1,3))->pluck('id');
+            $course->users()->attach($users);
+        }
     }
 }

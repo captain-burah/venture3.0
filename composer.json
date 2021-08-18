@@ -13,6 +13,7 @@
         "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",
         "paragonie/random_compat": "2.*",
+        "paypal/rest-api-sdk-php": "*",
         "stichoza/google-translate-php": "^4.1",
         "unisharp/laravel-ckeditor": "^4.7"
     },

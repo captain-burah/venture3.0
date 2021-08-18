@@ -23,12 +23,11 @@ class UserController extends Controller
         return User::latest()->paginate(10);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function purchase(Request $request)
+    {
+        
+    }
+
     public function store(Request $request)
     {
 

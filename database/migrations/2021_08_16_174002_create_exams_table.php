@@ -23,7 +23,7 @@ class CreateExamsTable extends Migration
             $table->string('notes');
 
             $table->integer('lesson_id')->unsigned()->index();
-            $table->foreign('lesson_id')->references('id')->on('lessons');
+            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');;
         });
     }
 
