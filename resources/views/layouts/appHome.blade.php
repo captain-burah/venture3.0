@@ -11,7 +11,7 @@
     <script> window.laravel = { csrfToken: '{{ csrf_token() }}' } </script>
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-
+ 
     <!-- Fonts and icons     -->
     <link href="{{('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons')}}" rel="stylesheet" type="text/css"/>
     <link rel="preconnect" href="{{('https://fonts.gstatic.com')}}">

@@ -2,8 +2,7 @@
 
     <div class="card bg-white image-preview mx-auto">
         
-        <router-link :to="{ name: 'academic', params: {id } }">
-        <!-- <a :href="academic_url/id "> -->
+        <router-link :to="{ name: 'academic', params: { id } }">
             <img src="/img/faces/christian.jpg" 
                 alt="Card image cap" 
                 class="image-preview__image card-img-top img-raised rounded img-fluid mt-3"
@@ -27,27 +26,20 @@
             <p v-text="formatCurrency(price)"></p>
         </div>
     </div>
-
-    <!-- <div class="card w-100">
-        <div class="card-body">
-            <router-link :to="{ name: 'bookable', params: {id } }">
-                <h4 class="card-title">{{ title }}</h4>
-            </router-link>
-            <p class="card-text m-0">{{ description }}</p>
-            <p class="card-text">Starting from {{  id }} onwards</p>
-        </div>
-    </div> -->
 </template>
 <script>
 
 export default {
-    props: {'name': String, 'description': String, 'tutor': String, 'thumbnail': String, 'id': Number, 'price': Number},
+    props: {'name': String, 'description': String, 'tutor': String, 'thumbnail': String, 'id': Number, 'price': Number}, 
     methods: {
         formatCurrency(price){
             price = (price / 100);
             return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR"});
         }
-    }
+    },
+    mounted(){
+        console.log(this.$store.getters.getCurrentUserLoginState);
+    },
     
     };
 </script>

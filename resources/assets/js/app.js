@@ -4,6 +4,7 @@ window.Vue = require('vue');
 
 import store from "./store/index";
 import router from "./routes";
+import Index from "./Index";
 
 
 //-------------- Vue SweetAlert v2-------------------------------------------------->
@@ -79,6 +80,11 @@ Vue.component(
 );
 
 Vue.component(
+  'student-dashboard', 
+  require('./studentComp/Smaster.vue')
+);
+
+Vue.component(
   'language-switcher', 
   require('./components/LanguageSwitcher.vue')
 );
@@ -98,14 +104,27 @@ Vue.component(
   require('./homePage/estimation.vue')
 );
 
+
+
 Vue.component(
   'academy-page', 
-  require('./components/Academy.vue')
+  require('./2021/academy/Academy2.vue')
 );
 Vue.component(
   'academic-page', 
-  require('./components/academy/Academic.vue')
+  require('./2021/academy/Academicc.vue')
 );
+
+
+Vue.component(
+  'home-cover', 
+  require('./2021/landing/Cover.vue')
+);
+Vue.component(
+  'navbar', 
+  require('./2021/landing/Navbar.vue')
+);
+
 
   //----------------- Admin Components-----------------------------------------//
       Vue.component(
@@ -119,6 +138,7 @@ Vue.component(
       .default);
   //----------------- /Admin Components-----------------------------------------//
 //------------- Vue Custom Event-------------------------------------------------//
+
 let Fire = new Vue();
 window.Fire = Fire;
 
@@ -141,5 +161,8 @@ window.Fire = Fire;
 const app = new Vue({
     el: '#app',
     router,
-    store
+    store,
+    components: {
+      "index": Index,
+    } 
 });

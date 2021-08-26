@@ -21,7 +21,7 @@ class StudentController extends Controller
 //---------------- Student----------------------
     public function dashboard()
     {
-        return app()->getLocale() . view('student.Smaster');
+        return view('student.Smaster');
     }
 
 //---------------- home_student----------------------
@@ -29,7 +29,6 @@ class StudentController extends Controller
     {
         return view('landing',  ['url' => '/student']);
     }
-
 
 
 }

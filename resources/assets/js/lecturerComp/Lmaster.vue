@@ -200,7 +200,7 @@
       Captain_Burah
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2020-2021 <a href="#">Venture</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2021-2022 <a href="#">Venture</a>.</strong> All rights reserved.
   </footer>
 </div>
 

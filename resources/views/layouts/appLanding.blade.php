@@ -21,10 +21,12 @@
 
     <!-- CSS Files -->
     <link href="{{asset('css/material-kit.min.css?v=2.0.7')}}" rel="stylesheet" />
-    
+    <link href="{{('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('device-mockups/device-mockups.min.css')}}" rel="stylesheet" >
     <link href="{{asset('css/new-age/landing-page.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/app.css')}}">
 
     <style>
       .separator {
@@ -154,40 +156,10 @@
 <body class="landing-page sidebar-collapse bg-light">
     <!-- Body -->
   <div id="app">
-    <!--  Nav  -->
-    <nav class="navbar navbar-transparent bg-dark text-dark navbar-color-on-scroll fixed-top navbar-expand-md " 
-    color-on-scroll="100" id="sectionsNav">
-        <div class="container ">
-          <div class="navbar-translate">
-              <a class="navbar-brand" href="{{('/')}}" >
-                <img src="{{asset('img/favicon/5.png')}}" alt="logo" style="height: 32px; width: 32px;" class="mx-1">
-                {{ config('app.name', 'Laravel') }}
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" 
-              aria-expanded="false" aria-label="Toggle navigation">
-                <span class="sr-only">Menu</span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-              </button>
-          </div>
-          <div class="collapse navbar-collapse">
-            <language-switcher 
-              locale="{{ app()->getLocale() }}"
-              link-en="{{ route(Route::currentRouteName(), 'en') }}"
-              link-sn="{{ route(Route::currentRouteName(), 'sn') }}"
-            ></language-switcher>
-          </div>
-        </div>
-    </nav>
-    <!--  Nav  -->
-    <div>
-      
-    </div>
     <main>
         @yield('content')
     </main>
-    <!-- Body -->
+    <!-- Body -->  
   </div>
     
     <!--  Scripts -->
@@ -195,6 +167,7 @@
         <script src="{{ asset('js/app.js')}}" type="text/javascript"></script>
         <script src="{{ asset('js/core/popper.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset('js/core/jquery.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('owlcarousel/owl.carousel.js')}}"></script>
         <script src="{{ asset('js/core/bootstrap-material-design.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset('js/plugins/moment.min.js')}}"></script>
         <script src="{{('https://cdn.jsdelivr.net/npm/sweetalert2@10')}}"></script>
@@ -204,253 +177,122 @@
 
         <!-- Vanilla Javascript -->
         <script>
-            $('#studentForm').submit(function (e) {
-                if (passValidate() == true ){
-                    
-                    let url = '';
-                    let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                    var formData = $(this).serialize(); // get form data
-                    if ( fetch(url, {
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Accept": "application/json, text-plain, */*",
-                            "X-Requested-With": "XMLHttpRequest",
-                            "X-CSRF-TOKEN": token
-                            },
-                        method: 'post',
-                        credentials: "same-origin",
-                        body: formData
-                        }).then ((data) => {
-                        console.log('Reg Success');
-                        }) == true) {
-                        console.log('true statement works')
-
-                    } else (function(response) {
-                        e.preventDefault(); // prevent the form from 'submitting'
-                        Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                        showConfirmButton: false,
-                        timer: 2000
-                        });
-                        console.log('error');
-                        $('#studentRegModal').modal('show');
-                    });
-                } else {
-                    e.preventDefault(); // prevent the form from 'submitting'
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: 'Password Error',
-                        text: 'Please enter a valid password',
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                }
-                
-            })
-            
-                
-
-            function associate_errors(errors, $form) {
-                //remove existing error classes and error messages from form groups
-                $form.find('.form-group').removeClass('has-errors').find('.help-text').text('');
-                errors.foreach(function(value, index)
-                {
-                    //find each form group, which is given a unique id based on the form field's name
-                    var $group = $form.find('#' + index + '-group');
-
-                    //add the error class and set the error text
-                    $group.addClass('has-errors').find('.help-text').text(value);
-                })
-            }
-
-
-            function passValidate() { 
-                var res; 
-                var str = document.getElementById("stuPass").value; 
-                if (str.match(/[a-z]/g) && str.match(/[A-Z]/g) && 
-                str.match(/[0-9]/g) && str.match(/[^a-zA-Z\d]/g) && str.length >= 8) 
-                    return true;
-                else 
-                    return false;
-            } 
-
-            function lol(){
-                $('#studentForm').submit(function (e) {
-                e.preventDefault()  // prevent the form from 'submitting'
-                
-                var url = ('api/user')// get the target
-                var formData = $(this).serialize() // get form data
-                if ($.post(url, formData) == true){ // send; response.data will be what is returned
-                    console.log('successful')
-                    move(1)
-
-                } else {
-                    move(2);
-                    console.log('failled to post data')
-
-                    let timerInterval
-                    Swal.fire({
-                    title: 'Validating!',
-                    html: 'Give us a few <b></b> milliseconds.',
-                    timer: 1500,
-                    timerProgressBar: true,
-                    willOpen: () => {
-                        Swal.showLoading()
-                        timerInterval = setInterval(() => {
-                        const content = Swal.getContent()
-                        if (content) {
-                            const b = content.querySelector('b')
-                            if (b) {
-                            b.textContent = Swal.getTimerLeft()
-                            }
-                        }
-                        }, 100)
+          $(document).ready(function(){
+            $('.loop1').owlCarousel({
+                center:false,
+                loop:true,
+                margin:10,
+                autoplay:true,
+                autoplayTimeout:1000,
+                autoplayHoverPause:true,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                        nav:true
                     },
-                    willClose: () => {
-                        clearInterval(timerInterval)
+                    600:{
+                        items:3,
+                        nav:false
+                    },
+                    1000:{
+                        items:5,
+                        nav:true,
+                        loop:true
                     }
-                    }).then((result) => {
-                    /* Read more about handling dismissals below */
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                        console.log('I was closed by the timer')
-                        Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                        showConfirmButton: false,
-                        timer: 3000
-                        })
-                    }
-                    else{
-                        console.log('I was closed by the User')
-                    }
-                    })
-                    
-                }
-                    
-                })
-            }
-
-            function move(y) {
-                if (y == 1){
-                var width = 0;
-                var elem = document.getElementById("barStatus1"); 
-                
-                var id = setInterval(frame, 5);
-                function frame() {
-                    if (width >= 100) {
-                    //clearInterval(id);
-                    } else {
-                    width++; 
-                    elem.style.width = width + '%'; 
-                    }
-                }
-                } else if (y == 2){
-                var width = 0;
-                var elem = document.getElementById("barStatus2"); 
-                
-                var id = setInterval(frame, 5);
-                function frame() {
-                    if (width >= 100) {
-                    //clearInterval(id);
-                    } else {
-                    width++; 
-                    elem.style.width = width + '%'; 
-                    }
-                }
-                }
-            }
-
-
-            function detectScreen(x){
-                if (x == 1){
-                if (( window.innerWidth <= 700 ) || ( window.innerHeight <= 600 )){
-                    var screenSize = 'mobile';
-                    //return document.getElementById('studentReg').style.display='block';
-                    window.location.href = '/student_registration';
-                }
-                else{
-                    //var screenSize = 'notMobile';
-                    //return window.location.href = 'http://www.google.com';
-
-                    var studentRegModal = document.getElementById('studentReg');
-                    //console.log(studentRegModal.dataset.target);
-                    studentRegModal.dataset.target = "#studentRegModal";
-                    //console.log(studentRegModal.dataset.target);
-                }
-                }
-                else if (x == 2){
-                if (( window.innerWidth <= 800 ) || ( window.innerHeight <= 600 )){
-                    //var screenSize = 'mobile';
-                    //return document.getElementById('studentReg').style.display='block';
-                    window.location.href = '/tutor_registration';
-                }
-                else{
-                    //var screenSize = 'notMobile';
-                    //return window.location.href = 'http://www.google.com';
-                    var studentRegModal = document.getElementById('tutorReg');
-                    console.log(studentRegModal.dataset.target);
-                    studentRegModal.dataset.target = "#tutorRegModal";
-                    console.log(studentRegModal.dataset.target);
-                }
-                }
-            }
-
-            $(document).ready(function() {
-                if ($('.datetimepicker').length != 0) {
-                //init DateTimePickers
-                materialKit.initFormExtendedDatetimepickers();
-                }
-                if ($('.slider').length != 0) {
-                // Sliders Init
-                materialKit.initSliders();
                 }
             });
-
-            function scrollToCover() {
-                if ($('.section-cover').length != 0) {
-                $("html, body").animate({
-                    scrollTop: $('.section-cover').offset().top
-                }, 1000);
+            $('.loop2').owlCarousel({
+                center:true,
+                loop:true,
+                autoplay:true,
+                margin:10,
+                autoplayTimeout:3500,
+                autoplayHoverPause:true,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                        nav:true
+                    },
+                    600:{
+                        items:2,
+                        nav:false
+                    },
+                    1000:{
+                        items:2,
+                        nav:true,
+                        loop:true
+                    }
                 }
+            });
+          });
+          function detectScreen(x){
+            if (x == 1){
+              if (( window.innerWidth <= 700 ) || ( window.innerHeight <= 600 )){
+                var screenSize = 'mobile';
+                //return document.getElementById('studentReg').style.display='block';
+                window.location.href = '/student_registration';
+              }
+              else{
+                //var screenSize = 'notMobile';
+                //return window.location.href = 'http://www.google.com';
+    
+                var studentRegModal = document.getElementById('studentReg');
+                //console.log(studentRegModal.dataset.target);
+                studentRegModal.dataset.target = "#studentRegModal";
+                //console.log(studentRegModal.dataset.target);
+              }
             }
-
-            function scrollToWhoAreWe() {
-                if ($('.section-whoAreWe').length != 0) {
-                $("html, body").animate({
-                    scrollTop: $('.section-whoAreWe').offset().top
-                }, 1000);
-                }
+            else if (x == 2){
+              if (( window.innerWidth <= 800 ) || ( window.innerHeight <= 600 )){
+                //var screenSize = 'mobile';
+                //return document.getElementById('studentReg').style.display='block';
+                window.location.href = '/tutor_registration';
+              }
+              else{
+                //var screenSize = 'notMobile';
+                //return window.location.href = 'http://www.google.com';
+                var studentRegModal = document.getElementById('tutorReg');
+                console.log(studentRegModal.dataset.target);
+                studentRegModal.dataset.target = "#tutorRegModal";
+                console.log(studentRegModal.dataset.target);
+              }
             }
-
-            function scrollToFeatures() {
-                if ($('.section-feature').length != 0) {
-                $("html, body").animate({
-                    scrollTop: $('.section-feature').offset().top
-                }, 1000);
-                }
+          }
+    
+          function scrollToCover() {
+            if ($('.section-cover').length != 0) {
+              $("html, body").animate({
+                scrollTop: $('.section-cover').offset().top
+              }, 1000);
             }
-
-            function scrollToPayAsYouGo() {
-                if ($('.section-PayAsYouGo').length != 0) {
-                $("html, body").animate({
-                    scrollTop: $('.section-PayAsYouGo').offset().top
-                }, 1000);
-                }
+          }
+    
+          function scrollToWhoAreWe() {
+            if ($('.section-whoAreWe').length != 0) {
+              $("html, body").animate({
+                scrollTop: $('.section-whoAreWe').offset().top
+              }, 1000);
             }
-            
-            function scrollToContactUs() {
-                if ($('.section-ContactUs').length != 0) {
-                $("html, body").animate({
-                    scrollTop: $('.section-ContactUs').offset().top
-                }, 1000);
-                }
+          }
+    
+          function scrollToFeatures() {
+            if ($('.section-feature').length != 0) {
+              $("html, body").animate({
+                scrollTop: $('.section-feature').offset().top
+              }, 1000);
             }
+          }
+          
+          function scrollToContactUs() {
+            if ($('.section-ContactUs').length != 0) {
+              $("html, body").animate({
+                scrollTop: $('.section-ContactUs').offset().top
+              }, 1000);
+            }
+          }
+          
         </script>
     <!-- /Scripts -->
 </body>

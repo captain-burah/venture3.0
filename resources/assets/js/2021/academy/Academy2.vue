@@ -1,6 +1,9 @@
 <template>
     <div>
- 
+        <navbar></navbar>
+        
+        <home-cover></home-cover>
+        
         <!-- Body -->
         <div class="main main-raised border border-primary">
             <div class="container-fluid">
@@ -40,7 +43,7 @@
 </template>
 
 <script>
- import Academics from "./academy/Academics";
+ import Academics from "./Academics";
 
 
 export default ({

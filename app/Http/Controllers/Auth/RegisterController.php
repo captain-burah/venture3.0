@@ -106,13 +106,12 @@ class RegisterController extends Controller
                 'fname'  => 'required|string|max:191',
                 'lname'  => 'required|string|max:191',
                 'email'  => 'required|string|email|max:191|unique:lecturers',
-                'password' => 'required|string|min:6|confirmed',
-                'password_confirmation' => 'required| min:6',
+                'password' => 'required|string|min:6',
                 //'privacyPolicy' => 'required|string',
             ]);
             if ($validate == true){
                 try{
-                    Lecturer::create([
+                    return Lecturer::create([
                         'fname' => $request['fname'],
                         'lname' => $request['lname'],
                         'email' => $request['email'],
@@ -128,13 +127,45 @@ class RegisterController extends Controller
                 //$user->lec_email = $request['email'];
                 //$user->gender = $request['gender'];
                 //$user->push();
-                return redirect(app()->getLocale() . '/login/tutor');
+                // return redirect(app()->getLocale() . '/login/tutor');
             }
         //Else statement not required, Laravel redirects USER back with flash messages
         }
     //--------------- Tutor Controllers ----------------
 
+    //--------------- User Registration ---------------
+    protected function createUser(Request $request)
+        {
+            $validate = $this->validate($request, [
+                'fname'  => 'required|string|max:191',
+                'lname'  => 'required|string|max:191',
+                'email'  => 'required|string|email|max:191|unique:users',
+                'password' => 'required|string|min:6',
+                //'privacyPolicy' => 'required|string',
+            ]);
+            if ($validate == true){
+                try{
+                    return User::create([
+                        'fname' => $request['fname'],
+                        'lname' => $request['lname'],
+                        'email' => $request['email'],
+                        'password' => Hash::make($request['password']),
+                        
+                    ]);
+                } catch (\Exception $exception) {
+                    $message = 'Failled to create a new database record for '.$request->email;
+                    return view('errors.notFound', compact('message'));
+                }
 
+                //$user = new LecturerInfo();
+                //$user->lec_email = $request['email'];
+                //$user->gender = $request['gender'];
+                //$user->push();
+                // return redirect(app()->getLocale() . '/login/tutor');
+            }
+        //Else statement not required, Laravel redirects USER back with flash messages
+        } 
+    //--------------- User Registration ---------------
 
 
 

@@ -13,38 +13,38 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();    
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();    
+// });
 
-Route::middleware('auth:api')->get('/admin', function (Request $request) {
-    return $request->admin();    
-});
+// Route::middleware('auth:api')->get('/admin', function (Request $request) {
+//     return $request->admin();    
+// });
 
-Route::middleware('auth:api')->get('/exampapers', function (Request $request) {
-    return $request->exampapers();    
-});
+// Route::middleware('auth:api')->get('/exampapers', function (Request $request) {
+//     return $request->exampapers();    
+// });
 
-//--------- This is for authenticated users only -----------------
-    Route::group(['middleware' => 'auth:api'], function() {
-        Route::apiResources([
-            'user'=> 'API\UserController',
-            'exampapers'=> 'API\ExamPapers',
-            'admin'=> 'API\StorageController',
+// //--------- This is for authenticated users only -----------------
+//     Route::group(['middleware' => 'auth:api'], function() {
+//         Route::apiResources([
+//             'user'=> 'API\UserController',
+//             'exampapers'=> 'API\ExamPapers',
+//             'admin'=> 'API\StorageController',
             
-        ]);
-        Route::get('profile', 'API\UserController@profile');
-        Route::put('profile', 'API\UserController@updateProfile');
-        Route::apiResources([
-            'storage' => 'API\StorageController',
-            'enroll' => 'API\StudentEnrollController',
-            'staffinfo' => 'API\StaffInfoController',
-            'subdomaininfo' => 'API\SubDomainInfoController',
-        ]);
-    });
+//         ]);
+//         Route::get('profile', 'API\UserController@profile');
+//         Route::put('profile', 'API\UserController@updateProfile');
+//         Route::apiResources([
+//             'storage' => 'API\StorageController',
+//             'enroll' => 'API\StudentEnrollController',
+//             'staffinfo' => 'API\StaffInfoController',
+//             'subdomaininfo' => 'API\SubDomainInfoController',
+//         ]);
+//     });
 //--------- This is for authenticated users only -----------------
 Route::get('storage', 'API\StorageController@index');
-ROute::post('login_admin', 'API\Admin\AdminAuthController@admin_login2');
+Route::post('login_admin', 'API\Admin\AdminAuthController@admin_login2');
 Route::apiResource('academies', 'Api\AcademicController')->only(['index', 'show']);
 
 Route::post('create-payment', function() {
@@ -52,4 +52,19 @@ Route::post('create-payment', function() {
 });
 Route::post('create-payment', function(Request $request) {
     return "execute-payment working";
+});
+
+Route::prefix('/user')->group( function() {
+    Route::post('/login', 'Auth\LoginController@userLogin');
+    Route::post('/register', 'Auth\RegisterController@createUser');
+    Route::middleware('auth:api')
+        ->get('/all', 'API\UserController@index');
+    Route::apiResource('academies', 'API\AcademicController')->only(['index', 'show']);
+});
+
+Route::prefix('/tutor')->group( function() {
+    Route::post('/login', 'Auth\LoginController@lecLogin');
+    Route::post('/register', 'Auth\RegisterController@createLec');
+    Route::middleware('auth:lecturer_api')
+        ->get('/all', 'API\TutorController@index');
 });
