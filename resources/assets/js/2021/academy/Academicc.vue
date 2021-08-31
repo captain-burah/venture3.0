@@ -171,24 +171,32 @@ export default {
     },
     
     mounted() {
-        var state = this.$store.getters.getCurrentUserLoginState;
-        console.log(state);
-        if (this.$store.getters.getCurrentUserLoginState == true) {
-            this.addToCart = { name: 'checkout', params: this.academic.id };
-        }
-        else if (this.$store.getters.getCurrentUserLoginState == false){
-            this.addToCart = {name: 'student-login'};
-        }
-        else{
-            console.log(state);
-            this.addToCart = 'something went wrong';
-        };
+      if (localStorage.student_token != null) {
+        console.log('token is true')
+        this.addToCart = { name: 'checkout', params: this.academic.id };
+      }
+      else {
+          console.log('token is false');
+          this.addToCart = {name: 'student-login'};
+      }
+      // var state = this.$store.getters.getCurrentUserLoginState;
+      // console.log(state);
+      // if (this.$store.getters.getCurrentUserLoginState == true) {
+      //     this.addToCart = { name: 'checkout', params: this.academic.id };
+      // }
+      // else if (this.$store.getters.getCurrentUserLoginState == false){
+      //     this.addToCart = {name: 'student-login'};
+      // }
+      // else{
+      //     console.log(state);
+      //     this.addToCart = 'something went wrong';
+      // };
 
-        console.log('Single Academic Mounted');
-        // const script = document.createElement("script");
-        // script.src = "https://www.paypal.com/sdk/js?client-id=AaWDUX9QLm6ZzIUwbMbWyvpwmVJ4ucREyZR4F3xF-5MTm5N3b3qE5anFUj2WMEsnWE8c3JAGamA8OJ-m";
-        // script.addEventListener("load", this.setLoaded);
-        // document.body.appendChild(script);
+      console.log('Single Academic Mounted');
+      // const script = document.createElement("script");
+      // script.src = "https://www.paypal.com/sdk/js?client-id=AaWDUX9QLm6ZzIUwbMbWyvpwmVJ4ucREyZR4F3xF-5MTm5N3b3qE5anFUj2WMEsnWE8c3JAGamA8OJ-m";
+      // script.addEventListener("load", this.setLoaded);
+      // document.body.appendChild(script);
     },
 }
 </script>

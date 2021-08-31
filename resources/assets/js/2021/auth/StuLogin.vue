@@ -76,6 +76,15 @@ export default {
             password: "",
         },
     }),
+    created() {
+        if(this.$store.getters.getCurrentUserLoginState === true){
+            console.log('yes')
+            // this.$router.push({ name: 'student-dashboard' });
+        }
+        else{
+            console.log('no')
+        }
+    },
     methods: {
         login() {
             if (this.$store.dispatch("loginUser", this.user )){

@@ -164,9 +164,9 @@
     
     <!--  Scripts -->
         <!--   Core JS Files   -->
+        <script src="{{ asset('js/core/jquery.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset('js/app.js')}}" type="text/javascript"></script>
         <script src="{{ asset('js/core/popper.min.js')}}" type="text/javascript"></script>
-        <script src="{{ asset('js/core/jquery.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset('owlcarousel/owl.carousel.js')}}"></script>
         <script src="{{ asset('js/core/bootstrap-material-design.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset('js/plugins/moment.min.js')}}"></script>

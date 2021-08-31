@@ -8,24 +8,40 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button">
             <i class="fas fa-bars"></i>&nbsp; &nbsp; Dashboard</a>
       </li>
+      <!-- <li class="nav-item py-1 mr-auto"> -->
+      <li class="nav-item">
+        <router-link class="nav-link" @click="userLogout" :to="logOut" role="button">
+            Logout
+        </router-link>
+      </li>
+            <!-- <button type="button" v-on:click="logOutFunc" class="btn btn-block mb-3" role="button">
+                Logout
+            </button> -->
+            <!-- <button @click="logOutFunc" class="text-light">
+              <i class="nav-icon fa fa-power-off red"></i>
+              <p>
+               Logout
+              </p>
+            </button> -->
+          <!-- </li> -->
     </ul>
   </nav>
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary sideMenu elevation-4 border-right border-dark">
     <!-- Brand Logo -->
-    <a :href="home_student" class="brand-link navbar-bg">
+    <router-link to="/" class="brand-link navbar-bg">
       <img src="/img/rocket.png" alt="Larastart" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Venture 2021</span>
-    </a>
+    </router-link>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
         <div class="image">
-          <img :src="tutor_img" class="img-circle elevation-2" alt="User Image">
+          <img src="img/profile/tutors.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <router-link to="/student-dashboard" class="d-block ">Student Name here</router-link>
@@ -56,7 +72,6 @@
               </p>
             </router-link>
           </li>
-          
         <!------ Sub-Menu ----->
         <li class="nav-item">
           <router-link to="/student-dashboard" class="nav-link text-light">
@@ -124,19 +139,6 @@
               </p>
             </router-link>
           </li>
-          <li class="nav-item py-1">
-            <a class="nav-link text-light rounded-pill" href="javascript:void(0)" 
-            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-              <i class="nav-icon fa fa-power-off red"></i>
-              <p>
-               Logout
-              </p>
-            </a>
-            <form id="logout-form" :action="logout_user" method="POST" style="display: none;">
-              <input type="hidden" name="_token" :value="csrf">
-              
-            </form>
-          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -177,51 +179,60 @@
 </template>        
 <script>
     export default {
-      props: ['logout_user', 'tutor_img', 'home_student', 'locale'],
-      name: 'Logout',
+      name: 'Dashboard',
 
       data: function(){
-        //const lang = localStorage.getItem('lang') || 'en';
         return {
-          //lang: lang,
+          logOut: '',
           userState: '',
-          csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          // userDetails: null,
+
         }
       },
-      mounted() {
-          if(this.$store.getters.getCurrentUserLoginState == true){
-              console.log('Its true');
-              this.userState = 'login success';
-          }else if (this.$store.getters.getCurrentUserLoginState == false){
-              console.log("its false");
-              this.userState = 'login failed';
-          }
-          else{
-            console.log('something else');
-          };
-
-          console.log('Smaster Mounted');
+      created() {
+        console.log(this.userDetails);
+        
+        // const request = axios
+        // .get(`/api/user/all`)
+        // .then(response => {
+        //     this.userDetails = response.data.data;
+        // });
+        
       },
-    //   created() {
-    //       this.$store.dispatch("setCurrentUserLogin");
-    //   },
       methods: {
-          logout() {
-              axios
-                .post('logout_user')
-                .then(() => {
-                    this.$store.dispatch("setCurrentUserLogout");
+          userLogout: function() {
+              return Axios
+                .post(`api/user/logout`)
+                .then( response => {
+                    if (localStorage.student_token) {
+                      localStorage.removeItem(student_token);
+                      this.logOut = { name: 'home'};
+                      // this.$router.push({ name: 'home' });
+                    }
+                    else {
+                      console.log('no token')
+                    }
                 })
-                .catch(error => {
-                    window.location.href = '/login';
-                });
           },
-          //handleChange(event){
-          //  localStorage.setItem('lang', event.target.value);
-          //  window.location.reload();
-          //}
       },
       
-
+      mounted() {
+        console.log(this.userDetails);
+          if (localStorage.student_token != null) {
+            // setTimeout(() => {
+            //   localStorage.setItem(
+            //     "userId",
+            //     this.userDetails.id
+            //   ),
+            // console.log('userDetails is true')
+            // }, 2000)
+            console.log('token is true')
+          }
+          else {
+              console.log('token is false');
+              this.$router.push({ name: 'student-login' });
+          }
+          console.log('Smaster Mounted');
+      },
   }
 </script>

@@ -164,9 +164,9 @@
     
     <!--  Scripts -->
         <!--   Core JS Files   -->
+        <script src="<?php echo e(asset('js/core/jquery.min.js')); ?>" type="text/javascript"></script>
         <script src="<?php echo e(asset('js/app.js')); ?>" type="text/javascript"></script>
         <script src="<?php echo e(asset('js/core/popper.min.js')); ?>" type="text/javascript"></script>
-        <script src="<?php echo e(asset('js/core/jquery.min.js')); ?>" type="text/javascript"></script>
         <script src="<?php echo e(asset('owlcarousel/owl.carousel.js')); ?>"></script>
         <script src="<?php echo e(asset('js/core/bootstrap-material-design.min.js')); ?>" type="text/javascript"></script>
         <script src="<?php echo e(asset('js/plugins/moment.min.js')); ?>"></script>

@@ -33,7 +33,7 @@ const actions = {
                 password: user.password,
             })
             .then( response => {
-                console.log( response );
+                // console.log( response );
                 if( response.data.access_token ){
                     
                     if (dispatch('setCurrentUserLogin')) {
@@ -43,11 +43,18 @@ const actions = {
                         localStorage.setItem(
                             "student_token",
                             response.data.access_token
-                        )
+                        );
                         // this.$router.push({ name: 'student-dashboard' });
                         // window.location.replace("/student-dashboard");
                     }
                    
+                }
+                if ( response.data.user_id ) {
+                    // console.log(response.data.user_id);
+                    localStorage.setItem(
+                        "user_id",
+                        response.data.user_id.id
+                    )
                 }
             })
     },
@@ -65,6 +72,15 @@ const actions = {
                 window.location.replace("/student-login");
             })
     },
+
+    loadDashboard( {}) {
+        if (localStorage.student_token != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     
 };
 

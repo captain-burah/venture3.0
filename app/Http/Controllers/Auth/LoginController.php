@@ -60,19 +60,19 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $this->guard('user')->logout();
-
-        $request->session()->invalidate();
-
-        return redirect( app()->getLocale() . '/login');
+        
+        // $request->session()->invalidate();
+        return response()->json(['status' => 200]);
+        // return redirect( app()->getLocale() . '/login');
     }
 
     public function lec_logout(Request $request)
     {
         $this->guard('lecturer')->logout();
 
-        $request->session()->invalidate();
-
-        return redirect( app()->getLocale() . '/login/tutor');
+        // $request->session()->invalidate();
+        return response()->json(['status' => 200]);
+        // return redirect( app()->getLocale() . '/login/tutor');
     }
 
 
@@ -170,7 +170,14 @@ class LoginController extends Controller
             'password' => $request->password], $request->get('remember'))) 
         {   
             $accessToken = Auth::user()->createToken('authToken')->accessToken;
-            return response(['user' => Auth::user(), 'access_token' => $accessToken]);
+            $userId = User::select('id')->where('email', $request->email)->first();
+            return response(
+                [
+                    'user' => Auth::user(), 
+                    'access_token' => $accessToken, 
+                    'user_id' => $userId, 
+                ]
+            );
             // try 
             // {
             //     //read the database attributes userType & regStatus from database
