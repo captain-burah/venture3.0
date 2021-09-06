@@ -44,18 +44,23 @@ const actions = {
                             "student_token",
                             response.data.access_token
                         );
-                        // this.$router.push({ name: 'student-dashboard' });
-                        // window.location.replace("/student-dashboard");
+                        localStorage.setItem(
+                            "user_id",
+                            response.data.user_id.id
+                        )
                     }
-                   
                 }
-                if ( response.data.user_id ) {
-                    // console.log(response.data.user_id);
-                    localStorage.setItem(
-                        "user_id",
-                        response.data.user_id.id
-                    )
-                }
+                else if (response.data.message) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Oops..',
+                        text: response.data.message,
+                    });
+                };
+                // if ( response.data.user_id ) {
+                //      console.log(response.data.user_id);
+                    
+                // };
             })
     },
 

@@ -4,7 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Course;
 use App\User;
+
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Resources\AcademicPaymentResource;

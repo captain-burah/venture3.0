@@ -34,6 +34,9 @@
       </ul>
       <div v-else>Data is loading...</div>
       <div class="w-100">
+        <div class="mx-auto w-50"><button class="btn btn-block btn-primary" @click="linkTest(id)">Test Button</button></div>
+      </div>
+      <div class="w-100">
           <div class="mx-auto w-50" ref="paypal"></div>
       </div>
     </div>
@@ -72,6 +75,11 @@ export default {
 
 
   methods: {
+    linkTest(id){
+      if (setTimeout(() => this.$store.dispatch("userPaymentApprove"), 500)) {
+        setTimeout(() => this.$router.push({ name: 'student-receipt', params: { id } }), 1500);
+      }
+    },
     formatCurrency(price){
         price = (price / 100);
         return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR"});
@@ -101,14 +109,16 @@ export default {
                     // This section handles all the functions that happens after 
                     // payment is successful. You can submit form to database to.
                     const order = await actions.order.capture();
-                    this.data;
                     // this.submitDomain();
                     Toast.fire({
                         icon: 'success',
                         title: 'Payment Success',
                         text: 'Re-directing.. Please wait!',
                     });
-                    this.$store.dispatch("paymentApprove");
+                    if (setTimeout(() => this.$store.dispatch("userPaymentApprove"), 500)) {
+                      setTimeout(() => this.$router.push({ name: 'student-receipt', params: { id } }), 1500);
+
+                    }
                 },
                 onError: err => {
                     console.log(err);

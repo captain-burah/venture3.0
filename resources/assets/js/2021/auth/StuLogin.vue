@@ -35,10 +35,10 @@
                                     <button type="submit" @click="login" class="btn btn-block btn-warning mb-3">
                                         Submit
                                     </button>
-                                    <a class="text-primary" 
-                                        href="#register">
+                                    <router-link class="text-primary" 
+                                        to="/student-register">
                                             <h5><b>Create account</b></h5>
-                                    </a>
+                                    </router-link>
                                     <div class="text-right">
                                         <a class="btn btn-link text-left mx-0 px-0 pb-0 mb-0" href="#resetPassword">
                                             Forgot Password
@@ -87,8 +87,9 @@ export default {
     },
     methods: {
         login() {
-            if (this.$store.dispatch("loginUser", this.user )){
-                this.$router.push({ name: 'student-dashboard' });
+            if (this.$store.dispatch("loginUser", this.user)){
+                // this.$router.push({ name: 'student-dashboard' });
+                setTimeout(() => this.$router.push({ name: 'student-dashboard' }), 1500);
             };
         }
     }

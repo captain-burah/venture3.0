@@ -8,41 +8,62 @@
   <div class="row">
     <div class="col-md-8 order-md-2 mb-4 mx-auto">
       <h3 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-muted">Your cart</span>
+        <span class="text-muted">Payment Receipt</span>
       </h3>
       <ul v-if="!loaded" class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">ID</h6>
-          </div>
-        </li>
 
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0">ID</h6>
-            <small class="text-muted"></small>
+            <h6 class="my-0">Course ID</h6>
+            <small class="text-muted">{{ course.id }}</small>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Course Name</h6>
+            <small class="text-muted">{{ course.name }}</small>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Course Tutor</h6>
+            <small class="text-muted">{{ course.tutor }}</small>
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
             <h6 class="my-0">Amount</h6>
-            <small class="text-muted"></small>
+            <small class="text-muted" v-text="formatCurrency(course.price)"></small>
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0">Status</h6>
-            <small class="text-muted"></small>
+            <h6 class="my-0">Payment Status</h6>
+            <small class="text-muted">{{ exists }}</small>
           </div>
         </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Time</h6>
-            <small class="text-muted"></small>
-          </div>
-        </li>
+        
+        <div v-if="precise != null">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Time</h6>
+              <small class="text-muted">About {{ time }} at {{ precise }}</small>
+            </div>
+          </li>
+        </div>
+
+        <div v-else>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Time</h6>
+              <small class="text-muted">at {{ time }}</small>
+            </div>
+          </li>
+        </div>
       </ul>
       <div v-else>Data is loading...</div>
+      <button class="btn btn-block btn-warning" @click="goTo">Go to My Courses</button>
+      <button v-if="precise === null" class="btn btn-block btn-primary" @click="goTo">Save as PDF</button>
       <div class="w-100">
           <div class="mx-auto w-50" ref="paypal"></div>
       </div>
@@ -59,3 +80,56 @@
   </footer>
 </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      loaded: false,
+      course: {},
+      id: this.$route.params.id,
+      time: localStorage.getItem('time'),
+      precise: null,
+      exists: '',
+    }
+  },
+  created() {
+    this.loaded = true;
+    axios
+      .get(`/api/user/academies/${this.$route.params.id}`)
+      .then(response => {
+          this.course = response.data.data,
+          this.loaded = false
+    });
+    if (localStorage.getItem('precise') != null ) {
+      this.precise = localStorage.getItem('precise');
+    };
+    if (localStorage.getItem('status') === 'Exists' ) {
+      this.exists = 'Failed. The following course is already registered.'
+    }
+  },
+
+
+  methods: {
+    formatCurrency(price){
+        price = (price / 100);
+        return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR"});
+    },
+    goTo(){
+      return this.$router.push({ name: ''});
+    }
+  },
+
+
+  mounted() {
+
+    if (localStorage.student_token != null) {
+      console.log('token is true')
+    }
+    else {
+        console.log('token is false');
+        this.$router.push({ name: 'student-login' });
+
+    };
+  }
+}
+</script>

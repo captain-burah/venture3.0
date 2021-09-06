@@ -11,23 +11,44 @@ const getters = {
 
 
 const actions = {
-    paymentApprove( {} ) {
+    userPaymentApprove( {} ) {
         axios 
-            .post(`/api/user/payment`, {
+            .post("/api/user/payment", {
                 courseId: localStorage.getItem('course_id'),
                 userId: localStorage.getItem('user_id'),
             })
             .then( response => {
-                console.log(reponse.data.status)
-                // if (response.status == 'Exists'){
-
-                // }
-                // else if (response.data.status == 'Success')
-                // console.log( response );
-                // localStorage.setItem(
-                //     "payment-state",
-                //     true
-                // );
+                // console.log(response.data.status);
+                // console.log(response.data.time);
+                if (response.data.status === 'Exists'){
+                    // localStorage.removeItem('status');
+                    // localStorage.removeItem('time');
+                    // localStorage.removeItem('precise');
+                    localStorage.setItem(
+                        'status',
+                        response.data.status
+                    );
+                    localStorage.setItem(
+                        'time',
+                        response.data.time
+                    );
+                    localStorage.setItem(
+                        'precise',
+                        response.data.precise
+                    );
+                }
+                else if (response.data.status === 'Success') {
+                    // localStorage.removeItem('status');
+                    // localStorage.removeItem('time');
+                    localStorage.setItem(
+                        'status',
+                        response.data.status
+                    );
+                    localStorage.setItem(
+                        'time',
+                        response.data.time
+                    );
+                };
             })
     },
 };

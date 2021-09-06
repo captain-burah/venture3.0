@@ -125,6 +125,21 @@ export default {
             this.academic = response.data.data,
             this.loaded = false
         });
+        setTimeout(()=> {
+          if (localStorage.getItem('course_id')) {
+            localStorage.removeItem('course_id');
+            localStorage.setItem(
+                "course_id",
+                this.$route.params.id
+            );  
+          }
+          else {
+            localStorage.setItem(
+                "course_id",
+                this.$route.params.id
+            );
+          }
+        }, 1000);
     },
     methods: {
         

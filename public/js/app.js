@@ -74730,18 +74730,28 @@ var state = {};
 var getters = {};
 
 var actions = {
-    paymentApprove: function paymentApprove(_ref) {
+    userPaymentApprove: function userPaymentApprove(_ref) {
         _objectDestructuringEmpty(_ref);
 
-        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/api/user/paymentApprove", {
-
-            courseId: user.lname,
-            userId: user.fname,
-            email: user.email,
-            password: user.password
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/api/user/payment", {
+            courseId: localStorage.getItem('course_id'),
+            userId: localStorage.getItem('user_id')
         }).then(function (response) {
-            console.log(response);
-            localStorage.setItem("payment-state", true);
+            // console.log(response.data.status);
+            // console.log(response.data.time);
+            if (response.data.status === 'Exists') {
+                // localStorage.removeItem('status');
+                // localStorage.removeItem('time');
+                // localStorage.removeItem('precise');
+                localStorage.setItem('status', response.data.status);
+                localStorage.setItem('time', response.data.time);
+                localStorage.setItem('precise', response.data.precise);
+            } else if (response.data.status === 'Success') {
+                // localStorage.removeItem('status');
+                // localStorage.removeItem('time');
+                localStorage.setItem('status', response.data.status);
+                localStorage.setItem('time', response.data.time);
+            };
         });
     }
 };
@@ -74871,14 +74881,19 @@ var actions = {
                     console.log(getters.getCurrentUserLoginState);
                     dispatch('setStudentTokenValue', response.data.access_token);
                     localStorage.setItem("student_token", response.data.access_token);
-                    // this.$router.push({ name: 'student-dashboard' });
-                    // window.location.replace("/student-dashboard");
+                    localStorage.setItem("user_id", response.data.user_id.id);
                 }
-            }
-            if (response.data.user_id) {
-                // console.log(response.data.user_id);
-                localStorage.setItem("user_id", response.data.user_id.id);
-            }
+            } else if (response.data.message) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Oops..',
+                    text: response.data.message
+                });
+            };
+            // if ( response.data.user_id ) {
+            //      console.log(response.data.user_id);
+
+            // };
         });
     },
     registerUser: function registerUser(_ref5, user) {
@@ -75808,6 +75823,10 @@ var routes = [{
     path: "/checkout/:id",
     component: __webpack_require__(207),
     name: "checkout"
+}, {
+    path: "/student-receipt/:id",
+    component: __webpack_require__(389),
+    name: "student-receipt"
 }, {
     path: "/student-login",
     component: __webpack_require__(210),
@@ -78039,6 +78058,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.get('/api/user/academies/' + this.$route.params.id).then(function (response) {
             _this.academic = response.data.data, _this.loaded = false;
         });
+        setTimeout(function () {
+            if (localStorage.getItem('course_id')) {
+                localStorage.removeItem('course_id');
+                localStorage.setItem("course_id", _this.$route.params.id);
+            } else {
+                localStorage.setItem("course_id", _this.$route.params.id);
+            }
+        }, 1000);
     },
 
     methods: {
@@ -78570,6 +78597,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -78584,7 +78614,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         var _this = this;
 
         this.loaded = true;
-        axios.get("/api/user/academies/" + this.$route.params.id).then(function (response) {
+        axios.get('/api/user/academies/' + this.$route.params.id).then(function (response) {
             _this.course = response.data.data, _this.loaded = false;
         });
         console.log(this.course);
@@ -78592,23 +78622,36 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
     methods: {
+        linkTest: function linkTest(id) {
+            var _this2 = this;
+
+            if (setTimeout(function () {
+                return _this2.$store.dispatch("userPaymentApprove");
+            }, 500)) {
+                setTimeout(function () {
+                    return _this2.$router.push({ name: 'student-receipt', params: { id: id } });
+                }, 1500);
+            }
+        },
         formatCurrency: function formatCurrency(price) {
             price = price / 100;
             return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR" });
         },
 
 
+        paymentApproval: function paymentApproval() {},
+
         setLoaded: function setLoaded() {
-            var _this2 = this;
+            var _this3 = this;
 
             window.paypal.Buttons({
                 createOrder: function createOrder(data, actions) {
                     return actions.order.create({
                         purchase_units: [{
-                            description: _this2.course.tutor,
+                            description: _this3.course.tutor,
                             amount: {
                                 currency_code: "USD",
-                                value: _this2.course.price
+                                value: _this3.course.price
                             }
                         }]
                     });
@@ -78626,21 +78669,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     case 2:
                                         order = _context.sent;
 
-                                        _this2.data;
                                         // this.submitDomain();
                                         Toast.fire({
                                             icon: 'success',
                                             title: 'Payment Success',
                                             text: 'Re-directing.. Please wait!'
                                         });
-                                        _this2.paymentStatus = true;
+                                        if (setTimeout(function () {
+                                            return _this3.$store.dispatch("userPaymentApprove");
+                                        }, 500)) {
+                                            setTimeout(function () {
+                                                return _this3.$router.push({ name: 'student-receipt', params: { id: id } });
+                                            }, 1500);
+                                        }
 
-                                    case 6:
-                                    case "end":
+                                    case 5:
+                                    case 'end':
                                         return _context.stop();
                                 }
                             }
-                        }, _callee, _this2);
+                        }, _callee, _this3);
                     }));
 
                     function onApprove(_x, _x2, _x3) {
@@ -78740,6 +78788,23 @@ var render = function() {
               )
             ])
           : _c("div", [_vm._v("Data is loading...")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-100" }, [
+          _c("div", { staticClass: "mx-auto w-50" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-block btn-primary",
+                on: {
+                  click: function($event) {
+                    return _vm.linkTest(_vm.id)
+                  }
+                }
+              },
+              [_vm._v("Test Button")]
+            )
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "w-100" }, [
           _c("div", { ref: "paypal", staticClass: "mx-auto w-50" })
@@ -78983,8 +79048,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         login: function login() {
+            var _this = this;
+
             if (this.$store.dispatch("loginUser", this.user)) {
-                this.$router.push({ name: 'student-dashboard' });
+                // this.$router.push({ name: 'student-dashboard' });
+                setTimeout(function () {
+                    return _this.$router.push({ name: 'student-dashboard' });
+                }, 1500);
             };
         }
     }
@@ -79200,103 +79270,119 @@ var render = function() {
                     _c("div", [
                       _vm._m(1),
                       _vm._v(" "),
-                      _c("div", { staticClass: "card-body col-md-12" }, [
-                        _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "div",
+                        { staticClass: "card-body col-md-12" },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              { attrs: { for: "exampleInputEmail1" } },
+                              [_vm._v("Email address")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.user.email,
+                                  expression: "user.email"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "email",
+                                id: "exampleInputEmail1",
+                                "aria-describedby": "emailHelp"
+                              },
+                              domProps: { value: _vm.user.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.user,
+                                    "email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              { attrs: { for: "exampleInputPassword1" } },
+                              [_vm._v("Password")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.user.password,
+                                  expression: "user.password"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "password",
+                                id: "exampleInputPassword1"
+                              },
+                              domProps: { value: _vm.user.password },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.user,
+                                    "password",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
                           _c(
-                            "label",
-                            { attrs: { for: "exampleInputEmail1" } },
-                            [_vm._v("Email address")]
+                            "button",
+                            {
+                              staticClass: "btn btn-block btn-warning mb-3",
+                              attrs: { type: "submit" },
+                              on: { click: _vm.login }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                    Submit\n                                "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.user.email,
-                                expression: "user.email"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "email",
-                              id: "exampleInputEmail1",
-                              "aria-describedby": "emailHelp"
-                            },
-                            domProps: { value: _vm.user.email },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(_vm.user, "email", $event.target.value)
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
                           _c(
-                            "label",
-                            { attrs: { for: "exampleInputPassword1" } },
-                            [_vm._v("Password")]
+                            "router-link",
+                            {
+                              staticClass: "text-primary",
+                              attrs: { to: "/student-register" }
+                            },
+                            [_c("h5", [_c("b", [_vm._v("Create account")])])]
                           ),
                           _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.user.password,
-                                expression: "user.password"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "password",
-                              id: "exampleInputPassword1"
-                            },
-                            domProps: { value: _vm.user.password },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.user,
-                                  "password",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-block btn-warning mb-3",
-                            attrs: { type: "submit" },
-                            on: { click: _vm.login }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                    Submit\n                                "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _vm._m(3)
-                      ])
+                          _vm._m(2)
+                        ],
+                        1
+                      )
                     ])
                   ])
                 ]
               )
             ]),
             _vm._v(" "),
-            _vm._m(4)
+            _vm._m(3)
           ])
         ]
       )
@@ -79338,16 +79424,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "social" })
       ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "text-primary", attrs: { href: "#register" } },
-      [_c("h5", [_c("b", [_vm._v("Create account")])])]
     )
   },
   function() {
@@ -119262,6 +119338,446 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 375 */,
+/* 376 */,
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(390)
+/* template */
+var __vue_template__ = __webpack_require__(391)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/2021/academy/Approve.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2fe165ac", Component.options)
+  } else {
+    hotAPI.reload("data-v-2fe165ac", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 390 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      loaded: false,
+      course: {},
+      id: this.$route.params.id,
+      time: localStorage.getItem('time'),
+      precise: null,
+      exists: ''
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.loaded = true;
+    axios.get('/api/user/academies/' + this.$route.params.id).then(function (response) {
+      _this.course = response.data.data, _this.loaded = false;
+    });
+    if (localStorage.getItem('precise') != null) {
+      this.precise = localStorage.getItem('precise');
+    };
+    if (localStorage.getItem('status') === 'Exists') {
+      this.exists = 'Failed. The following course is already registered.';
+    }
+  },
+
+
+  methods: {
+    formatCurrency: function formatCurrency(price) {
+      price = price / 100;
+      return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR" });
+    },
+    goTo: function goTo() {
+      return this.$router.push({ name: '' });
+    }
+  },
+
+  mounted: function mounted() {
+
+    if (localStorage.student_token != null) {
+      console.log('token is true');
+    } else {
+      console.log('token is false');
+      this.$router.push({ name: 'student-login' });
+    };
+  }
+});
+
+/***/ }),
+/* 391 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 order-md-2 mb-4 mx-auto" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        !_vm.loaded
+          ? _c("ul", { staticClass: "list-group mb-3" }, [
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "list-group-item d-flex justify-content-between lh-condensed"
+                },
+                [
+                  _c("div", [
+                    _c("h6", { staticClass: "my-0" }, [_vm._v("Course ID")]),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "text-muted" }, [
+                      _vm._v(_vm._s(_vm.course.id))
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "list-group-item d-flex justify-content-between lh-condensed"
+                },
+                [
+                  _c("div", [
+                    _c("h6", { staticClass: "my-0" }, [_vm._v("Course Name")]),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "text-muted" }, [
+                      _vm._v(_vm._s(_vm.course.name))
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "list-group-item d-flex justify-content-between lh-condensed"
+                },
+                [
+                  _c("div", [
+                    _c("h6", { staticClass: "my-0" }, [_vm._v("Course Tutor")]),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "text-muted" }, [
+                      _vm._v(_vm._s(_vm.course.tutor))
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "list-group-item d-flex justify-content-between lh-condensed"
+                },
+                [
+                  _c("div", [
+                    _c("h6", { staticClass: "my-0" }, [_vm._v("Amount")]),
+                    _vm._v(" "),
+                    _c("small", {
+                      staticClass: "text-muted",
+                      domProps: {
+                        textContent: _vm._s(
+                          _vm.formatCurrency(_vm.course.price)
+                        )
+                      }
+                    })
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "list-group-item d-flex justify-content-between lh-condensed"
+                },
+                [
+                  _c("div", [
+                    _c("h6", { staticClass: "my-0" }, [
+                      _vm._v("Payment Status")
+                    ]),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "text-muted" }, [
+                      _vm._v(_vm._s(_vm.exists))
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _vm.precise != null
+                ? _c("div", [
+                    _c(
+                      "li",
+                      {
+                        staticClass:
+                          "list-group-item d-flex justify-content-between lh-condensed"
+                      },
+                      [
+                        _c("div", [
+                          _c("h6", { staticClass: "my-0" }, [_vm._v("Time")]),
+                          _vm._v(" "),
+                          _c("small", { staticClass: "text-muted" }, [
+                            _vm._v(
+                              "About " +
+                                _vm._s(_vm.time) +
+                                " at " +
+                                _vm._s(_vm.precise)
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                : _c("div", [
+                    _c(
+                      "li",
+                      {
+                        staticClass:
+                          "list-group-item d-flex justify-content-between lh-condensed"
+                      },
+                      [
+                        _c("div", [
+                          _c("h6", { staticClass: "my-0" }, [_vm._v("Time")]),
+                          _vm._v(" "),
+                          _c("small", { staticClass: "text-muted" }, [
+                            _vm._v("at " + _vm._s(_vm.time))
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+            ])
+          : _c("div", [_vm._v("Data is loading...")]),
+        _vm._v(" "),
+        _c(
+          "button",
+          { staticClass: "btn btn-block btn-warning", on: { click: _vm.goTo } },
+          [_vm._v("Go to My Courses")]
+        ),
+        _vm._v(" "),
+        _vm.precise === null
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-block btn-primary",
+                on: { click: _vm.goTo }
+              },
+              [_vm._v("Save as PDF")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-100" }, [
+          _c("div", { ref: "paypal", staticClass: "mx-auto w-50" })
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(2)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "py-5 text-center" }, [
+      _c("img", {
+        staticClass: "d-block mx-auto mb-4",
+        attrs: { src: "/img/favicon/5.png", alt: "", width: "72", height: "72" }
+      }),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Checkout")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "h3",
+      { staticClass: "d-flex justify-content-between align-items-center mb-3" },
+      [_c("span", { staticClass: "text-muted" }, [_vm._v("Payment Receipt")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "footer",
+      { staticClass: "my-5 pt-5 text-muted text-center text-small" },
+      [
+        _c("p", { staticClass: "mb-1" }, [
+          _vm._v("© 2021 Brought to you by Captain Burah")
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "list-inline" }, [
+          _c("li", { staticClass: "list-inline-item" }, [
+            _c("a", { attrs: { href: "#" } }, [_vm._v("Privacy")])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-inline-item" }, [
+            _c("a", { attrs: { href: "#" } }, [_vm._v("Terms")])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-inline-item" }, [
+            _c("a", { attrs: { href: "#" } }, [_vm._v("Support")])
+          ])
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2fe165ac", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

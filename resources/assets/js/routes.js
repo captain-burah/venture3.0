@@ -35,6 +35,11 @@ const routes = [
         component:require('./2021/academy/Checkout.vue'),
         name: "checkout",
     },
+    {
+        path: "/student-receipt/:id",
+        component: require('./2021/academy/Approve.vue'),
+        name: "student-receipt"
+    },
     {   
         path: "/student-login",
         component:require('./2021/auth/StuLogin.vue'),

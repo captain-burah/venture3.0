@@ -61,7 +61,8 @@ Route::prefix('/user')->group( function() {
     Route::get('/all', 'API\UserController@index');
     Route::get('academies/{academy}/checkout', 'API\AcademicCheckoutController')
     ->name('academies.checkout.show');
-    Route::apiResource('payment', 'API\PaymentApprove')->only(['index']);
+    Route::post('payment', 'API\PaymentApprove@index');
+    // Route::apiResource('payment', 'API\PaymentApprove')->only(['index']);
     // Route::middleware('auth:api')
     //     ->get('/all', 'API\UserController@index');
     Route::apiResource('academies', 'API\AcademicController')->only(['index', 'show', 'paymentCheck']);
