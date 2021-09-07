@@ -25,7 +25,7 @@ const actions = {
     async setStudentTokenValue(state, para){
         state.commit("setStudentToken", para);
     },
-
+ 
     loginUser( { dispatch, getters }, user ) {
         axios
             .post(`/api/user/login`, {

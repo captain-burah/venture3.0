@@ -60,6 +60,7 @@ export default {
       course: {},
       id: this.$route.params.id,
       paymentStatus: false,
+      order: {},
     }
   },
   created() {
@@ -108,16 +109,16 @@ export default {
                 onApprove: async (data, actions, resp) => {
                     // This section handles all the functions that happens after 
                     // payment is successful. You can submit form to database to.
-                    const order = await actions.order.capture();
-                    // this.submitDomain();
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Payment Success',
-                        text: 'Re-directing.. Please wait!',
-                    });
-                    if (setTimeout(() => this.$store.dispatch("userPaymentApprove"), 500)) {
-                      setTimeout(() => this.$router.push({ name: 'student-receipt', params: { id } }), 1500);
+                    this.order = await actions.order.capture();
+                    console.log(this.order);
 
+                    // Toast.fire({
+                    //     icon: 'success',
+                    //     title: 'Payment Success',
+                    //     text: 'Re-directing.. Please wait!',
+                    // });
+                    if (setTimeout(() => this.$store.dispatch("userPaymentApprove", this.order), 1000)) {
+                      setTimeout(() => this.$router.push({ name: 'student-receipt', params: { id } }), 1500);
                     }
                 },
                 onError: err => {

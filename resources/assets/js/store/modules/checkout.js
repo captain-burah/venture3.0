@@ -11,11 +11,14 @@ const getters = {
 
 
 const actions = {
-    userPaymentApprove( {} ) {
+    userPaymentApprove( {}, order ) {
         axios 
             .post("/api/user/payment", {
                 courseId: localStorage.getItem('course_id'),
                 userId: localStorage.getItem('user_id'),
+                tx_time: order.create_time,
+                tx_id: order.id,
+                
             })
             .then( response => {
                 // console.log(response.data.status);

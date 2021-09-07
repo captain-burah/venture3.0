@@ -22,6 +22,18 @@ class CreateCourseUserTable extends Migration
 
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users');
+
+            $table->integer('tx_id')->unsigned()->index()->nullable(false)->default('10');
+            $table->string('tx_status')->nullable(false);
+            $table->string('tx_create_time')->nullable(false);
+            $table->string('tx_update_time')->nullable(false);
+            $table->string('tx_payee_fname')->nullable(false);
+            $table->string('tx_payee_lname')->nullable(false);
+            $table->integer('tx_payer_id')->unsigned()->nullable(false);
+            $table->string('tx_currency_code')->nullable(false);
+            $table->integer('tx_amount')->unsigned()->nullable(false);
+            $table->string('tx_payee_email')->nullable(false);
+            $table->integer('tx_payee_merchant_id')->unsigned()->nullable(false);
         });
     }
 
