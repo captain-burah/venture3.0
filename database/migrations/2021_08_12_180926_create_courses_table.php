@@ -6,17 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCoursesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-
             $table->string('name');
             $table->string('tutor');
             $table->string('duration');
@@ -24,9 +18,8 @@ class CreateCoursesTable extends Migration
             $table->string('thumbnail')->default('thumbnail.png');
             $table->string('cover')->default('cover.png');
             $table->integer('price')->default('0');
-
             $table->integer('lecturer_id')->unsigned()->index();
-            $table->foreign('lecturer_id')->references('id')->on('lecturers')->onDelete('cascade');;
+            $table->foreign('lecturer_id')->references('id')->on('lecturers')->onDelete('cascade');
         });
     }
 

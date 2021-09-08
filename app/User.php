@@ -10,32 +10,13 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $guard = 'user';
-
     protected $fillable = [
         'fname', 'lname', 'email', 'userType', 'password', 'regStatus'
-    ]; 
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    ];
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function studentInfo()
-    {
-        return $this->hasOne('App\StudentInfo', 'stu_email', 'email');
-    }
-
     public function courses()
     {
         return $this->belongsToMany(Course::class,'course_user', 'user_id', 'course_id')
@@ -53,6 +34,11 @@ class User extends Authenticatable
             'tx_payee_email',
             'tx_payee_merchant_id',
         ]);
+    }
+
+    public function studentInfo()
+    {
+        return $this->hasOne('App\StudentInfo', 'stu_email', 'email');
     }
 
     public function orders()
