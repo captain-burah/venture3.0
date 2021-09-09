@@ -36,9 +36,12 @@
       <div class="w-100">
         <div class="mx-auto w-50"><button class="btn btn-block btn-primary" @click="linkTest(id)">Test Button</button></div>
       </div>
-      <div class="w-100">
-          <div class="mx-auto w-50" ref="paypal"></div>
-      </div>
+
+      <div>
+        <div class="w-100">
+            <div class="mx-auto w-50" ref="paypal"></div>
+        </div>
+    </div>
     </div>
   </div>
 
@@ -60,7 +63,6 @@ export default {
       course: {},
       id: this.$route.params.id,
       paymentStatus: false,
-      order: {},
     }
   },
   created() {
@@ -89,7 +91,6 @@ export default {
     paymentApproval: function () {
       
     },
-
     setLoaded: function() {
             window.paypal
             .Buttons({
@@ -109,8 +110,19 @@ export default {
                 onApprove: async (data, actions, resp) => {
                     // This section handles all the functions that happens after 
                     // payment is successful. You can submit form to database to.
-                    this.order = await actions.order.capture();
-                    console.log(this.order);
+                    const order = await actions.order.capture();
+                    // console.log(order);
+                    // console.log(order.status);
+                    // console.log(order.create_time);
+                    // console.log(order.update_time);
+                    // console.log(order.payer.email_address);
+                    // console.log(order.payer.name.given_name);
+                    // console.log(order.payer.name.surname);
+                    // console.log(order.payer.payer_id);
+                    // console.log(order.purchase_units[0].amount.currency_code);
+                    // console.log(order.purchase_units[0].amount.value);
+                    // console.log(order.purchase_units.payee.merchant_id);
+                    // console.log(order.purchase_units.payee.email_address);
 
                     // Toast.fire({
                     //     icon: 'success',
@@ -118,7 +130,8 @@ export default {
                     //     text: 'Re-directing.. Please wait!',
                     // });
                     if (setTimeout(() => this.$store.dispatch("userPaymentApprove", this.order), 1000)) {
-                      setTimeout(() => this.$router.push({ name: 'student-receipt', params: { id } }), 1500);
+                      console.log('Got to new page')
+                      // setTimeout(() => this.$router.push({ name: 'student-receipt', params: { id } }), 1500);
                     }
                 },
                 onError: err => {
@@ -131,7 +144,7 @@ export default {
                 }
             })
             .render(this.$refs.paypal);
-        }
+    }
   },
 
 

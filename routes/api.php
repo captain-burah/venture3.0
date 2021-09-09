@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,12 @@ Route::prefix('/user')->group( function() {
     Route::get('academies/{academy}/checkout', 'API\AcademicCheckoutController')
     ->name('academies.checkout.show');
     Route::post('payment', 'API\PaymentApprove@index');
+    Route::post('payment', 'API\PaymentApprove@check');
+    Route::post('test_route', function(Request $request) {
+        $target = User::with('courses')->findOrFail($request['userId']);
+        dd($target->courses[0]);
+    });
+
     // Route::apiResource('payment', 'API\PaymentApprove')->only(['index']);
     // Route::middleware('auth:api')
     //     ->get('/all', 'API\UserController@index');

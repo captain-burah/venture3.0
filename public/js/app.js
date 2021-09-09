@@ -74719,44 +74719,78 @@ var mutations = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+
+
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 
-var state = {};
+
+var state = {
+    paymentTime: '',
+    paymentStatus: ''
+};
 
 var getters = {};
 
 var actions = {
-    userPaymentApprove: function userPaymentApprove(_ref) {
-        _objectDestructuringEmpty(_ref);
+    setCheckoutStatus: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(state, time, status) {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            state.commit("setCheckoutStatus", time, status);
 
-        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/api/user/payment", {
+                        case 1:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function setCheckoutStatus(_x, _x2, _x3) {
+            return _ref.apply(this, arguments);
+        }
+
+        return setCheckoutStatus;
+    }(),
+    userPaymentApprove: function userPaymentApprove(_ref2, order) {
+        _objectDestructuringEmpty(_ref2);
+
+        __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post("/api/user/payment", {
             courseId: localStorage.getItem('course_id'),
-            userId: localStorage.getItem('user_id')
+            userId: localStorage.getItem('user_id'),
+
+            tx_status: order.status,
+            tx_id: order.id,
+            tx_create_time: order.create_time,
+            tx_update_time: order.update_time,
+            tx_payee_fname: order.payer.name.given_name,
+            tx_payee_lname: order.payer.name.surname,
+            tx_payer_id: order.payer.payer_id,
+            tx_currency_code: order.purchase_units[0].amount.currency_code,
+            tx_amount: order.purchase_units[0].amount.value,
+            tx_payee_email: order.purchase_units[0].payee.email_address,
+            tx_payee_merchant_id: order.purchase_units[0].payee.merchant_id
         }).then(function (response) {
-            // console.log(response.data.status);
-            // console.log(response.data.time);
-            if (response.data.status === 'Exists') {
-                // localStorage.removeItem('status');
-                // localStorage.removeItem('time');
-                // localStorage.removeItem('precise');
-                localStorage.setItem('status', response.data.status);
-                localStorage.setItem('time', response.data.time);
-                localStorage.setItem('precise', response.data.precise);
-            } else if (response.data.status === 'Success') {
-                // localStorage.removeItem('status');
-                // localStorage.removeItem('time');
-                localStorage.setItem('status', response.data.status);
-                localStorage.setItem('time', response.data.time);
-            };
+            dispatch('setCheckoutStatus', response.data.time, response.data.status);
         });
     }
 };
 
-var mutations = {};
+var mutations = {
+    setCheckoutStatus: function setCheckoutStatus(state, time, status) {
+        state.paymentTime = time;
+        state.paymentStatus = status;
+    }
+};
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     namspaced: true,
@@ -78034,6 +78068,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -78044,7 +78098,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 price: 3.99,
                 description: "backlink from"
             },
-            addToCart: {}
+            addToCart: {},
+            paid_time: '',
+            paid_date: '',
+            paypal_display: 'none',
+            registration_display: 'none'
         };
     },
 
@@ -78062,8 +78120,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (localStorage.getItem('course_id')) {
                 localStorage.removeItem('course_id');
                 localStorage.setItem("course_id", _this.$route.params.id);
+                axios.post("/api/user/payment", {
+                    courseId: localStorage.getItem('course_id'),
+                    userId: localStorage.getItem('user_id')
+                }).then(function (response) {
+                    if (response.data.status == 'Clear') {
+                        _this.paypal_display = 'block';
+                        _this.registration_display = 'none';
+                    } else if (response.data.status == 'Exists') {
+                        _this.paypal_display = 'none';
+                        _this.registration_display = 'block';
+                        _this.paid_time = response.data.precise;
+                        _this.paid_date = response.data.time;
+                    }
+                });
             } else {
                 localStorage.setItem("course_id", _this.$route.params.id);
+                axios.post("/api/user/payment", {
+                    courseId: localStorage.getItem('course_id'),
+                    userId: localStorage.getItem('user_id')
+                }).then(function (response) {
+                    if (response.data.status == 'Clear') {
+                        _this.paypal_display = 'block';
+                        _this.registration_display = 'none';
+                    } else if (response.data.status == 'Exists') {
+                        _this.paypal_display = 'none';
+                        _this.registration_display = 'block';
+                        _this.paid_time = response.data.precise;
+                        _this.paid_date = response.data.time;
+                    }
+                });
             }
         }, 1000);
     },
@@ -78172,49 +78258,96 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body" }, [
                   !_vm.loaded
-                    ? _c(
-                        "div",
-                        [
-                          _c("h4", [
-                            _vm._v(
-                              "Course Duration | " +
-                                _vm._s(_vm.academic.duration) +
-                                " "
+                    ? _c("div", [
+                        _c("h4", [
+                          _vm._v(
+                            "Course Duration | " +
+                              _vm._s(_vm.academic.duration) +
+                              " "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("hr"),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card-text" }, [
+                          _vm._v(_vm._s(_vm.academic.description))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "w-100",
+                            style: { display: _vm.paypal_display }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "mx-auto w-50" },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass:
+                                      "btn btn-success btn-lg btn-block text-light",
+                                    attrs: { to: _vm.addToCart }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\r\n                                                  Checkout Now!\r\n                                            "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c("hr"),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "card-text" }, [
-                            _vm._v(_vm._s(_vm.academic.description))
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-success h4",
-                              attrs: { to: _vm.addToCart }
-                            },
-                            [
-                              _vm._v(
-                                "\r\n                                            Add to Cart\r\n                                        "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "w-100" }, [
-                            _c("div", {
-                              ref: "paypal",
-                              staticClass: "mx-auto w-50"
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("h4", [_vm._v("Lessons")]),
-                          _vm._v(" "),
-                          _vm._m(0)
-                        ],
-                        1
-                      )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "w-100",
+                            style: { display: _vm.registration_display }
+                          },
+                          [
+                            _c("div", { staticClass: "mx-auto w-50" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-success btn-lg btn-block",
+                                  attrs: { type: "button", disabled: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                                              Already Registered!\r\n                                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "text-center" }, [
+                                _c(
+                                  "small",
+                                  { staticClass: "text-muted text-center" },
+                                  [
+                                    _vm._v(
+                                      "\r\n                                                You have registered to this course " +
+                                        _vm._s(_vm.paid_date) +
+                                        " at exactly " +
+                                        _vm._s(_vm.paid_time) +
+                                        " \r\n                                              "
+                                    )
+                                  ]
+                                )
+                              ])
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("h4", [_vm._v("Lessons")]),
+                        _vm._v(" "),
+                        _vm._m(0)
+                      ])
                     : _c("div", [_vm._v("Data is loaded..")])
                 ])
               ])
@@ -78600,128 +78733,140 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            loaded: false,
-            course: {},
-            id: this.$route.params.id,
-            paymentStatus: false,
-            order: {}
-        };
+  data: function data() {
+    return {
+      loaded: false,
+      course: {},
+      id: this.$route.params.id,
+      paymentStatus: false
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.loaded = true;
+    axios.get('/api/user/academies/' + this.$route.params.id).then(function (response) {
+      _this.course = response.data.data, _this.loaded = false;
+    });
+    console.log(this.course);
+  },
+
+
+  methods: {
+    linkTest: function linkTest(id) {
+      var _this2 = this;
+
+      if (setTimeout(function () {
+        return _this2.$store.dispatch("userPaymentApprove");
+      }, 500)) {
+        setTimeout(function () {
+          return _this2.$router.push({ name: 'student-receipt', params: { id: id } });
+        }, 1500);
+      }
     },
-    created: function created() {
-        var _this = this;
-
-        this.loaded = true;
-        axios.get('/api/user/academies/' + this.$route.params.id).then(function (response) {
-            _this.course = response.data.data, _this.loaded = false;
-        });
-        console.log(this.course);
+    formatCurrency: function formatCurrency(price) {
+      price = price / 100;
+      return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR" });
     },
 
 
-    methods: {
-        linkTest: function linkTest(id) {
-            var _this2 = this;
+    paymentApproval: function paymentApproval() {},
+    setLoaded: function setLoaded() {
+      var _this3 = this;
 
-            if (setTimeout(function () {
-                return _this2.$store.dispatch("userPaymentApprove");
-            }, 500)) {
-                setTimeout(function () {
-                    return _this2.$router.push({ name: 'student-receipt', params: { id: id } });
-                }, 1500);
-            }
+      window.paypal.Buttons({
+        createOrder: function createOrder(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              description: _this3.course.tutor,
+              amount: {
+                currency_code: "USD",
+                value: _this3.course.price
+              }
+            }]
+          });
         },
-        formatCurrency: function formatCurrency(price) {
-            price = price / 100;
-            return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR" });
-        },
+        onApprove: function () {
+          var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(data, actions, resp) {
+            var order;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    _context.next = 2;
+                    return actions.order.capture();
 
+                  case 2:
+                    order = _context.sent;
 
-        paymentApproval: function paymentApproval() {},
+                    // console.log(order);
+                    // console.log(order.status);
+                    // console.log(order.create_time);
+                    // console.log(order.update_time);
+                    // console.log(order.payer.email_address);
+                    // console.log(order.payer.name.given_name);
+                    // console.log(order.payer.name.surname);
+                    // console.log(order.payer.payer_id);
+                    // console.log(order.purchase_units[0].amount.currency_code);
+                    // console.log(order.purchase_units[0].amount.value);
+                    // console.log(order.purchase_units.payee.merchant_id);
+                    // console.log(order.purchase_units.payee.email_address);
 
-        setLoaded: function setLoaded() {
-            var _this3 = this;
-
-            window.paypal.Buttons({
-                createOrder: function createOrder(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            description: _this3.course.tutor,
-                            amount: {
-                                currency_code: "USD",
-                                value: _this3.course.price
-                            }
-                        }]
-                    });
-                },
-                onApprove: function () {
-                    var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(data, actions, resp) {
-                        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                            while (1) {
-                                switch (_context.prev = _context.next) {
-                                    case 0:
-                                        _context.next = 2;
-                                        return actions.order.capture();
-
-                                    case 2:
-                                        _this3.order = _context.sent;
-
-                                        console.log(_this3.order);
-
-                                        // Toast.fire({
-                                        //     icon: 'success',
-                                        //     title: 'Payment Success',
-                                        //     text: 'Re-directing.. Please wait!',
-                                        // });
-                                        if (setTimeout(function () {
-                                            return _this3.$store.dispatch("userPaymentApprove", _this3.order);
-                                        }, 1000)) {
-                                            setTimeout(function () {
-                                                return _this3.$router.push({ name: 'student-receipt', params: { id: id } });
-                                            }, 1500);
-                                        }
-
-                                    case 5:
-                                    case 'end':
-                                        return _context.stop();
-                                }
-                            }
-                        }, _callee, _this3);
-                    }));
-
-                    function onApprove(_x, _x2, _x3) {
-                        return _ref.apply(this, arguments);
+                    // Toast.fire({
+                    //     icon: 'success',
+                    //     title: 'Payment Success',
+                    //     text: 'Re-directing.. Please wait!',
+                    // });
+                    if (setTimeout(function () {
+                      return _this3.$store.dispatch("userPaymentApprove", _this3.order);
+                    }, 1000)) {
+                      console.log('Got to new page');
+                      // setTimeout(() => this.$router.push({ name: 'student-receipt', params: { id } }), 1500);
                     }
 
-                    return onApprove;
-                }(),
-                onError: function onError(err) {
-                    console.log(err);
-                    Toast.fire({
-                        icon: 'error',
-                        title: 'Oops..',
-                        text: 'Something went wrong! Please try again.'
-                    });
+                  case 4:
+                  case 'end':
+                    return _context.stop();
                 }
-            }).render(this.$refs.paypal);
-        }
-    },
+              }
+            }, _callee, _this3);
+          }));
 
-    mounted: function mounted() {
-        if (localStorage.student_token != null) {
-            console.log('token is true');
-        } else {
-            console.log('token is false');
-            this.$router.push({ name: 'student-login' });
-        };
-        var script = document.createElement("script");
-        script.src = "https://www.paypal.com/sdk/js?client-id=AaWDUX9QLm6ZzIUwbMbWyvpwmVJ4ucREyZR4F3xF-5MTm5N3b3qE5anFUj2WMEsnWE8c3JAGamA8OJ-m";
-        script.addEventListener("load", this.setLoaded);
-        document.body.appendChild(script);
+          function onApprove(_x, _x2, _x3) {
+            return _ref.apply(this, arguments);
+          }
+
+          return onApprove;
+        }(),
+        onError: function onError(err) {
+          console.log(err);
+          Toast.fire({
+            icon: 'error',
+            title: 'Oops..',
+            text: 'Something went wrong! Please try again.'
+          });
+        }
+      }).render(this.$refs.paypal);
     }
+  },
+
+  mounted: function mounted() {
+    if (localStorage.student_token != null) {
+      console.log('token is true');
+    } else {
+      console.log('token is false');
+      this.$router.push({ name: 'student-login' });
+    };
+    var script = document.createElement("script");
+    script.src = "https://www.paypal.com/sdk/js?client-id=AaWDUX9QLm6ZzIUwbMbWyvpwmVJ4ucREyZR4F3xF-5MTm5N3b3qE5anFUj2WMEsnWE8c3JAGamA8OJ-m";
+    script.addEventListener("load", this.setLoaded);
+    document.body.appendChild(script);
+  }
 });
 
 /***/ }),
@@ -78807,8 +78952,10 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "w-100" }, [
-          _c("div", { ref: "paypal", staticClass: "mx-auto w-50" })
+        _c("div", [
+          _c("div", { staticClass: "w-100" }, [
+            _c("div", { ref: "paypal", staticClass: "mx-auto w-50" })
+          ])
         ])
       ])
     ]),

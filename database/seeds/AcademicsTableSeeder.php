@@ -22,7 +22,7 @@ class AcademicsTableSeeder extends Seeder
         foreach(Course::all() as $course) {
             $faker = Faker::create();
             $users = App\User::inRandomOrder()->take(rand(1,3))->pluck('id');
-            $course->users()->attach($users, 
+            $course->users()->attach($users,  
             [
                 'tx_id' => $faker->randomDigit,
                 'tx_status' => $faker->boolean,

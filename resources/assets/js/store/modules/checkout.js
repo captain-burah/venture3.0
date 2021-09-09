@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const state = {
-    
+    paymentTime: '',
+    paymentStatus: '',
 };
 
 const getters = {
@@ -11,47 +12,29 @@ const getters = {
 
 
 const actions = {
+    async setCheckoutStatus(state, time, status){
+        state.commit("setCheckoutStatus", time, status);
+    },
     userPaymentApprove( {}, order ) {
         axios 
             .post("/api/user/payment", {
                 courseId: localStorage.getItem('course_id'),
                 userId: localStorage.getItem('user_id'),
-                tx_time: order.create_time,
+
+                tx_status: order.status,
                 tx_id: order.id,
-                
+                tx_create_time: order.create_time,
+                tx_update_time: order.update_time,
+                tx_payee_fname: order.payer.name.given_name,
+                tx_payee_lname: order.payer.name.surname,
+                tx_payer_id: order.payer.payer_id,
+                tx_currency_code: order.purchase_units[0].amount.currency_code,
+                tx_amount: order.purchase_units[0].amount.value,
+                tx_payee_email: order.purchase_units[0].payee.email_address,
+                tx_payee_merchant_id: order.purchase_units[0].payee.merchant_id,
             })
             .then( response => {
-                // console.log(response.data.status);
-                // console.log(response.data.time);
-                if (response.data.status === 'Exists'){
-                    // localStorage.removeItem('status');
-                    // localStorage.removeItem('time');
-                    // localStorage.removeItem('precise');
-                    localStorage.setItem(
-                        'status',
-                        response.data.status
-                    );
-                    localStorage.setItem(
-                        'time',
-                        response.data.time
-                    );
-                    localStorage.setItem(
-                        'precise',
-                        response.data.precise
-                    );
-                }
-                else if (response.data.status === 'Success') {
-                    // localStorage.removeItem('status');
-                    // localStorage.removeItem('time');
-                    localStorage.setItem(
-                        'status',
-                        response.data.status
-                    );
-                    localStorage.setItem(
-                        'time',
-                        response.data.time
-                    );
-                };
+                dispatch('setCheckoutStatus', response.data.time, response.data.status);
             })
     },
 };
@@ -59,7 +42,10 @@ const actions = {
 
 
 const mutations = {
-    
+    setCheckoutStatus(state, time, status){
+        state.paymentTime = time;
+        state.paymentStatus = status;
+    }
 };
 
 export default {

@@ -18,12 +18,32 @@
                                         <h4>Course Duration | {{ academic.duration }} </h4>
                                         <hr/>
                                         <p class="card-text">{{ academic.description }}</p>
-                                      <router-link :to="addToCart" class="btn btn-success h4">
-                                            Add to Cart
-                                        </router-link>
-                                        <div class="w-100">
-                                            <div class="mx-auto w-50" ref="paypal"></div>
+
+                                        <div class="w-100" v-bind:style="{ display: paypal_display }">
+                                          <div class="mx-auto w-50">
+                                            <router-link 
+                                              :to="addToCart" 
+                                              class="btn btn-success btn-lg btn-block text-light">
+                                                  Checkout Now!
+                                            </router-link>
+                                          </div>
                                         </div>
+
+                                        
+
+                                        <div class="w-100" v-bind:style="{ display: registration_display }">
+                                          <div class="mx-auto w-50">
+                                            <button type="button" class="btn btn-success btn-lg btn-block" disabled>
+                                              Already Registered!
+                                            </button>
+                                            <div class="text-center">
+                                              <small class="text-muted text-center">
+                                                You have registered to this course {{ paid_date }} at exactly {{ paid_time }} 
+                                              </small>
+                                            </div>
+                                          </div>
+                                        </div>
+
                                         <h4>Lessons</h4>
                                         <ul>
                                             <li></li>
@@ -111,6 +131,10 @@ export default {
                 description: "backlink from",
             },
             addToCart: {},
+            paid_time: '',
+            paid_date: '',
+            paypal_display: 'none',
+            registration_display: 'none',
         };
     },
     // computed: {
@@ -131,15 +155,50 @@ export default {
             localStorage.setItem(
                 "course_id",
                 this.$route.params.id
-            );  
+            );
+            axios 
+            .post("/api/user/payment", {
+                courseId: localStorage.getItem('course_id'),
+                userId: localStorage.getItem('user_id'),
+            })
+            .then( response => {
+              if (response.data.status == 'Clear') {
+                this.paypal_display = 'block';
+                this.registration_display = 'none';
+              }
+              else if (response.data.status == 'Exists') {
+                this.paypal_display = 'none';
+                this.registration_display = 'block';
+                this.paid_time = response.data.precise;
+                this.paid_date = response.data.time;          
+              }
+            });
           }
           else {
             localStorage.setItem(
                 "course_id",
                 this.$route.params.id
             );
+            axios 
+              .post("/api/user/payment", {
+                  courseId: localStorage.getItem('course_id'),
+                  userId: localStorage.getItem('user_id'),
+              })
+              .then( response => {
+                if (response.data.status == 'Clear') {
+                  this.paypal_display = 'block';
+                  this.registration_display = 'none';
+                }
+                else if (response.data.status == 'Exists') {
+                  this.paypal_display = 'none';
+                  this.registration_display = 'block';
+                  this.paid_time = response.data.precise;
+                  this.paid_date = response.data.time;          
+                }
+              });
           }
         }, 1000);
+        
     },
     methods: {
         
