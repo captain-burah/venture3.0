@@ -3,6 +3,7 @@
 use App\Lesson;
 use App\Exam;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 class ExamsTableSeeder extends Seeder
 {

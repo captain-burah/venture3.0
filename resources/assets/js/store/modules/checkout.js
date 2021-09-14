@@ -6,20 +6,26 @@ const state = {
 };
 
 const getters = {
-   
+    getPaymentTime(state) {
+        return state.paymentTime;
+    },
+    getPaymentStatus(state) {
+        return state.PaymentStatus;
+    }
 };
 
 
 
 const actions = {
-    async setCheckoutStatus(state, time, status){
+    async setCheckoutStatusValue(state, time, status){
         state.commit("setCheckoutStatus", time, status);
     },
-    userPaymentApprove( {}, order ) {
+
+    userPaymentApprove( {dispatch}, order ) {
         axios 
             .post("/api/user/payment", {
                 courseId: localStorage.getItem('course_id'),
-                userId: localStorage.getItem('user_id'),
+                userId: localStorage.getItem('user_id'), 
 
                 tx_status: order.status,
                 tx_id: order.id,
@@ -34,8 +40,13 @@ const actions = {
                 tx_payee_merchant_id: order.purchase_units[0].payee.merchant_id,
             })
             .then( response => {
-                dispatch('setCheckoutStatus', response.data.time, response.data.status);
-            })
+                // dispatch('setCheckoutStatusValue', response.data.time, response.data.status);
+                localStorage.removeItem('paymentTime');
+                localStorage.setItem(
+                    'paymentTime',
+                    response.data.time
+                );
+            });
     },
 };
 

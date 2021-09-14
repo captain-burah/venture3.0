@@ -89,7 +89,7 @@ export default {
       id: this.$route.params.id,
       time: localStorage.getItem('time'),
       precise: null,
-      exists: '',
+      exists: 'Success',
     }
   },
   created() {
@@ -103,9 +103,6 @@ export default {
     if (localStorage.getItem('precise') != null ) {
       this.precise = localStorage.getItem('precise');
     };
-    if (localStorage.getItem('status') === 'Exists' ) {
-      this.exists = 'Failed. The following course is already registered.'
-    }
   },
 
 

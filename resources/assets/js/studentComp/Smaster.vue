@@ -30,10 +30,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary sideMenu elevation-4 border-right border-dark">
     <!-- Brand Logo -->
-    <router-link to="/" class="brand-link navbar-bg">
-      <img src="/img/rocket.png" alt="Larastart" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">Venture 2021</span>
+    <router-link to="/" class="brand-link navbar-bg text-center">
+      <span class="brand-text font-weight-light text-light w-100 text-center">EV Academy</span>
     </router-link>
 
     <!-- Sidebar -->
@@ -41,32 +39,33 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
         <div class="image">
-          <img src="img/profile/tutors.png" class="img-circle elevation-2" alt="User Image">
+          <img src="/img/rocket.png" alt="Larastart" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
         </div>
-        <div class="info">
-          <router-link to="/student-dashboard" class="d-block ">Student Name here</router-link>
+        <div class="text-light d-flex justify-content-start">
+          <p class="d-block my-auto pl-2">Student Name</p>
         </div>
       </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2 bg-transparent">
-        <ul class="nav nav-pills nav-sidebar  flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           
           <li class="nav-item">
-            <router-link to="/academy" class="nav-link text-light">
-              <i class="nav-icon fas fa-school text-warning"></i>
-              <p>
+            <router-link to="/academy" class="nav-link text-light d-flex justify-content-start">
+              <i class="nav-icon fas fa-school text-warning "></i>
+              <p class="my-auto pl-2 text-left text-light">
                 Academy
                 
               </p>
             </router-link>
           </li>
           <li class="nav-item border-bottom border-secondary">
-            <router-link to="#studentcast" class="nav-link text-light">
+            <router-link to="#studentcast" class="nav-link text-light d-flex justify-content-start">
               <i class="nav-icon fas fa-hashtag text-danger"></i>
-              <p>
+              <p class="my-auto pl-2 text-left text-light">
                 Studentcast
                 
               </p>
@@ -74,66 +73,66 @@
           </li>
         <!------ Sub-Menu ----->
         <li class="nav-item">
-          <router-link to="/student-dashboard" class="nav-link text-light">
+          <router-link to="/student-dashboard" class="nav-link text-light d-flex justify-content-start">
             <i class="nav-icon fas fa-tachometer-alt text-info"></i>
-            <p>
+            <p class="my-auto pl-2 text-left text-light">
               My Dashboard
               
             </p>
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/lessons" class="nav-link text-light">
+          <router-link to="/student-courses" class="nav-link text-light d-flex justify-content-start">
             <i class="nav-icon fas fa-book purple"></i>
-            <p>
-              My Lessons
+            <p class="my-auto pl-2 text-left text-light">
+              My Courses
               
             </p>
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/exams" class="nav-link text-light">
+          <router-link to="/exams" class="nav-link text-light d-flex justify-content-start">
             <i class="nav-icon fas fa-edit text-warning"></i>
-            <p>
+            <p class="my-auto pl-2 text-left text-light">
               My Exams
               
             </p>
           </router-link>
         </li>
           <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link text-light ">
+            <a href="#" class="nav-link text-light  d-flex justify-content-start">
               <i class="nav-icon fa fa-cog text-success"></i>
-              <p>
+              <p class="my-auto pl-2 text-left text-light">
                 Services
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview ">
               <li class="nav-item">
-                <router-link to="/orders" class="nav-link text-light offset-sm-2">
+                <router-link to="/orders" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
                   <i class="fas fa-users-cog nav-icon yellow"></i>
-                  <p>Orders</p>
+                  <p class="my-auto pl-2 text-left text-light">Orders</p>
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/results" class="nav-link text-light offset-sm-2">
+                <router-link to="/results" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
                   <i class="fas fa-university nav-icon yellow"></i>
-                  <p>Results</p>
+                  <p class="my-auto pl-2 text-left text-light">Results</p>
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/assignments" class="nav-link text-light offset-sm-2">
+                <router-link to="/assignments" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
                   <i class="fas fa-university nav-icon yellow"></i>
-                  <p>Assignments</p>
+                  <p class="my-auto pl-2 text-left text-light">Assignments</p>
                 </router-link>
               </li>
             </ul>
           </li>
         <!------ Sub-Menu ----->
           <li class="nav-item">
-            <router-link to="/profile" class="nav-link text-light">
+            <router-link to="/profile" class="nav-link text-light d-flex justify-content-start">
               <i class="nav-icon fas fa-user orange"></i>
-              <p>
+              <p class="my-auto pl-2 text-left text-light">
                 Profile
                 
               </p>
@@ -189,16 +188,6 @@
 
         }
       },
-      created() {
-        console.log(this.userDetails);
-        
-        // const request = axios
-        // .get(`/api/user/all`)
-        // .then(response => {
-        //     this.userDetails = response.data.data;
-        // });
-        
-      },
       methods: {
           userLogout: function() {
               return Axios
@@ -217,16 +206,7 @@
       },
       
       mounted() {
-        console.log(this.userDetails);
           if (localStorage.student_token != null) {
-            // setTimeout(() => {
-            //   localStorage.setItem(
-            //     "userId",
-            //     this.userDetails.id
-            //   ),
-            // console.log('userDetails is true')
-            // }, 2000)
-            console.log('token is true')
           }
           else {
               console.log('token is false');

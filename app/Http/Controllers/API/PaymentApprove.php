@@ -85,6 +85,14 @@ class PaymentApprove extends Controller
     }
 
 
+    public function mycourses($userId)
+    {
+        $target = new AcademicPaymentResource(User::with('courses')->findOrFail($userId));
+        return response([
+            'data' => $target,
+        ]);
+    }
+
 
 
 

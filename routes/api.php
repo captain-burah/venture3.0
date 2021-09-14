@@ -60,19 +60,18 @@ Route::prefix('/user')->group( function() {
     Route::post('/logout', 'Auth\LoginController@logout');
     Route::post('/register', 'Auth\RegisterController@createUser');
     Route::get('/all', 'API\UserController@index');
-    Route::get('academies/{academy}/checkout', 'API\AcademicCheckoutController')
-    ->name('academies.checkout.show');
+    Route::get('academies/{academy}/checkout', 'API\AcademicCheckoutController')->name('academies.checkout.show');
     Route::post('payment', 'API\PaymentApprove@index');
-    Route::post('payment', 'API\PaymentApprove@check');
-    Route::post('test_route', function(Request $request) {
-        $target = User::with('courses')->findOrFail($request['userId']);
-        dd($target->courses[0]);
-    });
+    Route::post('paymentCheck', 'API\PaymentApprove@check');
+    Route::get('mycourses/{userId}', 'API\PaymentApprove@mycourses');
+    Route::apiResource('academies', 'API\AcademicController')->only(['index', 'show']);
 
-    // Route::apiResource('payment', 'API\PaymentApprove')->only(['index']);
-    // Route::middleware('auth:api')
-    //     ->get('/all', 'API\UserController@index');
-    Route::apiResource('academies', 'API\AcademicController')->only(['index', 'show', 'paymentCheck']);
+    Route::post('course-details', 'API\AcademicController@course')->name('course.details');
+
+    // Route::post('test_route', function(Request $request) {
+    //     $target = User::with('courses')->findOrFail($request['userId']);
+    //     dd($target->courses[0]);
+    // });
 });
 
 Route::prefix('/tutor')->group( function() {

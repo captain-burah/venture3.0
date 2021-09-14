@@ -63,6 +63,7 @@ export default {
       course: {},
       id: this.$route.params.id,
       paymentStatus: false,
+      timeP: '',
     }
   },
   created() {
@@ -73,14 +74,13 @@ export default {
           this.course = response.data.data,
           this.loaded = false
     });
-    console.log(this.course);
   },
 
 
   methods: {
     linkTest(id){
       if (setTimeout(() => this.$store.dispatch("userPaymentApprove"), 500)) {
-        setTimeout(() => this.$router.push({ name: 'student-receipt', params: { id } }), 1500);
+        setTimeout(() => this.$router.push({ name: 'student-receipt', params: this.id }), 1500);
       }
     },
     formatCurrency(price){
@@ -111,27 +111,17 @@ export default {
                     // This section handles all the functions that happens after 
                     // payment is successful. You can submit form to database to.
                     const order = await actions.order.capture();
-                    // console.log(order);
-                    // console.log(order.status);
-                    // console.log(order.create_time);
-                    // console.log(order.update_time);
-                    // console.log(order.payer.email_address);
-                    // console.log(order.payer.name.given_name);
-                    // console.log(order.payer.name.surname);
-                    // console.log(order.payer.payer_id);
-                    // console.log(order.purchase_units[0].amount.currency_code);
-                    // console.log(order.purchase_units[0].amount.value);
-                    // console.log(order.purchase_units.payee.merchant_id);
-                    // console.log(order.purchase_units.payee.email_address);
 
                     // Toast.fire({
                     //     icon: 'success',
                     //     title: 'Payment Success',
                     //     text: 'Re-directing.. Please wait!',
                     // });
-                    if (setTimeout(() => this.$store.dispatch("userPaymentApprove", this.order), 1000)) {
-                      console.log('Got to new page')
-                      // setTimeout(() => this.$router.push({ name: 'student-receipt', params: { id } }), 1500);
+                    if (setTimeout(() => this.$store.dispatch("userPaymentApprove", order), 1000)) {
+                      // console.log('Got to new page');
+                      // this.timeP = this.$store.getters.getPaymentTime;
+                      // console.log(this.timeP);
+                      setTimeout(() => this.$router.push({ name: 'student-receipt', params:  this.id }), 1500);
                     }
                 },
                 onError: err => {

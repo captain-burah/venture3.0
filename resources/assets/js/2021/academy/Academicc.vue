@@ -137,11 +137,7 @@ export default {
             registration_display: 'none',
         };
     },
-    // computed: {
-        
-    // },
     created() {
-        
         this.loaded = true;
         axios
         .get(`/api/user/academies/${this.$route.params.id}`)
@@ -157,7 +153,7 @@ export default {
                 this.$route.params.id
             );
             axios 
-            .post("/api/user/payment", {
+            .post("/api/user/paymentCheck", {
                 courseId: localStorage.getItem('course_id'),
                 userId: localStorage.getItem('user_id'),
             })
@@ -180,7 +176,7 @@ export default {
                 this.$route.params.id
             );
             axios 
-              .post("/api/user/payment", {
+              .post("/api/user/paymentCheck", {
                   courseId: localStorage.getItem('course_id'),
                   userId: localStorage.getItem('user_id'),
               })

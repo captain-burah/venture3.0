@@ -70,6 +70,16 @@ const routes = [
                 path: '/', 
                 component: require('./components/Dashboard.vue'),
             },
+            {
+                path: '/student-courses', 
+                component: require('./studentComp/MyCourses.vue'),
+                name: "student-courses"
+            },
+            {
+                path: '/student-course/:id', 
+                component: require('./studentComp/MyCourse.vue'),
+                name: "student-course"
+            },
             { path: '/Lessons', component: require('./lecturerComp/Lessons/Lesson.vue'), 
                 children: [
                 { path: '/', component: require('./lecturerComp/Lessons/Overview.vue') },
