@@ -38,10 +38,10 @@
       </div>
 
       <div>
-        <div class="w-100">
-            <div class="mx-auto w-50" ref="paypal"></div>
+        <div class="w-100 text-center">
+          <div  class="mx-auto w-50" ref="paypal"></div>
         </div>
-    </div>
+      </div>
     </div>
   </div>
 
@@ -87,10 +87,6 @@ export default {
         price = (price / 100);
         return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR"});
     },
-
-    paymentApproval: function () {
-      
-    },
     setLoaded: function() {
             window.paypal
             .Buttons({
@@ -117,12 +113,36 @@ export default {
                     //     title: 'Payment Success',
                     //     text: 'Re-directing.. Please wait!',
                     // });
-                    if (setTimeout(() => this.$store.dispatch("userPaymentApprove", order), 1000)) {
-                      // console.log('Got to new page');
-                      // this.timeP = this.$store.getters.getPaymentTime;
-                      // console.log(this.timeP);
-                      setTimeout(() => this.$router.push({ name: 'student-receipt', params:  this.id }), 1500);
-                    }
+                    axios 
+                      .post(`/api/user/payment`, {
+                          courseId: localStorage.getItem('course_id'),
+                          userId: localStorage.getItem('user_id'), 
+
+                          tx_status: order.status,
+                          tx_id: order.id,
+                          tx_payee_fname: order.payer.name.given_name,
+                          tx_payee_lname: order.payer.name.surname,
+                          tx_payer_id: order.payer.payer_id,
+                          tx_currency_code: order.purchase_units[0].amount.currency_code,
+                          tx_amount: order.purchase_units[0].amount.value,
+                          tx_payee_email: order.purchase_units[0].payee.email_address,
+                          tx_payee_merchant_id: order.purchase_units[0].payee.merchant_id,
+                      })
+                      .then( response => {
+                          // dispatch('setCheckoutStatusValue', response.data.time, response.data.status);
+                          localStorage.removeItem('paymentTime');
+                          localStorage.setItem(
+                              'paymentTime',
+                              response.data.time
+                          );
+                          setTimeout(() => this.$router.push({ name: 'student-receipt', params:  this.id }), 1500);
+                      });
+                    // if (setTimeout(() => this.$store.dispatch("userPaymentApprove", order), 1000)) {
+                    //   // console.log('Got to new page');
+                    //   // this.timeP = this.$store.getters.getPaymentTime;
+                    //   // console.log(this.timeP);
+                    //   setTimeout(() => this.$router.push({ name: 'student-receipt', params:  this.id }), 1500);
+                    // }
                 },
                 onError: err => {
                     console.log(err);
@@ -150,7 +170,7 @@ export default {
     const script = document.createElement("script");
     script.src = "https://www.paypal.com/sdk/js?client-id=AaWDUX9QLm6ZzIUwbMbWyvpwmVJ4ucREyZR4F3xF-5MTm5N3b3qE5anFUj2WMEsnWE8c3JAGamA8OJ-m";
     script.addEventListener("load", this.setLoaded);
-    document.body.appendChild(script);
+    if (document.body.appendChild(script));
   }
 }
 </script>

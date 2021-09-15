@@ -24,8 +24,6 @@ class User extends Authenticatable
         ->withPivot([
             'tx_id',
             'tx_status',
-            'tx_create_time',
-            'tx_update_time',
             'tx_payee_fname',
             'tx_payee_lname',
             'tx_payer_id',

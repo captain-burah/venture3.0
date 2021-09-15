@@ -13,8 +13,6 @@ class Course extends Model
             ->withPivot([
                 'tx_id',
                 'tx_status',
-                'tx_create_time',
-                'tx_update_time',
                 'tx_fname',
                 'tx_lname',
                 'tx_payer_id',

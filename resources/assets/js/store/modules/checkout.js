@@ -29,8 +29,6 @@ const actions = {
 
                 tx_status: order.status,
                 tx_id: order.id,
-                tx_create_time: order.create_time,
-                tx_update_time: order.update_time,
                 tx_payee_fname: order.payer.name.given_name,
                 tx_payee_lname: order.payer.name.surname,
                 tx_payer_id: order.payer.payer_id,

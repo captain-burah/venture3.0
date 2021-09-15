@@ -62,7 +62,9 @@
         </div>
       </ul>
       <div v-else>Data is loading...</div>
-      <button class="btn btn-block btn-warning" @click="goTo">Go to My Courses</button>
+      <router-link :to="{ name: 'student-courses'}">
+        <button class="btn btn-block btn-warning">Go to My Courses</button>
+      </router-link>
       <button v-if="precise === null" class="btn btn-block btn-primary" @click="goTo">Save as PDF</button>
       <div class="w-100">
           <div class="mx-auto w-50" ref="paypal"></div>

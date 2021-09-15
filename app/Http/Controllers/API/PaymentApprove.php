@@ -18,45 +18,42 @@ class PaymentApprove extends Controller
 {
     public function index(Request $request) {
         $target = new AcademicPaymentResource(User::with('courses')->findOrFail($request['userId']));
+        // return $target;
         if ($target != null)
         {
-            foreach ($target as $query){
-                foreach ($query->courses as $subQuery => $key){
-                    if ( $query->courses[$subQuery]->pivot->course_id == $request['courseId']){
-                        // return $query->courses[$subQuery];
-                        return response([
-                            'status' => 'Exists',
-                            'time' => $query->courses[$subQuery]->pivot->created_at->diffForHumans(),
-                            'precise' => $query->courses[$subQuery]->pivot->created_at->format('Y-m-d H:i:s'),
-                        ]);
-                    }                    
+            foreach ($target->courses as $subQuery =>$key)
+            {
+                if ( $target->courses[$subQuery]->pivot->course_id == $request['courseId'] )
+                {
+                    // return $target->courses[$subQuery]->pivot->course_id;
+                    return response([
+                        'status' => 'Exists',
+                        'time' => $target->courses[$subQuery]->pivot->created_at->diffForHumans(),
+                        'precise' => $target->courses[$subQuery]->pivot->created_at->format('Y-m-d H:i:s'),
+                    ]);
                 }
-                $user = User::findOrFail($request['userId']);
-                $user->courses()->attach($request['courseId'], 
-                [
-                    'tx_id' => $request['tx_id'],
-                    'tx_status' => $request['tx_status'],
-                    'tx_create_time' => $request['tx_create_time'],
-                    'tx_update_time' => $request['tx_update_time'],
-                    'tx_payee_fname' => $request['tx_payee_fname'],
-                    'tx_payee_lname' => $request['tx_payee_lname'],
-                    'tx_payer_id' => $request['tx_payer_id'],
-                    'tx_currency_code' => $request['tx_currency_code'],
-                    'tx_amount' => $request['tx_amount'],
-                    'tx_payee_email' => $request['tx_payee_email'],
-                    'tx_payee_merchant_id' => $request['tx_payee_merchant_id'],
-                ]);
-                $target = new AcademicPaymentResource(User::with('courses')->findOrFail($request['userId']));
-                foreach ($target->courses as $subQuery => $key){
-                    if ( $target->courses[$subQuery]->pivot->course_id == $request['courseId']){
-                        return response([
-                            'status' => 'Success',
-                            'time' => $target->courses[$subQuery]->pivot->created_at->format('Y-m-d H:i:s'),
-                        ]);
-                    }
+            }
+            $user = User::findOrFail($request['userId']);
+            $user->courses()->attach($request['courseId'], 
+            [
+                'tx_id' => $request['tx_id'],
+                'tx_status' => $request['tx_status'],
+                'tx_payee_fname' => $request['tx_payee_fname'],
+                'tx_payee_lname' => $request['tx_payee_lname'],
+                'tx_payer_id' => $request['tx_payer_id'],
+                'tx_currency_code' => $request['tx_currency_code'],
+                'tx_amount' => $request['tx_amount'],
+                'tx_payee_email' => $request['tx_payee_email'],
+                'tx_payee_merchant_id' => $request['tx_payee_merchant_id'],
+            ]);
+            $target = new AcademicPaymentResource(User::with('courses')->findOrFail($request['userId']));
+            foreach ($target->courses as $subQuery => $key){
+                if ( $target->courses[$subQuery]->pivot->course_id == $request['courseId']){
+                    return response([
+                        'status' => 'Success',
+                        'time' => $target->courses[$subQuery]->pivot->created_at->format('Y-m-d H:i:s'),
+                    ]);
                 }
-
-                
             }
         }
     }

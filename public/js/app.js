@@ -74775,8 +74775,6 @@ var actions = {
 
             tx_status: order.status,
             tx_id: order.id,
-            tx_create_time: order.create_time,
-            tx_update_time: order.update_time,
             tx_payee_fname: order.payer.name.given_name,
             tx_payee_lname: order.payer.name.surname,
             tx_payer_id: order.payer.payer_id,
@@ -75889,9 +75887,9 @@ var routes = [{
 //------------------ Student-------------------------------//
 { path: '/student-dashboard',
     component: __webpack_require__(23),
-    name: "student-dashboard",
     children: [{
         path: '/',
+        name: "student-dashboard",
         component: __webpack_require__(228)
     }, {
         path: '/student-courses',
@@ -78749,127 +78747,142 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      loaded: false,
-      course: {},
-      id: this.$route.params.id,
-      paymentStatus: false,
-      timeP: ''
-    };
-  },
-  created: function created() {
-    var _this = this;
-
-    this.loaded = true;
-    axios.get('/api/user/academies/' + this.$route.params.id).then(function (response) {
-      _this.course = response.data.data, _this.loaded = false;
-    });
-  },
-
-
-  methods: {
-    linkTest: function linkTest(id) {
-      var _this2 = this;
-
-      if (setTimeout(function () {
-        return _this2.$store.dispatch("userPaymentApprove");
-      }, 500)) {
-        setTimeout(function () {
-          return _this2.$router.push({ name: 'student-receipt', params: _this2.id });
-        }, 1500);
-      }
+    data: function data() {
+        return {
+            loaded: false,
+            course: {},
+            id: this.$route.params.id,
+            paymentStatus: false,
+            timeP: ''
+        };
     },
-    formatCurrency: function formatCurrency(price) {
-      price = price / 100;
-      return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR" });
+    created: function created() {
+        var _this = this;
+
+        this.loaded = true;
+        axios.get('/api/user/academies/' + this.$route.params.id).then(function (response) {
+            _this.course = response.data.data, _this.loaded = false;
+        });
     },
 
 
-    paymentApproval: function paymentApproval() {},
-    setLoaded: function setLoaded() {
-      var _this3 = this;
+    methods: {
+        linkTest: function linkTest(id) {
+            var _this2 = this;
 
-      window.paypal.Buttons({
-        createOrder: function createOrder(data, actions) {
-          return actions.order.create({
-            purchase_units: [{
-              description: _this3.course.tutor,
-              amount: {
-                currency_code: "USD",
-                value: _this3.course.price
-              }
-            }]
-          });
+            if (setTimeout(function () {
+                return _this2.$store.dispatch("userPaymentApprove");
+            }, 500)) {
+                setTimeout(function () {
+                    return _this2.$router.push({ name: 'student-receipt', params: _this2.id });
+                }, 1500);
+            }
         },
-        onApprove: function () {
-          var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(data, actions, resp) {
-            var order;
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    _context.next = 2;
-                    return actions.order.capture();
+        formatCurrency: function formatCurrency(price) {
+            price = price / 100;
+            return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR" });
+        },
 
-                  case 2:
-                    order = _context.sent;
+        setLoaded: function setLoaded() {
+            var _this3 = this;
+
+            window.paypal.Buttons({
+                createOrder: function createOrder(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            description: _this3.course.tutor,
+                            amount: {
+                                currency_code: "USD",
+                                value: _this3.course.price
+                            }
+                        }]
+                    });
+                },
+                onApprove: function () {
+                    var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(data, actions, resp) {
+                        var order;
+                        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                            while (1) {
+                                switch (_context.prev = _context.next) {
+                                    case 0:
+                                        _context.next = 2;
+                                        return actions.order.capture();
+
+                                    case 2:
+                                        order = _context.sent;
 
 
-                    // Toast.fire({
-                    //     icon: 'success',
-                    //     title: 'Payment Success',
-                    //     text: 'Re-directing.. Please wait!',
-                    // });
-                    if (setTimeout(function () {
-                      return _this3.$store.dispatch("userPaymentApprove", order);
-                    }, 1000)) {
-                      // console.log('Got to new page');
-                      // this.timeP = this.$store.getters.getPaymentTime;
-                      // console.log(this.timeP);
-                      setTimeout(function () {
-                        return _this3.$router.push({ name: 'student-receipt', params: _this3.id });
-                      }, 1500);
+                                        // Toast.fire({
+                                        //     icon: 'success',
+                                        //     title: 'Payment Success',
+                                        //     text: 'Re-directing.. Please wait!',
+                                        // });
+                                        axios.post('/api/user/payment', {
+                                            courseId: localStorage.getItem('course_id'),
+                                            userId: localStorage.getItem('user_id'),
+
+                                            tx_status: order.status,
+                                            tx_id: order.id,
+                                            tx_payee_fname: order.payer.name.given_name,
+                                            tx_payee_lname: order.payer.name.surname,
+                                            tx_payer_id: order.payer.payer_id,
+                                            tx_currency_code: order.purchase_units[0].amount.currency_code,
+                                            tx_amount: order.purchase_units[0].amount.value,
+                                            tx_payee_email: order.purchase_units[0].payee.email_address,
+                                            tx_payee_merchant_id: order.purchase_units[0].payee.merchant_id
+                                        }).then(function (response) {
+                                            // dispatch('setCheckoutStatusValue', response.data.time, response.data.status);
+                                            localStorage.removeItem('paymentTime');
+                                            localStorage.setItem('paymentTime', response.data.time);
+                                            setTimeout(function () {
+                                                return _this3.$router.push({ name: 'student-receipt', params: _this3.id });
+                                            }, 1500);
+                                        });
+                                        // if (setTimeout(() => this.$store.dispatch("userPaymentApprove", order), 1000)) {
+                                        //   // console.log('Got to new page');
+                                        //   // this.timeP = this.$store.getters.getPaymentTime;
+                                        //   // console.log(this.timeP);
+                                        //   setTimeout(() => this.$router.push({ name: 'student-receipt', params:  this.id }), 1500);
+                                        // }
+
+                                    case 4:
+                                    case 'end':
+                                        return _context.stop();
+                                }
+                            }
+                        }, _callee, _this3);
+                    }));
+
+                    function onApprove(_x, _x2, _x3) {
+                        return _ref.apply(this, arguments);
                     }
 
-                  case 4:
-                  case 'end':
-                    return _context.stop();
+                    return onApprove;
+                }(),
+                onError: function onError(err) {
+                    console.log(err);
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Oops..',
+                        text: 'Something went wrong! Please try again.'
+                    });
                 }
-              }
-            }, _callee, _this3);
-          }));
-
-          function onApprove(_x, _x2, _x3) {
-            return _ref.apply(this, arguments);
-          }
-
-          return onApprove;
-        }(),
-        onError: function onError(err) {
-          console.log(err);
-          Toast.fire({
-            icon: 'error',
-            title: 'Oops..',
-            text: 'Something went wrong! Please try again.'
-          });
+            }).render(this.$refs.paypal);
         }
-      }).render(this.$refs.paypal);
-    }
-  },
+    },
 
-  mounted: function mounted() {
-    if (localStorage.student_token != null) {
-      console.log('token is true');
-    } else {
-      console.log('token is false');
-      this.$router.push({ name: 'student-login' });
-    };
-    var script = document.createElement("script");
-    script.src = "https://www.paypal.com/sdk/js?client-id=AaWDUX9QLm6ZzIUwbMbWyvpwmVJ4ucREyZR4F3xF-5MTm5N3b3qE5anFUj2WMEsnWE8c3JAGamA8OJ-m";
-    script.addEventListener("load", this.setLoaded);
-    document.body.appendChild(script);
-  }
+    mounted: function mounted() {
+        if (localStorage.student_token != null) {
+            console.log('token is true');
+        } else {
+            console.log('token is false');
+            this.$router.push({ name: 'student-login' });
+        };
+        var script = document.createElement("script");
+        script.src = "https://www.paypal.com/sdk/js?client-id=AaWDUX9QLm6ZzIUwbMbWyvpwmVJ4ucREyZR4F3xF-5MTm5N3b3qE5anFUj2WMEsnWE8c3JAGamA8OJ-m";
+        script.addEventListener("load", this.setLoaded);
+        if (document.body.appendChild(script)) ;
+    }
 });
 
 /***/ }),
@@ -78956,7 +78969,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", [
-          _c("div", { staticClass: "w-100" }, [
+          _c("div", { staticClass: "w-100 text-center" }, [
             _c("div", { ref: "paypal", staticClass: "mx-auto w-50" })
           ])
         ])
@@ -79188,6 +79201,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -79246,169 +79261,178 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-8 order-md-2 mb-4 mx-auto" }, [
-        _vm._m(1),
-        _vm._v(" "),
-        !_vm.loaded
-          ? _c("ul", { staticClass: "list-group mb-3" }, [
-              _c(
-                "li",
-                {
-                  staticClass:
-                    "list-group-item d-flex justify-content-between lh-condensed"
-                },
-                [
-                  _c("div", [
-                    _c("h6", { staticClass: "my-0" }, [_vm._v("Course ID")]),
-                    _vm._v(" "),
-                    _c("small", { staticClass: "text-muted" }, [
-                      _vm._v(_vm._s(_vm.course.id))
+      _c(
+        "div",
+        { staticClass: "col-md-8 order-md-2 mb-4 mx-auto" },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          !_vm.loaded
+            ? _c("ul", { staticClass: "list-group mb-3" }, [
+                _c(
+                  "li",
+                  {
+                    staticClass:
+                      "list-group-item d-flex justify-content-between lh-condensed"
+                  },
+                  [
+                    _c("div", [
+                      _c("h6", { staticClass: "my-0" }, [_vm._v("Course ID")]),
+                      _vm._v(" "),
+                      _c("small", { staticClass: "text-muted" }, [
+                        _vm._v(_vm._s(_vm.course.id))
+                      ])
                     ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass:
-                    "list-group-item d-flex justify-content-between lh-condensed"
-                },
-                [
-                  _c("div", [
-                    _c("h6", { staticClass: "my-0" }, [_vm._v("Course Name")]),
-                    _vm._v(" "),
-                    _c("small", { staticClass: "text-muted" }, [
-                      _vm._v(_vm._s(_vm.course.name))
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass:
+                      "list-group-item d-flex justify-content-between lh-condensed"
+                  },
+                  [
+                    _c("div", [
+                      _c("h6", { staticClass: "my-0" }, [
+                        _vm._v("Course Name")
+                      ]),
+                      _vm._v(" "),
+                      _c("small", { staticClass: "text-muted" }, [
+                        _vm._v(_vm._s(_vm.course.name))
+                      ])
                     ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass:
-                    "list-group-item d-flex justify-content-between lh-condensed"
-                },
-                [
-                  _c("div", [
-                    _c("h6", { staticClass: "my-0" }, [_vm._v("Course Tutor")]),
-                    _vm._v(" "),
-                    _c("small", { staticClass: "text-muted" }, [
-                      _vm._v(_vm._s(_vm.course.tutor))
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass:
+                      "list-group-item d-flex justify-content-between lh-condensed"
+                  },
+                  [
+                    _c("div", [
+                      _c("h6", { staticClass: "my-0" }, [
+                        _vm._v("Course Tutor")
+                      ]),
+                      _vm._v(" "),
+                      _c("small", { staticClass: "text-muted" }, [
+                        _vm._v(_vm._s(_vm.course.tutor))
+                      ])
                     ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass:
-                    "list-group-item d-flex justify-content-between lh-condensed"
-                },
-                [
-                  _c("div", [
-                    _c("h6", { staticClass: "my-0" }, [_vm._v("Amount")]),
-                    _vm._v(" "),
-                    _c("small", {
-                      staticClass: "text-muted",
-                      domProps: {
-                        textContent: _vm._s(
-                          _vm.formatCurrency(_vm.course.price)
-                        )
-                      }
-                    })
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass:
-                    "list-group-item d-flex justify-content-between lh-condensed"
-                },
-                [
-                  _c("div", [
-                    _c("h6", { staticClass: "my-0" }, [
-                      _vm._v("Payment Status")
-                    ]),
-                    _vm._v(" "),
-                    _c("small", { staticClass: "text-muted" }, [
-                      _vm._v(_vm._s(_vm.exists))
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass:
+                      "list-group-item d-flex justify-content-between lh-condensed"
+                  },
+                  [
+                    _c("div", [
+                      _c("h6", { staticClass: "my-0" }, [_vm._v("Amount")]),
+                      _vm._v(" "),
+                      _c("small", {
+                        staticClass: "text-muted",
+                        domProps: {
+                          textContent: _vm._s(
+                            _vm.formatCurrency(_vm.course.price)
+                          )
+                        }
+                      })
                     ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _vm.precise != null
-                ? _c("div", [
-                    _c(
-                      "li",
-                      {
-                        staticClass:
-                          "list-group-item d-flex justify-content-between lh-condensed"
-                      },
-                      [
-                        _c("div", [
-                          _c("h6", { staticClass: "my-0" }, [_vm._v("Time")]),
-                          _vm._v(" "),
-                          _c("small", { staticClass: "text-muted" }, [
-                            _vm._v(
-                              "About " +
-                                _vm._s(_vm.time) +
-                                " at " +
-                                _vm._s(_vm.precise)
-                            )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass:
+                      "list-group-item d-flex justify-content-between lh-condensed"
+                  },
+                  [
+                    _c("div", [
+                      _c("h6", { staticClass: "my-0" }, [
+                        _vm._v("Payment Status")
+                      ]),
+                      _vm._v(" "),
+                      _c("small", { staticClass: "text-muted" }, [
+                        _vm._v(_vm._s(_vm.exists))
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.precise != null
+                  ? _c("div", [
+                      _c(
+                        "li",
+                        {
+                          staticClass:
+                            "list-group-item d-flex justify-content-between lh-condensed"
+                        },
+                        [
+                          _c("div", [
+                            _c("h6", { staticClass: "my-0" }, [_vm._v("Time")]),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "text-muted" }, [
+                              _vm._v(
+                                "About " +
+                                  _vm._s(_vm.time) +
+                                  " at " +
+                                  _vm._s(_vm.precise)
+                              )
+                            ])
                           ])
-                        ])
-                      ]
-                    )
-                  ])
-                : _c("div", [
-                    _c(
-                      "li",
-                      {
-                        staticClass:
-                          "list-group-item d-flex justify-content-between lh-condensed"
-                      },
-                      [
-                        _c("div", [
-                          _c("h6", { staticClass: "my-0" }, [_vm._v("Time")]),
-                          _vm._v(" "),
-                          _c("small", { staticClass: "text-muted" }, [
-                            _vm._v("at " + _vm._s(_vm.time))
+                        ]
+                      )
+                    ])
+                  : _c("div", [
+                      _c(
+                        "li",
+                        {
+                          staticClass:
+                            "list-group-item d-flex justify-content-between lh-condensed"
+                        },
+                        [
+                          _c("div", [
+                            _c("h6", { staticClass: "my-0" }, [_vm._v("Time")]),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "text-muted" }, [
+                              _vm._v("at " + _vm._s(_vm.time))
+                            ])
                           ])
-                        ])
-                      ]
-                    )
-                  ])
+                        ]
+                      )
+                    ])
+              ])
+            : _c("div", [_vm._v("Data is loading...")]),
+          _vm._v(" "),
+          _c("router-link", { attrs: { to: { name: "student-courses" } } }, [
+            _c("button", { staticClass: "btn btn-block btn-warning" }, [
+              _vm._v("Go to My Courses")
             ])
-          : _c("div", [_vm._v("Data is loading...")]),
-        _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn btn-block btn-warning", on: { click: _vm.goTo } },
-          [_vm._v("Go to My Courses")]
-        ),
-        _vm._v(" "),
-        _vm.precise === null
-          ? _c(
-              "button",
-              {
-                staticClass: "btn btn-block btn-primary",
-                on: { click: _vm.goTo }
-              },
-              [_vm._v("Save as PDF")]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-100" }, [
-          _c("div", { ref: "paypal", staticClass: "mx-auto w-50" })
-        ])
-      ])
+          ]),
+          _vm._v(" "),
+          _vm.precise === null
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-block btn-primary",
+                  on: { click: _vm.goTo }
+                },
+                [_vm._v("Save as PDF")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-100" }, [
+            _c("div", { ref: "paypal", staticClass: "mx-auto w-50" })
+          ])
+        ],
+        1
+      )
     ]),
     _vm._v(" "),
     _vm._m(2)

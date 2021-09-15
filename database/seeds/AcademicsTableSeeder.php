@@ -26,8 +26,6 @@ class AcademicsTableSeeder extends Seeder
             [
                 'tx_id' => $faker->randomDigit,
                 'tx_status' => $faker->boolean,
-                'tx_create_time' => $faker->iso8601,
-                'tx_update_time' => $faker->iso8601,
                 'tx_payee_fname' => $faker->firstName,
                 'tx_payee_lname' => $faker->lastName,
                 'tx_payer_id' => $faker->randomDigit,
@@ -39,33 +37,3 @@ class AcademicsTableSeeder extends Seeder
         }
     }
 }
-//     private function create()
-//     {
-//         $faker = Factory::create();
-//         return DB::table('course_user');
-//     }
-// }
-// $arrays = ([
-            //     'id' => App\User::inRandomOrder()->take(rand(1,3))->pluck('id'),
-            //     'tx_id' => $faker->randomDigit,
-            //     'tx_status' => $faker->boolean,
-            //     'tx_create_time' => $faker->iso8601,
-            //     'tx_update_time' => $faker->iso8601,
-            //     'tx_payee_fname' => $faker->firstName,
-            //     'tx_payee_lname' => $faker->lastName,
-            //     'tx_payer_id' => $faker->randomDigit,
-            //     'tx_currency_code' => $faker->city,
-            //     'tx_amount' => $faker->randomDigit,
-            //     'tx_payee_email' => $faker->email,
-            //     'tx_payee_merchant_id' => $faker->randomDigit,
-            // ]);
-            // $user = '';
-            // foreach ($arrays as $a => $key)
-            // {
-            //     $user .= $key.',';
-            // }
-            // $users = substr($user,0,-1);
-            // foreach ($users as $subQuery => $key){
-                // $course->users()->attach($users);
-            // }
-            // $course->users()->attach($users);

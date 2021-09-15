@@ -64,10 +64,10 @@ const routes = [
     //------------------ Student-------------------------------//
     { path: '/student-dashboard', 
         component: require('./studentComp/Smaster.vue'),
-        name: "student-dashboard",
         children: [
             {
                 path: '/', 
+                name: "student-dashboard",
                 component: require('./components/Dashboard.vue'),
             },
             {

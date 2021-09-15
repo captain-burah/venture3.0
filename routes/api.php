@@ -48,12 +48,12 @@ Route::get('storage', 'API\StorageController@index');
 Route::post('login_admin', 'API\Admin\AdminAuthController@admin_login2');
 Route::apiResource('academies', 'Api\AcademicController')->only(['index', 'show']);
 
-Route::post('create-payment', function() {
-    return "create-payment working";
-});
-Route::post('create-payment', function(Request $request) {
-    return "execute-payment working";
-});
+// Route::post('create-payment', function() {
+//     return "create-payment working";
+// });
+// Route::post('create-payment', function(Request $request) {
+//     return "execute-payment working";
+// });
 
 Route::prefix('/user')->group( function() {
     Route::post('/login', 'Auth\LoginController@userLogin');
