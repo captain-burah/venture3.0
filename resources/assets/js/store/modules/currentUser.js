@@ -13,7 +13,7 @@ const mutations = {
     setStudentToken(state, token_key){
         state.student_token = token_key;
     }
-};
+}; 
 
 const actions = {
     async setCurrentUserLogin(state){

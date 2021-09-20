@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Auth;
-use Session;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+// use Auth;
+// use Session;
 use App\Admin;
 use App\Lecturer;
 use App\User;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+// use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
-// use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
+// use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -107,14 +111,25 @@ class LoginController extends Controller
             'password' => 'required|min:8'
         ]);
 
-        if (Auth::guard('lecturer')->attempt([
+        if (Auth::guard('tutor')->attempt(
+            [
                 'email' => $request->email, 
-                'password' => $request->password], $request->get('remember'))) 
+                'password' => $request->password
+            ], $request->get('remember')
+        )) 
         {
             
             //get and return the access token
-            $accessToken = Auth::lecturer()->createToken('authToken')->accessToken;
-            return response(['tutor' => Auth::lecturer(), 'access_token' => $accessToken]);
+            // $accessToken = Auth::guard('tutor')->createToken('authToken')->accessToken;
+            $userId = Lecturer::select('id')->where('email', $request->email)->first();
+            $accessToken = $userId->createToken('Token Name')->accessToken;
+            return response(
+                [
+                    // 'tutor' =>  Auth::guard('tutor'),
+                    'access_token' => $accessToken, 
+                    'tutor_id' => $userId, 
+                ]
+            );
 
 
             //we must validate the "tutor setup page" here before displaying
@@ -146,8 +161,9 @@ class LoginController extends Controller
             // };
             
             //return redirect('/tutor');
+        }else{
+            return response(['message' => 'Invalid login credentials.']);
         }
-        return response(['message' => 'Invalid login credentials.']);
         // return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors(
         //     ['message'=> "The email is not registered. Please go through our registration process in order to login."]);
     }

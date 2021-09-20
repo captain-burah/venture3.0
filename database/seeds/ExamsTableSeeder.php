@@ -17,7 +17,8 @@ class ExamsTableSeeder extends Seeder
         Lesson::all()->each(function (Lesson $lesson)  //'each' is a laravel loop statement like 'for-each'
         {
             $exam = factory(Exam::class)->make();
-            $exams = collect([$exam]);
+            $target = App\Exam::inRandomOrder()->take(rand(1,3))->pluck('id');
+            $exams = collect([$exam], $target);
             $lesson->exams()->saveMany($exams);
         });
     }

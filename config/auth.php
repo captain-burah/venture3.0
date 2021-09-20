@@ -45,6 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'lecturers', 
         ],
+        
+        'tutor' => [
+            'driver' => 'session',
+            'provider' => 'tutors', 
+        ],
 
         'lecturer_api' => [
             'driver' => 'passport',
@@ -89,11 +94,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
         ],
-
-        'lecturers' => [
+        'tutors' => [
             'driver' => 'eloquent',
             'model' => App\Lecturer::class,
         ],
+        // 'lecturers' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Lecturer::class,
+        // ],
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,

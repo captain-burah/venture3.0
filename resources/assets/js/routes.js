@@ -89,7 +89,7 @@ const routes = [
                 
                 ] 
             },
-            { path: '/profile', component: require('./components/Profile.vue') },
+            { path: '/profile', component: require('./studentComp/Profile.vue') },
             { path: '/users', component: require('./components/Users.vue') },
             { path: '/students', component: require('./components/Students.vue') },
             { path: '/developer', component: require('./components/Developer.vue') },
@@ -128,10 +128,19 @@ const routes = [
         
     //     ] },
     
-        
+    { path: '/tutor-dashboard', 
+        component: require('./lecturerComp/Lmaster.vue'),
+        children: [
+            {
+                path: '/',
+                component: require('./lecturerComp/Dashboard.vue'),
+                name: 'tutor-dashboard'
+            },
+        ],
+    },
+    
 
     { path: '/tutor', component: require('./lecturerComp/Dashboard.vue')},
-    { path: '/tutor-dashboard', component: require('./lecturerComp/Lmaster.vue')},
     { path: '/tutor/lecProfile',  component: require('./lecturerComp/Profile.vue')},
     //{ path: '/Lessons',  component: require('./lecturerComp/MyLessons.vue')},
     { path: '/Schedules',  component: require('./lecturerComp/MySchedules.vue')},

@@ -17,15 +17,15 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($guard == "lecturer" && Auth::guard($guard)->check()) {
-            return redirect( app()->getLocale() . '/tutor');
-        }
-        if ($guard == "admin" && Auth::guard($guard)->check()) {
-            return redirect( '/admin/dashboard');
-        }
-        if (Auth::guard($guard)->check()) {
-            return redirect( app()->getLocale() .'/student_dashboard');
-        }
+        // if ($guard == "tutor" && Auth::guard($guard)->check()) {
+        //     return redirect( app()->getLocale() . '/tutor');
+        // }
+        // if ($guard == "admin" && Auth::guard($guard)->check()) {
+        //     return redirect( '/admin/dashboard');
+        // }
+        // if (Auth::guard($guard)->check()) {
+        //     return redirect( app()->getLocale() .'/student_dashboard');
+        // }
 
         return $next($request);
     }

@@ -34,13 +34,13 @@
                                         <label for="exampleInputPassword1">Password</label>
                                         <input type="password" class="form-control" v-model="tutor.password" id="exampleInputPassword1">
                                     </div>
-                                    <button type="submit" @click="login" class="btn btn-block btn-info mb-3">
+                                    <button type="submit" @click="leclogin" class="btn btn-block btn-info mb-3">
                                         Submit
                                     </button>
                                     <div class="text-center">
-                                        <a class="text-primary" href="#register">
+                                        <router-link to="/tutor-register" class="text-primary">
                                             <h5><b>Create account</b></h5>
-                                        </a>
+                                        </router-link>
                                     </div>
                                     <div class="text-right">
                                         <a class="btn btn-link text-left mx-0 px-0 pb-0 mb-0" href="#resetPassword">
@@ -80,8 +80,10 @@ export default {
         },
     }),
     methods: {
-        login() {
-            this.$store.dispatch("loginTutor", this.tutor );
+        leclogin() {
+            if (this.$store.dispatch( "loginTutor", this.tutor )){
+                setTimeout(() => this.$router.push({ name: 'tutor-dashboard' }), 1500);
+            };
         }
     }
 }

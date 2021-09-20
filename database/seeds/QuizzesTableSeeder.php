@@ -16,7 +16,8 @@ class QuizzesTableSeeder extends Seeder
         Lesson::all()->each(function (Lesson $lesson)  //'each' is a laravel loop statement like 'for-each'
         {
             $quiz = factory(Quiz::class)->make();
-            $quizzes = collect([$quiz]);
+            $target = App\Quiz::inRandomOrder()->take(rand(1,3))->pluck('id');
+            $quizzes = collect([$quiz], $target);
             $lesson->quizzes()->saveMany($quizzes);
         });
     }

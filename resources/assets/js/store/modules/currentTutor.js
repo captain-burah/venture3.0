@@ -1,24 +1,31 @@
 import axios from "axios";
 
 const state = {
-    // currentUserLoginState: false,
-    tutor: {}
+    currentTutorLoginState: false,
+    tutor: {},
+    tutor_token: null,
 };
 
 const mutations = {
-    // setCurrentUserLoginState(state, status){
-    //     state.currentUserLoginState = status;
-    // }
+    setCurrentTutorLoginState(state, status){
+        state.currentTutorLoginState = status;
+    },
+    setTutorToken(state, token_key){
+        state.tutor_token = token_key;
+    }
 };
 
 const actions = {
-    // async setCurrentUserLogin(state){
-    //     state.commit("setCurrentUserLoginState", true);
-    // },
-    // async setCurrentUserLogout(state){
-    //     state.commit("setCurrentUserLoginState", false);
-    // },
-    loginTutor( {}, tutor ) {
+    async setCurrentTutorLogin(state){
+        state.commit("setCurrentTutorLoginState", true);
+    },
+    async setCurrentTutorLogout(state){
+        state.commit("setCurrentTutorLoginState", false);
+    },
+    async setTutorTokenValue(state, para){
+        state.commit("setTutorToken", para);
+    },
+    loginTutor( { dispatch, getters}, tutor ) {
         axios
             .post(`/api/tutor/login`, {
                 email: tutor.email,
@@ -27,14 +34,17 @@ const actions = {
             .then( response => {
                 console.log( response );
                 if( response.data.access_token ){
-
-                    setCurrentUserLogin(true);
-                    //save token
-                    localStorage.setItem(
-                        "tutor_token",
-                        response.data.access_token
-                    )
-                    window.location.replace("/home");
+                    if (dispatch('setCurrentTutorLogin')) {
+                        dispatch('setTutorTokenValue', response.data.access_token);
+                        localStorage.setItem(
+                            "tutor_token",
+                            response.data.access_token
+                        );
+                        localStorage.setItem(
+                            "tutor_id",
+                            response.data.tutor_id.id
+                        );
+                    }
                 }
             })
     },

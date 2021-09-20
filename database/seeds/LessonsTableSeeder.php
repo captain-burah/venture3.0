@@ -16,7 +16,8 @@ class LessonsTableSeeder extends Seeder
         Course::all()->each(function (Course $course)  //'each' is a laravel loop statement like 'for-each'
         {
             $lesson = factory(Lesson::class)->make();
-            $lessons = collect([$lesson]);
+            $target = App\Lesson::inRandomOrder()->take(rand(1,3))->pluck('id');
+            $lessons = collect([$lesson], $target);
             $course->lessons()->saveMany($lessons);
         });
     }
