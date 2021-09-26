@@ -3494,6 +3494,7 @@ return array(
     'Stichoza\\GoogleTranslate\\Tokens\\TokenProviderInterface' => $vendorDir . '/stichoza/google-translate-php/src/Tokens/TokenProviderInterface.php',
     'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
     'SubmissionsTableSeeder' => $baseDir . '/database/seeds/SubmissionsTableSeeder.php',
+    'SubscriptionsTableSeeder' => $baseDir . '/database/seeds/SubscriptionsTableSeeder.php',
     'Symfony\\Bridge\\PsrHttpMessage\\Factory\\DiactorosFactory' => $vendorDir . '/symfony/psr-http-message-bridge/Factory/DiactorosFactory.php',
     'Symfony\\Bridge\\PsrHttpMessage\\Factory\\HttpFoundationFactory' => $vendorDir . '/symfony/psr-http-message-bridge/Factory/HttpFoundationFactory.php',
     'Symfony\\Bridge\\PsrHttpMessage\\Factory\\PsrHttpFactory' => $vendorDir . '/symfony/psr-http-message-bridge/Factory/PsrHttpFactory.php',

@@ -18,15 +18,15 @@ class Lecturer extends Authenticatable
         'password', 'remember_token',
     ]; 
 
-    public function subcriptions()
+    public function subscriptions()
     {
-        return $this->belongsToMany(Subcription::class, 'lecturer_subscription', 'lecturer_id', 'subscription_id')
+        return $this->belongsToMany(Subscription::class, 'lecturer_subscription', 'lecturer_id', 'subscription_id')
             ->withTimeStamps()
             ->withPivot([
                 'tx_id',
                 'tx_status',
-                'tx_fname',
-                'tx_lname',
+                'tx_payee_fname',
+                'tx_payee_lname',
                 'tx_payer_id',
                 'tx_currency_code',
                 'tx_amount',

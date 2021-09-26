@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Lesson;
 use App\Lecturer;
 use App\Course;
+use App\Subscription;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -117,8 +118,7 @@ class TutorController extends Controller
 
     public function subscribe(Request $request) 
     {
-        return response([
-            'reply' => 'Subscibe success',
-        ]);
+        $target = new TutorCourseLessonResource(Lecturer::with('subscriptions')->findOrFail($request['lecturerId']));
+        return $target;
     }
 }
