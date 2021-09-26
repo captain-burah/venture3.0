@@ -116,9 +116,54 @@ class TutorController extends Controller
         };
     }
 
+    public function subscriptions(Request $request) 
+    {
+        $target = Lecturer::with('subscriptions')->find($request['lecturerId']); 
+        $subscription = $target->subscriptions[count($target->subscriptions) - 1];
+        return response([
+            'time' => $subscription->pivot->created_at->diffForHumans(),
+            'precise' => $subscription->pivot->created_at->format('Y-m-d H:i:s'),
+            'name' => $subscription->name,
+            'price' => $subscription->price,
+            'duration' => $subscription->duration,
+            'students' => $subscription->students,
+            'storage' => $subscription->storage,
+        ]);
+    }
+
+
+
     public function subscribe(Request $request) 
     {
-        $target = new TutorCourseLessonResource(Lecturer::with('subscriptions')->findOrFail($request['lecturerId']));
-        return $target;
+        $target = Lecturer::with('subscriptions')->findOrFail($request['lecturerId']);
+        $target->subscriptions()
+            ->attach($request['subscriptionId'], 
+        [
+            'tx_id' => $request['tx_id'],
+            'tx_status' => $request['tx_status'],
+            'tx_payee_fname' => $request['tx_payee_fname'],
+            'tx_payee_lname' => $request['tx_payee_lname'],
+            'tx_payer_id' => $request['tx_payer_id'],
+            'tx_currency_code' => $request['tx_currency_code'],
+            'tx_amount' => $request['tx_amount'],
+            'tx_payee_email' => $request['tx_payee_email'],
+            'tx_payee_merchant_id' => $request['tx_payee_merchant_id'],
+        ]);
+        $tutor = Lecturer::findOrFail($request['lecturerId']);
+        $subscription = $tutor
+            ->subscriptions()
+            ->withPivot('created_at')
+            ->orderBy('created_at','desc')
+            ->first();
+        return response([
+            'status' => 'Created',
+            'time' => $subscription->pivot->created_at->diffForHumans(),
+            'precise' => $subscription->pivot->created_at->format('Y-m-d H:i:s'),
+            'name' => $subscription->name,
+            'price' => $subscription->price,
+            'duration' => $subscription->duration,
+            'students' => $subscription->students,
+            'storage' => $subscription->storage,
+        ]);        
     }
 }

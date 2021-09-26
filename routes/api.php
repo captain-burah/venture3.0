@@ -33,5 +33,6 @@ Route::prefix('/tutor')->group( function() {
     Route::middleware('auth:lecturer_api')
         ->get('/all', 'API\TutorController@index');
     Route::post('/lessons', 'API\TutorController@mylessons');
+    Route::post('/subscriptions', 'API\TutorController@subscriptions');
     Route::post('/subscribe', 'API\TutorController@subscribe');
 });
