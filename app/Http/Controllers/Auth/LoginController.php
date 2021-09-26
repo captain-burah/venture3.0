@@ -72,9 +72,9 @@ class LoginController extends Controller
 
     public function lec_logout(Request $request)
     {
-        $this->guard('lecturer')->logout();
+        $this->guard('tutor')->logout();
 
-        // $request->session()->invalidate();
+        $request->session()->invalidate();
         return response()->json(['status' => 200]);
         // return redirect( app()->getLocale() . '/login/tutor');
     }

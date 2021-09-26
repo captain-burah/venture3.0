@@ -3,28 +3,15 @@
   <!-- Navbar -->
   <nav class="main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-white navbar-dark border-bottom border-dark">
     <!-- Left navbar links -->
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button">
             <i class="fas fa-bars"></i>&nbsp; &nbsp; Dashboard</a>
       </li>
-      <!-- <li class="nav-item py-1 mr-auto"> -->
-      <li class="nav-item">
-        <router-link class="nav-link" @click="userLogout" :to="logOut" role="button">
-            Logout
-        </router-link>
-      </li>
-            <!-- <button type="button" v-on:click="logOutFunc" class="btn btn-block mb-3" role="button">
-                Logout
-            </button> -->
-            <!-- <button @click="logOutFunc" class="text-light">
-              <i class="nav-icon fa fa-power-off red"></i>
-              <p>
-               Logout
-              </p>
-            </button> -->
-          <!-- </li> -->
     </ul>
+    <button class="btn btn-dark" @click="userLogout" role="button">
+      Logout
+    </button>
   </nav>
 
   <!-- Main Sidebar Container -->
@@ -62,6 +49,7 @@
               </p>
             </router-link>
           </li>
+
           <li class="nav-item border-bottom border-secondary">
             <router-link to="#studentcast" class="nav-link text-light d-flex justify-content-start">
               <i class="nav-icon fas fa-hashtag text-danger"></i>
@@ -71,6 +59,7 @@
               </p>
             </router-link>
           </li>
+
         <!------ Sub-Menu ----->
         <li class="nav-item">
           <router-link to="/student-dashboard" class="nav-link text-light d-flex justify-content-start">
@@ -81,6 +70,7 @@
             </p>
           </router-link>
         </li>
+
         <li class="nav-item">
           <router-link to="/student-courses" class="nav-link text-light d-flex justify-content-start">
             <i class="nav-icon fas fa-book purple"></i>
@@ -90,6 +80,7 @@
             </p>
           </router-link>
         </li>
+
         <li class="nav-item">
           <router-link to="/exams" class="nav-link text-light d-flex justify-content-start">
             <i class="nav-icon fas fa-edit text-warning"></i>
@@ -99,6 +90,7 @@
             </p>
           </router-link>
         </li>
+        
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link text-light  d-flex justify-content-start">
               <i class="nav-icon fa fa-cog text-success"></i>
@@ -190,29 +182,31 @@
       },
       methods: {
           userLogout: function() {
-              return Axios
+              axios
                 .post(`api/user/logout`)
                 .then( response => {
-                    if (localStorage.student_token) {
-                      localStorage.removeItem(student_token);
-                      this.logOut = { name: 'home'};
-                      // this.$router.push({ name: 'home' });
+                    if (sessionStorage.getItem('student_token')) {
+                      sessionStorage.clear();
+                      localStorage.clear();
+                      this.$router.push({ name: 'student-login' });
                     }
                     else {
-                      console.log('no token')
+                      console.log('no token');
+                      localStorage.clear();
+                      this.$router.push({ name: 'student-login' });
                     }
                 })
           },
       },
       
       mounted() {
-          if (localStorage.student_token != null) {
+          if (localStorage.getItem('student_tokent') != null) {
+              console.log('token is true');
           }
           else {
               console.log('token is false');
               this.$router.push({ name: 'student-login' });
           }
-          console.log('Smaster Mounted');
       },
   }
 </script>

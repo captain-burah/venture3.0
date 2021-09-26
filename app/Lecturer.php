@@ -18,13 +18,45 @@ class Lecturer extends Authenticatable
         'password', 'remember_token',
     ]; 
 
-    //public function lecturerInfo()
-    //{
-    //    return $this->hasOne('App\LecturerInfo', 'lec_email', 'email');
-    //}
+    public function subcriptions()
+    {
+        return $this->belongsToMany(Subcription::class, 'lecturer_subscription', 'lecturer_id', 'subscription_id')
+            ->withTimeStamps()
+            ->withPivot([
+                'tx_id',
+                'tx_status',
+                'tx_fname',
+                'tx_lname',
+                'tx_payer_id',
+                'tx_currency_code',
+                'tx_amount',
+                'tx_payee_email',
+                'tx_payee_merchant_id',
+            ]);
+    }
 
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
+
+    public function exams()
+    {
+        return $this->hasMany(Exam::class);
+    }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
     }
 }

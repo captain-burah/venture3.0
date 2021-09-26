@@ -29,6 +29,9 @@ Route::prefix('/user')->group( function() {
 Route::prefix('/tutor')->group( function() {
     Route::post('/login', 'Auth\LoginController@lecLogin');
     Route::post('/register', 'Auth\RegisterController@createLec');
+    Route::post('/logout', 'Auth\LoginController@logout');
     Route::middleware('auth:lecturer_api')
         ->get('/all', 'API\TutorController@index');
+    Route::post('/lessons', 'API\TutorController@mylessons');
+    Route::post('/subscribe', 'API\TutorController@subscribe');
 });

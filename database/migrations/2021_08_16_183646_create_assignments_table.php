@@ -22,8 +22,11 @@ class CreateAssignmentsTable extends Migration
             $table->string('description');
             $table->string('notes');
 
-            $table->integer('lesson_id')->unsigned()->index();
-            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');;
+            $table->integer('lesson_id')->unsigned()->index()->nullable(true);
+            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
+            
+            $table->integer('lecturer_id')->unsigned()->index()->nullable(true);
+            $table->foreign('lecturer_id')->references('id')->on('lecturers')->onDelete('cascade');
         });
     }
 

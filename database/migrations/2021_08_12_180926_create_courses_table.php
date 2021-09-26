@@ -15,10 +15,16 @@ class CreateCoursesTable extends Migration
             $table->string('tutor');
             $table->string('duration');
             $table->string('description');
-            $table->string('thumbnail')->default('thumbnail.png');
-            $table->string('cover')->default('cover.png');
+            $table->string('author');
+            $table->string('status');
+            $table->string('objectives');
+            $table->string('learning_outcomes');
+            $table->string('certificate')->default('certificate.png');
+            $table->string('course_leader');
+            $table->string('image')->default('image.png');
             $table->integer('price')->default('0');
-            $table->integer('lecturer_id')->unsigned()->index();
+
+            $table->integer('lecturer_id')->unsigned()->index()->nullable(true);
             $table->foreign('lecturer_id')->references('id')->on('lecturers')->onDelete('cascade');
         });
     }

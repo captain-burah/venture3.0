@@ -25,5 +25,6 @@ $factory->define(App\Assignment::class, function (Faker $faker) {
         'lesson' => $faker->randomElement($lessons),
         'description' => $faker->text,
         'notes' => $faker->text,
+        'lecturer_id' => App\Lecturer::inRandomOrder()->first()->id,
     ];
 });

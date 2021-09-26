@@ -136,15 +136,58 @@ const routes = [
                 component: require('./lecturerComp/Dashboard.vue'),
                 name: 'tutor-dashboard'
             },
+            { 
+                path: '/tutor-profile',  
+                component: require('./lecturerComp/Profile.vue'),
+                name: 'tutor-profile',
+            },
+            { 
+                path: '/tutor-course',  
+                component: require('./lecturerComp/Courses/MyCourses.vue'),
+                name: 'tutor-course',
+            },
+            { 
+                path: '/tutor-new-course',  
+                component: require('./lecturerComp/Courses/Create/CreateCourse.vue'),
+                name: 'tutor-new-course',
+            },
+            {
+                path: '/tutor-new-lesson',
+                component: require('./lecturerComp/Lessons/Create/CreateLesson.vue'),
+                name: 'tutor-new-lesson',
+            },
+            { 
+                path: '/tutor-lesson',  
+                component: require('./lecturerComp/Lessons/MyLessons.vue'),
+                name: 'tutor-course',
+                // children: [
+                //     { 
+                //         path: '/', 
+                //         component: require('./lecturerComp/Lessons/CreateLessons/WelcomePage.vue'),
+                //         name: 'tutor-lesson'
+                //     },
+                //     { 
+                //         path: '/lesson-design', 
+                //         component: require('./lecturerComp/Lessons/CreateLessons/Design.vue'),
+                //         name: 'lesson-design'
+                //     },
+                //     { 
+                //         path: '/lesson-content', 
+                //         component: require('./lecturerComp/Lessons/CreateLessons/Content.vue'),
+                //         name: 'lesson-content'
+                //     },
+                
+                // ]
+            },
+
         ],
     },
     
 
-    { path: '/tutor', component: require('./lecturerComp/Dashboard.vue')},
-    { path: '/tutor/lecProfile',  component: require('./lecturerComp/Profile.vue')},
+    // { path: '/tutor', component: require('./lecturerComp/Dashboard.vue')},
+    // { path: '/tutor/lecProfile',  component: require('./lecturerComp/Profile.vue')},
     //{ path: '/Lessons',  component: require('./lecturerComp/MyLessons.vue')},
     { path: '/Schedules',  component: require('./lecturerComp/MySchedules.vue')},
-    { path: '/Layout',  component: require('./lecturerComp/SiteLayout.vue')},
     { path: '/Staff',  component: require('./lecturerComp/StaffMgt.vue')},
 
 

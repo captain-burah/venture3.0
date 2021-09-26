@@ -22,8 +22,11 @@ class CreateLessonsTable extends Migration
             $table->string('description');
             $table->string('notes');
 
-            $table->integer('course_id')->unsigned()->index();
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');;
+            $table->integer('lecturer_id')->unsigned()->index()->nullable(true);
+            $table->foreign('lecturer_id')->references('id')->on('lecturers')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->integer('course_id')->unsigned()->index()->nullable(true);
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -33,7 +33,7 @@
               </div>
 
               <div class="icon">
-                <ion-icon name="document"></ion-icon>
+                <!-- <ion-icon name="document"></ion-icon> -->
                 <i class="ion ion-bag"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
@@ -49,7 +49,7 @@
                 <p>Growth Analysis</p>
               </div>
               <div class="icon">
-                <ion-icon name="bar-chart"></ion-icon>
+                <!-- <ion-icon name="bar-chart"></ion-icon> -->
                 <i class="ion ion-stats-bars"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
@@ -65,7 +65,7 @@
                 <p>Student Registrations</p>
               </div>
               <div class="icon">
-                <ion-icon name="people-circle"></ion-icon>
+                <!-- <ion-icon name="people-circle"></ion-icon> -->
                 <i class="ion ion-person-add"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
@@ -81,7 +81,7 @@
                 <p>Visitors</p>
               </div>
               <div class="icon">
-                <ion-icon name="walk-outline"></ion-icon>
+                <!-- <ion-icon name="walk-outline"></ion-icon> -->
                 <i class="ion ion-pie-graph"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>

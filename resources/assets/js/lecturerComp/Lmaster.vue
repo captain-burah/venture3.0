@@ -1,35 +1,38 @@
 <template>
 <div class="wrapper" id="app">
-
+ 
   <!-- Navbar -->
-  <nav class="main-header elevation-2 navbar sideMenu navbar-expand navbar-bg navbar-light
-        navbar-white border-bottom border-dark">
-          <!-- Left navbar links -->
-      <ul class="navbar-nav mr-auto mb-0">
-          <li class="nav-item mt-1">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button">
-              <i class="fas fa-bars"></i>&nbsp; &nbsp; Dashboard</a>
-          </li>
-      </ul>
+  <nav class="main-header elevation-2 navbar sideMenu navbar-expand-lg navbar-bg navbar-white navbar-dark border-bottom border-dark">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+            <i class="fas fa-bars"></i>&nbsp; &nbsp; Menu</a>
+      </li>
+      
+    </ul>
+    <button class="btn btn-dark" @click="tutorLogout" role="button">
+      Logout
+    </button>
   </nav>
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-warning bg-dark elevation-4 border-right">
+  <aside class="main-sidebar sidebar-dark-primary sideMenu elevation-4 border-right border-dark">
     <!-- Brand Logo -->
-    <a href="home_tutor" class="brand-link navbar-bg text-center">
-      <span class="brand-text font-weight-light text-center">Enlighten Venture</span>
-    </a>
+    <router-link to="/" class="brand-link navbar-bg text-center">
+      <span class="brand-text font-weight-light text-light w-100 text-center">EV Academy</span>
+    </router-link>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel my-3 d-flex rounded-pill border-0">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
         <div class="image">
-          <img :src="tutor_img" class="img-circle elevation-2" alt="User Image">
+          <img src="/img/rocket.png" alt="Larastart" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
         </div>
-        <div class="info">
-          <a href="/tutor" class="d-block ">Tutor Name Here</a>
-          <hr class="m-0">
+        <div class="text-light d-flex justify-content-start">
+          <p class="d-block my-auto pl-2">Student Name</p>
         </div>
       </div>
       
@@ -42,19 +45,20 @@
             with font-awesome or any other icon font library 
           -->
           
-          <li class="nav-item py-1">
-            <a href="/academy" class="nav-link text-light rounded-pill">
-              <i class="nav-icon fas fa-school text-warning"></i>
-              <p>
-                My Academy
+          <li class="nav-item">
+            <router-link to="/academy" class="nav-link text-light d-flex justify-content-start">
+              <i class="nav-icon fas fa-school text-warning "></i>
+              <p class="my-auto pl-2 text-left text-light">
+                Academy
                 
               </p>
-            </a>
+            </router-link>
           </li>
+          
           <li class="nav-item  py-1 rounded">
-            <router-link to="#studentcast" class="nav-link text-light rounded-pill">
+            <router-link to="#studentcast" class="nav-link text-light d-flex justify-content-start">
               <i class="nav-icon fas fa-hashtag text-danger"></i>
-              <p>
+              <p class="my-auto pl-2 text-left text-light">
                 Studentcast
                 
               </p>
@@ -62,116 +66,116 @@
           </li>
           
           <!------ Sub-Menu ----->
-          <li class="nav-item py-1">
-            <router-link to="/tutor" class="nav-link text-light rounded-pill">
-              <i class="nav-icon fas fa-tachometer-alt text-info"></i>
-              <p>
-                Dashboard
+          <li class="nav-item">
+          <router-link to="/tutor-dashboard" class="nav-link text-light d-flex justify-content-start">
+            <i class="nav-icon fas fa-tachometer-alt text-info"></i>
+            <p class="my-auto pl-2 text-left text-light">
+              My Dashboard
+              
+            </p>
+          </router-link>
+        </li>
+          
+          <li class="nav-item">
+            <router-link to="/tutor-course" class="nav-link text-light d-flex justify-content-start">
+              <i class="nav-icon fas fa-book purple"></i>
+              <p class="my-auto pl-2 text-left text-light">
+                Courses
+                
+              </p>
+            </router-link>
+          </li>
+
+          <li class="nav-item">
+            <router-link to="/tutor-lesson" class="nav-link text-light d-flex justify-content-start">
+              <i class="nav-icon fas fa-book purple"></i>
+              <p class="my-auto pl-2 text-left text-light">
+                Lessons
                 
               </p>
             </router-link>
           </li>
           
-          <li class="nav-item py-1">
-            <router-link to="/Lessons" class="nav-link text-light rounded-pill">
-              <i class="nav-icon fas fa-book purple"></i>
-              <p>
-                Lesson Builder
-                
-              </p>
-            </router-link>
-          </li>
-          <li class="nav-item has-treeview py-1">
-            <a href="#" class="nav-link text-light rounded-pill">
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link text-light d-flex justify-content-start">
               <i class="nav-icon fa fa-copy text-success"></i>
-              <p>
+              <p class="my-auto pl-2 text-left text-light">
                 My Exams
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview ">
               <li class="nav-item py-1">
-                <router-link to="createPapers" class="nav-link text-light offset-sm-1 rounded-pill">
+                <router-link to="createPapers" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
                   <i class="fas fa-angle-right nav-icon text-light"></i>
-                  <p>Create Paper</p>
+                  <p class="my-auto pl-2 text-left text-light">Create Paper</p>
                 </router-link>
               </li>
-              <li class="nav-item py-1">
-                <router-link to="/categories" class="nav-link text-light offset-sm-1 rounded-pill">
+              <li class="nav-item ">
+                <router-link to="/categories" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
                   <i class="fas fa-angle-right nav-icon text-light "></i>
-                  <p>Categories</p>
+                  <p class="my-auto pl-2 text-left text-light">Categories</p>
                 </router-link>
               </li>
-              <li class="nav-item py-1">
-                <router-link to="/bank" class="nav-link text-light offset-sm-1 rounded-pill">
+              <li class="nav-item ">
+                <router-link to="/bank" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
                   <i class="fas fa-angle-right nav-icon text-light "></i>
-                  <p>Question Bank</p>
+                  <p class="my-auto pl-2 text-left text-light">Question Bank</p>
                 </router-link>
               </li>
-              <li class="nav-item py-1">
-                <router-link to="/examAnalysis" class="nav-link text-light offset-sm-1 rounded-pill">
+              <li class="nav-item ">
+                <router-link to="/examAnalysis" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
                   <i class="fas fa-angle-right nav-icon text-light "></i>
-                  <p>Exam Analysis</p>
+                  <p class="my-auto pl-2 text-left text-light">Exam Analysis</p>
                 </router-link>
               </li>
-              <li class="nav-item py-1">
-                <router-link to="/archive" class="nav-link text-light offset-sm-1 rounded-pill">
+              <li class="nav-item ">
+                <router-link to="/archive" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
                   <i class="fas fa-angle-right nav-icon  text-light"></i>
-                  <p>Archive</p>
+                  <p class="my-auto pl-2 text-left text-light">Archive</p>
                 </router-link>
               </li>
             </ul>
           </li>
-          <li class="nav-item py-1">
-            <router-link to="/Schedules" class="nav-link text-light rounded-pill">
+
+          <li class="nav-item ">
+            <router-link to="/Schedules" class="nav-link text-light d-flex justify-content-start">
               <i class="nav-icon fas fa-edit text-warning"></i>
-              <p>
+              <p class="my-auto pl-2 text-left text-light">
                 My Schedules
                 
               </p>
             </router-link>
           </li>
-          <li class="nav-item py-1">
-            <router-link to="/Layout" class="nav-link text-light rounded-pill">
-              <i class="nav-icon fa fa-cog text-success"></i>
-              <p>
-                Site Layout
-                
-              </p>
-            </router-link>
-          </li>
-          <li class="nav-item py-1">
-            <router-link to="/Staff" class="nav-link text-light rounded-pill">
+
+          <li class="nav-item">
+            <router-link to="/Staff" class="nav-link text-light d-flex justify-content-start">
               <i class="fas fa-users-cog nav-icon text-secondary"></i>
-              <p>
-                Staff Management
-                
+              <p class="my-auto pl-2 text-left text-light">
+                Subscriptions
               </p>
             </router-link>
           </li>
+
+          <li class="nav-item">
+            <router-link to="/Staff" class="nav-link text-light d-flex justify-content-start">
+              <i class="fas fa-users-cog nav-icon text-secondary"></i>
+              <p class="my-auto pl-2 text-left text-light">
+                Staff Mgt.
+              </p>
+            </router-link>
+          </li>
+
           <!------ Sub-Menu ----->
-          <li class="nav-item py-1">
-            <router-link to="/tutor/lecProfile" class="nav-link text-light rounded-pill">
+          <li class="nav-item ">
+            <router-link to="/tutor-profile" class="nav-link text-light d-flex justify-content-start">
               <i class="nav-icon fas fa-user orange"></i>
-              <p>
+              <p class="my-auto pl-2 text-left text-light">
                 Profile
-                
               </p>
             </router-link>
           </li>
-          <li class="nav-item py-1">
-            <a class="nav-link text-light rounded-pill" href="javascript:void(0)" 
-            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-              <i class="nav-icon fa fa-power-off red"></i>
-              <p>
-               Logout
-              </p>
-            </a>
-            <form id="logout-form" :action="logout_user" method="POST" style="display: none;">
-              <input type="hidden" name="_token" :value="csrf">
-              
-            </form>
-          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -206,34 +210,38 @@
 
 </template>
 <script>
-import LanguageSwitcher from "../components/LanguageSwitcher.vue";
-
     export default {
-      props: ['logout_user', 'tutor_img', 'home_tutor', 'locale', 'link-en', 'link-sn'],
-      name: 'Logout',
-      components: { LanguageSwitcher },
+      name: 'Dashboard',
 
       data: function(){
-        //const lang = localStorage.getItem('lang') || 'en';
         return {
-          //lang: lang,
-          csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          // csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
       },
       methods: {
-          logout() {
-              axios.post('logout_user')
-                  .catch(error => {
-                      window.location.href = 'tutor/login';
-                  });
+          tutorLogout: function() {
+              axios
+                .post(`api/tutor/logout`)
+                .then( response => {
+                    if (sessionStorage.getItem('tutor_token')) {
+                      localStorage.clear();
+                      sessionStorage.clear();
+                      this.$router.push({ name: 'tutor-login' });
+                    }
+                    else {
+                      console.log('no token')
+                    }
+                })
           },
-          //handleChange(event){
-          //  localStorage.setItem('lang', event.target.value);
-          //  window.location.reload();
-          //}
       },
       mounted() {
-          console.log(this.__('Component mounted.'))
+         if (sessionStorage.getItem('tutor_token') != null) {
+              console.log('token is true');
+          }
+          else {
+              console.log('token is false');
+              this.$router.push({ name: 'tutor-login' });
+          }
       },
 
   }

@@ -36,7 +36,7 @@ const actions = {
                 if( response.data.access_token ){
                     if (dispatch('setCurrentTutorLogin')) {
                         dispatch('setTutorTokenValue', response.data.access_token);
-                        localStorage.setItem(
+                        sessionStorage.setItem(
                             "tutor_token",
                             response.data.access_token
                         );

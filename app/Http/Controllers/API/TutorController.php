@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Lesson;
+use App\Lecturer;
+use App\Course;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Lecturer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Builder;
+use App\Http\Resources\TutorCourseLessonResource;
 
 class TutorController extends Controller
 {
@@ -84,5 +91,34 @@ class TutorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function mylessons(Request $request) 
+    {
+        $target = new TutorCourseLessonResource(Course::with('lecturer')->where('lecturer_id', $request->lecturerId)->get());
+        // return response([
+        //     'status' => $request->lecturerId,
+        // ]);
+        if (!$target->isEmpty()) 
+        {
+            return response([
+                'lessons' => $target[0]->lecturer,
+                'status' => 'success'
+            ]);
+        }
+        else
+        {
+            return response([
+                'lessons' => $target,
+                'status' => 'null'
+            ]);
+        };
+    }
+
+    public function subscribe(Request $request) 
+    {
+        return response([
+            'reply' => 'Subscibe success',
+        ]);
     }
 }

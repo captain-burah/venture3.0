@@ -40,11 +40,17 @@ $factory->define(App\Course::class, function (Faker $faker) {
     ];
     return [
         'name' => $faker->randomElement($suffix),
-        'tutor' => $faker->name,
+        'tutor' => $faker->name, 
         'duration' => $faker->randomElement($week),
         'description' => $faker->text(),
         'price' => $faker->numberBetween(50000, 500000),
-        'thumbnail' => $faker->imageUrl($width=480, $height=480, 'cats'), // 'http://lorempixel.com/800/400/cats/Faker'
-        'cover' => $faker->imageUrl($width=820, $height=312, 'cats'), // 'http://lorempixel.com/800/400/cats/Faker'
+        'image' => $faker->imageUrl($width=480, $height=480, 'cats'), // 'http://lorempixel.com/800/400/cats/Faker'
+        'author' => $faker->name,
+        'status' => $faker->text(),
+        'objectives' => $faker->text(),
+        'learning_outcomes' => $faker->text(),
+        'certificate' => $faker->imageUrl($width=480, $height=480, 'cats'), // 'http://lorempixel.com/800/400/cats/Faker'
+        'course_leader' => $faker->name,
+        
     ];
 });

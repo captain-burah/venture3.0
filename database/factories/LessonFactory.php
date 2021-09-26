@@ -19,5 +19,6 @@ $factory->define(App\Lesson::class, function (Faker $faker) {
         'tutor' => $faker->name,
         'description' => $faker->text,
         'notes' => $faker->text,
+        'lecturer_id' => App\Lecturer::inRandomOrder()->first()->id,
     ];
 });
