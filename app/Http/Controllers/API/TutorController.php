@@ -12,6 +12,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Str;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Resources\TutorCourseLessonResource;
@@ -118,16 +120,17 @@ class TutorController extends Controller
 
     public function subscriptions(Request $request) 
     {
-        $target = Lecturer::with('subscriptions')->find($request['lecturerId']); 
+        $target = Lecturer::with('subscriptions')->find($request['lecturerId']);
         $subscription = $target->subscriptions[count($target->subscriptions) - 1];
         return response([
             'time' => $subscription->pivot->created_at->diffForHumans(),
             'precise' => $subscription->pivot->created_at->format('Y-m-d H:i:s'),
-            'name' => $subscription->name,
-            'price' => $subscription->price,
-            'duration' => $subscription->duration,
-            'students' => $subscription->students,
-            'storage' => $subscription->storage,
+            'subscriptions' => $subscription,
+            // 'name' => $subscription->name,
+            // 'price' => $subscription->price,
+            // 'duration' => $subscription->duration,
+            // 'students' => $subscription->students,
+            // 'storage' => $subscription->storage,
         ]);
     }
 
@@ -165,5 +168,30 @@ class TutorController extends Controller
             'students' => $subscription->students,
             'storage' => $subscription->storage,
         ]);        
+    }
+
+    public function subscription($subscriptionId){
+        $target = new TutorCourseLessonResource(Subscription::findOrFail($subscriptionId));
+        return response([
+            'data' => $target,
+        ]);
+    }
+
+    public function payments($lecturerId){
+        $target = new TutorCourseLessonResource(Lecturer::with('subscriptions')->findOrFail($lecturerId));
+        return response([
+            'data' => $target->subscriptions,
+        ]);
+    }
+
+    public function printDetails(Request $request){
+        $target = new TutorCourseLessonResource(DB::table('lecturer_subscription')->where('tx_id', $request->tx_id)->get());
+        // return $target;
+
+        $target2 = Lecturer::with('subscriptions')->find($request->tutor_id);
+        return response([
+            '$target' => $target,
+            '$target2' => $target2->subscriptions,
+        ]);
     }
 }

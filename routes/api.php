@@ -35,4 +35,8 @@ Route::prefix('/tutor')->group( function() {
     Route::post('/lessons', 'API\TutorController@mylessons');
     Route::post('/subscriptions', 'API\TutorController@subscriptions');
     Route::post('/subscribe', 'API\TutorController@subscribe');
+    Route::get('/subscription/{subscriptionId}', 'API\TutorController@subscription');
+    Route::get('/payments/{lecturerId}', 'API\TutorController@payments');
+    Route::post('/print-subscription', 'API\TutorController@printDetails');
+
 });

@@ -141,6 +141,17 @@ const routes = [
                 component: require('./lecturerComp/Profile.vue'),
                 name: 'tutor-profile',
             },
+            {
+                path: '/tutor-subscriptions',
+                component: require('./lecturerComp/Subscription/Subscriptions.vue'),
+                name: 'tutor-subscriptions',
+            },
+            {
+                path: '/tutor-subscription-paynow/:id',
+                component: require('./lecturerComp/Subscription/PayNow.vue'),
+                name: 'tutor-subscription-paynow',
+            },
+            
             { 
                 path: '/tutor-course',  
                 component: require('./lecturerComp/Courses/MyCourses.vue'),
@@ -181,6 +192,11 @@ const routes = [
             },
 
         ],
+    },
+    {
+        path: '/tutor-payment-print/:id/:name/:price',
+        component: require('./lecturerComp/Subscription/PaymentView.vue'),
+        name: 'tutor-payment-print',
     },
     
 

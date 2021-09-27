@@ -32,7 +32,7 @@
            style="opacity: .8">
         </div>
         <div class="text-light d-flex justify-content-start">
-          <p class="d-block my-auto pl-2">Student Name</p>
+          <p class="d-block my-auto pl-2">Tutor Name</p>
         </div>
       </div>
       
@@ -46,9 +46,9 @@
           -->
           
           <li class="nav-item">
-            <router-link to="/academy" class="nav-link text-light d-flex justify-content-start">
-              <i class="nav-icon fas fa-school text-warning "></i>
-              <p class="my-auto pl-2 text-left text-light">
+            <router-link to="/academy" class="nav-link text-light d-flex justify-content-start py-2">
+              <i class="nav-icon fas fa-school text-warning py-0"></i>
+              <p class="my-auto pl-2 text-left text-light py-0">
                 Academy
                 
               </p>
@@ -56,9 +56,9 @@
           </li>
           
           <li class="nav-item  py-1 rounded">
-            <router-link to="#studentcast" class="nav-link text-light d-flex justify-content-start">
-              <i class="nav-icon fas fa-hashtag text-danger"></i>
-              <p class="my-auto pl-2 text-left text-light">
+            <router-link to="#studentcast" class="nav-link text-light d-flex justify-content-start py-2">
+              <i class="nav-icon fas fa-hashtag text-danger py-0"></i>
+              <p class="my-auto pl-2 text-left text-light py-0">
                 Studentcast
                 
               </p>
@@ -67,9 +67,9 @@
           
           <!------ Sub-Menu ----->
           <li class="nav-item">
-          <router-link to="/tutor-dashboard" class="nav-link text-light d-flex justify-content-start">
-            <i class="nav-icon fas fa-tachometer-alt text-info"></i>
-            <p class="my-auto pl-2 text-left text-light">
+          <router-link to="/tutor-dashboard" class="nav-link text-light d-flex justify-content-start py-2">
+            <i class="nav-icon fas fa-tachometer-alt text-info py-0"></i>
+            <p class="my-auto pl-2 text-left text-light py-0">
               My Dashboard
               
             </p>
@@ -77,9 +77,9 @@
         </li>
           
           <li class="nav-item">
-            <router-link to="/tutor-course" class="nav-link text-light d-flex justify-content-start">
-              <i class="nav-icon fas fa-book purple"></i>
-              <p class="my-auto pl-2 text-left text-light">
+            <router-link to="/tutor-course" class="nav-link text-light d-flex justify-content-start py-2">
+              <i class="nav-icon fas fa-book purple py-0"></i>
+              <p class="my-auto pl-2 text-left text-light py-0">
                 Courses
                 
               </p>
@@ -87,9 +87,9 @@
           </li>
 
           <li class="nav-item">
-            <router-link to="/tutor-lesson" class="nav-link text-light d-flex justify-content-start">
-              <i class="nav-icon fas fa-book purple"></i>
-              <p class="my-auto pl-2 text-left text-light">
+            <router-link to="/tutor-lesson" class="nav-link text-light d-flex justify-content-start py-2">
+              <i class="nav-icon fas fa-book purple py-0"></i>
+              <p class="my-auto pl-2 text-left text-light py-0">
                 Lessons
                 
               </p>
@@ -97,84 +97,96 @@
           </li>
           
           <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link text-light d-flex justify-content-start">
-              <i class="nav-icon fa fa-copy text-success"></i>
-              <p class="my-auto pl-2 text-left text-light">
+            <a href="#" class="nav-link text-light d-flex justify-content-start py-2">
+              <i class="nav-icon fa fa-copy text-success py-0"></i>
+              <p class="my-auto pl-2 text-left text-light py-0">
                 My Exams
-                <i class="right fas fa-angle-left"></i>
+                <i class="nav-icon right fas fa-angle-left py-0"></i>
               </p>
             </a>
             <ul class="nav nav-treeview ">
               <li class="nav-item py-1">
-                <router-link to="createPapers" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
-                  <i class="fas fa-angle-right nav-icon text-light"></i>
-                  <p class="my-auto pl-2 text-left text-light">Create Paper</p>
+                <router-link to="createPapers" class="nav-link text-light offset-sm-2 d-flex justify-content-start py-2">
+                  <i class="fas fa-angle-right nav-icon text-light py-0"></i>
+                  <p class="my-auto pl-2 text-left text-light py-0">Create Paper</p>
                 </router-link>
               </li>
               <li class="nav-item ">
-                <router-link to="/categories" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
-                  <i class="fas fa-angle-right nav-icon text-light "></i>
-                  <p class="my-auto pl-2 text-left text-light">Categories</p>
+                <router-link to="/categories" class="nav-link text-light offset-sm-2 d-flex justify-content-start py-2">
+                  <i class="fas fa-angle-right nav-icon text-light  py-0"></i>
+                  <p class="my-auto pl-2 text-left text-light py-0">Categories</p>
                 </router-link>
               </li>
               <li class="nav-item ">
-                <router-link to="/bank" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
-                  <i class="fas fa-angle-right nav-icon text-light "></i>
-                  <p class="my-auto pl-2 text-left text-light">Question Bank</p>
+                <router-link to="/bank" class="nav-link text-light offset-sm-2 d-flex justify-content-start py-2">
+                  <i class="fas fa-angle-right nav-icon text-light py-0 "></i>
+                  <p class="my-auto pl-2 text-left text-light py-0">Question Bank</p>
                 </router-link>
               </li>
               <li class="nav-item ">
-                <router-link to="/examAnalysis" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
-                  <i class="fas fa-angle-right nav-icon text-light "></i>
-                  <p class="my-auto pl-2 text-left text-light">Exam Analysis</p>
+                <router-link to="/examAnalysis" class="nav-link text-light offset-sm-2 d-flex justify-content-start py-2">
+                  <i class="fas fa-angle-right nav-icon text-light py-0 "></i>
+                  <p class="my-auto pl-2 text-left text-light py-0">Exam Analysis</p>
                 </router-link>
               </li>
               <li class="nav-item ">
-                <router-link to="/archive" class="nav-link text-light offset-sm-2 d-flex justify-content-start">
-                  <i class="fas fa-angle-right nav-icon  text-light"></i>
-                  <p class="my-auto pl-2 text-left text-light">Archive</p>
+                <router-link to="/archive" class="nav-link text-light offset-sm-2 d-flex justify-content-start py-2">
+                  <i class="fas fa-angle-right nav-icon  text-light py-0"></i>
+                  <p class="my-auto pl-2 text-left text-light py-0">Archive</p>
                 </router-link>
               </li>
             </ul>
           </li>
 
           <li class="nav-item ">
-            <router-link to="/Schedules" class="nav-link text-light d-flex justify-content-start">
-              <i class="nav-icon fas fa-edit text-warning"></i>
-              <p class="my-auto pl-2 text-left text-light">
+            <router-link to="/Schedules" class="nav-link text-light d-flex justify-content-start py-2">
+              <i class="nav-icon fas fa-edit text-warning py-0"></i>
+              <p class="my-auto pl-2 text-left text-light py-0">
                 My Schedules
                 
               </p>
             </router-link>
           </li>
-
-          <li class="nav-item">
-            <router-link to="/Staff" class="nav-link text-light d-flex justify-content-start">
-              <i class="fas fa-users-cog nav-icon text-secondary"></i>
-              <p class="my-auto pl-2 text-left text-light">
-                Subscriptions
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link text-light d-flex justify-content-start py-2">
+              <i class="nav-icon fa fa-copy text-success py-0"></i>
+              <p class="my-auto pl-2 text-left text-light py-0">
+                Settings
+                <i class="nav-icon right fas fa-angle-left py-0"></i>
               </p>
-            </router-link>
+            </a>
+            <ul class="nav nav-treeview ">
+              <li class="nav-item">
+                <router-link to="/tutor-subscriptions" class="nav-link text-light d-flex justify-content-start py-2">
+                  <i class="fas fa-users-cog nav-icon text-secondary py-0"></i>
+                  <p class="my-auto pl-2 text-left text-light py-0">
+                    Subscriptions
+                  </p>
+                </router-link>
+              </li>
+
+              <li class="nav-item">
+                <router-link to="/Staff" class="nav-link text-light d-flex justify-content-start py-2">
+                  <i class="fas fa-users-cog nav-icon text-secondary py-0"></i>
+                  <p class="my-auto pl-2 text-left text-light py-0">
+                    Staff Mgt.
+                  </p>
+                </router-link>
+              </li>
+
+              <!------ Sub-Menu ----->
+              <li class="nav-item ">
+                <router-link to="/tutor-profile" class="nav-link text-light d-flex justify-content-start py-2">
+                  <i class="nav-icon fas fa-user orange py-0"></i>
+                  <p class="my-auto pl-2 text-left text-light py-0">
+                    Profile
+                  </p>
+                </router-link>
+              </li>
+            </ul>
           </li>
 
-          <li class="nav-item">
-            <router-link to="/Staff" class="nav-link text-light d-flex justify-content-start">
-              <i class="fas fa-users-cog nav-icon text-secondary"></i>
-              <p class="my-auto pl-2 text-left text-light">
-                Staff Mgt.
-              </p>
-            </router-link>
-          </li>
-
-          <!------ Sub-Menu ----->
-          <li class="nav-item ">
-            <router-link to="/tutor-profile" class="nav-link text-light d-flex justify-content-start">
-              <i class="nav-icon fas fa-user orange"></i>
-              <p class="my-auto pl-2 text-left text-light">
-                Profile
-              </p>
-            </router-link>
-          </li>
+          
 
         </ul>
       </nav>
