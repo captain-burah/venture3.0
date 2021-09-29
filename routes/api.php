@@ -7,6 +7,10 @@ Route::get('storage', 'API\StorageController@index');
 Route::post('login_admin', 'API\Admin\AdminAuthController@admin_login2');
 Route::apiResource('academies', 'Api\AcademicController')->only(['index', 'show']);
 
+
+Route::get('discussions', 'API\DiscussionController@index');
+
+
 Route::prefix('/user')->group( function() {
     Route::post('/login', 'Auth\LoginController@userLogin');
     Route::post('/logout', 'Auth\LoginController@logout');

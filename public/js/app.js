@@ -75966,6 +75966,10 @@ var routes = [{
         component: __webpack_require__(305),
         name: 'tutor-subscription-paynow'
     }, {
+        path: '/tutor-discussion',
+        component: __webpack_require__(443),
+        name: 'tutor-discussion'
+    }, {
         path: '/tutor-course',
         component: __webpack_require__(308),
         name: 'tutor-course'
@@ -89460,7 +89464,7 @@ var render = function() {
                       {
                         staticClass:
                           "nav-link text-light d-flex justify-content-start py-2",
-                        attrs: { to: "#studentcast" }
+                        attrs: { to: "/tutor-discussion" }
                       },
                       [
                         _c("i", {
@@ -125997,6 +126001,507 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(445)
+/* template */
+var __vue_template__ = __webpack_require__(444)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/lecturerComp/Forum/Main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d7d7e3de", Component.options)
+  } else {
+    hotAPI.reload("data-v-d7d7e3de", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 444 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "content" }, [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-md-3" },
+          [
+            _c("router-link", { attrs: { to: "#compose.html" } }, [
+              _c("button", { staticClass: "btn btn-primary btn-block mb-3" }, [
+                _vm._v("\r\n              Create Discussion\r\n          ")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body p-0" }, [
+                _c("ul", { staticClass: "nav nav-pills flex-column" }, [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass:
+                            "nav-link text-dark d-flex justify-content-start py-2",
+                          attrs: { to: "#" }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "nav-icon fas fa-inbox purple py-0"
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            {
+                              staticClass:
+                                "my-auto pl-2 text-left text-dark py-0 mx-auto w-100 text-capitalize"
+                            },
+                            [
+                              _vm._v(
+                                "\r\n                    All discussions                    \r\n                  "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass:
+                            "nav-link text-dark d-flex justify-content-start py-2",
+                          attrs: { to: "#" }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "nav-icon fas fa-inbox purple py-0"
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            {
+                              staticClass:
+                                "my-auto pl-2 text-left text-dark py-0 mx-auto w-100 text-capitalize"
+                            },
+                            [
+                              _vm._v(
+                                "\r\n                    My discussions                    \r\n                  "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-9" }, [_c("discussions")], 1)
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h1", [_vm._v("StudentCast Forum")])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d7d7e3de", module.exports)
+  }
+}
+
+/***/ }),
+/* 445 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Discussions_vue__ = __webpack_require__(446);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Discussions_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Discussions_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        discussions: __WEBPACK_IMPORTED_MODULE_0__Discussions_vue___default.a
+
+    },
+    data: function data() {
+        return {};
+    },
+    created: function created() {}
+});
+
+/***/ }),
+/* 446 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(451)
+/* template */
+var __vue_template__ = __webpack_require__(447)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/lecturerComp/Forum/Discussions.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1e090023", Component.options)
+  } else {
+    hotAPI.reload("data-v-1e090023", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 447 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "card card-primary card-outline" }, [
+        _c("div", { staticClass: "card-body p-0" }, [
+          _c("div", { staticClass: "mailbox-controls" }, [
+            _c("div", { staticClass: "form-group pt-3" }, [
+              _c(
+                "select",
+                {
+                  staticClass: "form-control custom-select",
+                  attrs: { id: "tutors" }
+                },
+                [
+                  _c("option", { attrs: { selected: "", disabled: "" } }, [
+                    _vm._v("Click to select a discussion topic..")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("fdsa")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "btn btn-primary btn-sm btn-block checkbox-toggle",
+                  attrs: { type: "button" }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-search pr-2" }),
+                  _vm._v(
+                    "\r\n                        Search\r\n                        "
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card mt-3" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "p-0 m-0" }, [
+            _c("h5", [_vm._v("Discussion name")])
+          ]),
+          _vm._v(
+            "\r\n\r\n                You can Change Pace Styles, Checkout the "
+          ),
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "https://adminlte.io/docs/3.1/",
+                target: "_blank",
+                rel: "noopener noreferrer"
+              }
+            },
+            [_vm._v("AdminLTE Official Docs")]
+          ),
+          _vm._v(" in Online.\r\n                "),
+          _c("br"),
+          _vm._v(
+            "\r\n                Start creating your amazing application!\r\n            "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer" }, [
+          _c("img", {
+            staticClass: "brand-image img-circle elevation-3",
+            staticStyle: { opacity: ".8" },
+            attrs: { src: "/img/faces/camp.jpg", alt: "UserImg" }
+          }),
+          _vm._v("User Name \r\n            ")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1e090023", module.exports)
+  }
+}
+
+/***/ }),
+/* 448 */,
+/* 449 */,
+/* 450 */,
+/* 451 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            discussions: {},
+            selectedTopic: '',
+            topics: {}
+        };
+    },
+    created: function created() {}
+});
 
 /***/ })
 /******/ ]);

@@ -56,7 +56,7 @@
           </li>
           
           <li class="nav-item  py-1 rounded">
-            <router-link to="#studentcast" class="nav-link text-light d-flex justify-content-start py-2">
+            <router-link to="/tutor-discussion" class="nav-link text-light d-flex justify-content-start py-2">
               <i class="nav-icon fas fa-hashtag text-danger py-0"></i>
               <p class="my-auto pl-2 text-left text-light py-0">
                 Studentcast

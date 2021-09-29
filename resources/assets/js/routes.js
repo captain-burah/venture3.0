@@ -151,7 +151,11 @@ const routes = [
                 component: require('./lecturerComp/Subscription/PayNow.vue'),
                 name: 'tutor-subscription-paynow',
             },
-            
+            {
+                path: '/tutor-discussion',
+                component: require('./lecturerComp/Forum/Main.vue'),
+                name: 'tutor-discussion',
+            },
             { 
                 path: '/tutor-course',  
                 component: require('./lecturerComp/Courses/MyCourses.vue'),
