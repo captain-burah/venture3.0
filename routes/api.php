@@ -7,8 +7,23 @@ Route::get('storage', 'API\StorageController@index');
 Route::post('login_admin', 'API\Admin\AdminAuthController@admin_login2');
 Route::apiResource('academies', 'Api\AcademicController')->only(['index', 'show']);
 
-
+//------  Forum -------------
 Route::get('discussions', 'API\DiscussionController@index');
+Route::get('replies/{did}', 'API\ReplyController@index');
+
+
+//------  Forum - Discussion  -------------
+Route::post('createDiscussion', 'API\DiscussionController@createDiscussion');
+Route::post('updateDiscussion', 'API\DiscussionController@updateDiscussion');
+Route::post('deleteDiscussion', 'API\DiscussionController@deleteDiscussion');
+
+
+//------  Forum - Reply  -------------
+Route::post('createReply', 'API\ReplyController@createReply');
+Route::post('updateReply', 'API\ReplyController@updateReply');
+Route::post('deleteReply', 'API\ReplyController@deleteReply');
+//------//  Forum -------------
+
 
 
 Route::prefix('/user')->group( function() {

@@ -18,10 +18,16 @@ class CreateDiscussionsTable extends Migration
             $table->timestamps();
 
             $table->string('name');
-            $table->string('slug');
+            $table->string('content');
 
             $table->integer('channel_id')->unsigned()->index();
             $table->foreign('channel_id')->references('id')->on('channels');
+
+            $table->integer('lecturer_id')->unsigned()->index()->nullable(true);
+            $table->foreign('lecturer_id')->references('id')->on('lecturers');
+
+            $table->integer('user_id')->unsigned()->index()->nullable(true);
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
