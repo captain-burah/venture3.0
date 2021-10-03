@@ -16,7 +16,7 @@ $factory->define(App\Reply::class, function (Faker $faker) {
         'Which is the best institute for Olevel Maths'
     ];
     return [
-        'content' => $faker->text(),
+        'content' => $faker->paragraphs($nb=10, $asText = true),
         'discussion_id' => App\Discussion::inRandomOrder()->first()->id,
         'lecturer_id' => App\Lecturer::inRandomOrder()->first()->id,
         'user_id' => App\User::inRandomOrder()->first()->id,

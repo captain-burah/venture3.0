@@ -200,7 +200,7 @@
       },
       
       mounted() {
-          if (localStorage.getItem('student_tokent') != null) {
+          if (sessionStorage.getItem('student_token') != null) {
               console.log('token is true');
           }
           else {

@@ -150,7 +150,13 @@ window.Fire = Fire;
 
   Vue.filter('myDate', function(created){
     return moment(created).format('MMMM Do YYYY, h:mm:ss a');
-  })
+  });
+
+  Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(value).fromNow()
+    }
+  });
 
 // const router = new VueRouter({
 //   //mode: 'history',

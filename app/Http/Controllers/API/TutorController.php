@@ -20,8 +20,14 @@ use App\Http\Resources\TutorCourseLessonResource;
 
 class TutorController extends Controller
 {
-    
-
+    public function tutor($id)
+    {
+        $target = Lecturer::findOrFail($id);
+        return response([
+            'data'=>$target
+        ]);
+    }
+ 
     public function mylessons(Request $request) 
     {
         $target = new TutorCourseLessonResource(Course::with('lecturer')->where('lecturer_id', $request->lecturerId)->get());

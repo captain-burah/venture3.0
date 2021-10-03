@@ -40,7 +40,7 @@ const actions = {
                         //save token
                         console.log(getters.getCurrentUserLoginState);
                         dispatch('setStudentTokenValue', response.data.access_token);
-                        localStorage.setItem(
+                        sessionStorage.setItem(
                             "student_token",
                             response.data.access_token
                         );

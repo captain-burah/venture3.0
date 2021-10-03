@@ -18,7 +18,7 @@ class CreateDiscussionsTable extends Migration
             $table->timestamps();
 
             $table->string('name');
-            $table->string('content');
+            $table->longText('content');
 
             $table->integer('channel_id')->unsigned()->index();
             $table->foreign('channel_id')->references('id')->on('channels');

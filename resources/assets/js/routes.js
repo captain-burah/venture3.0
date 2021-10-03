@@ -156,6 +156,26 @@ const routes = [
                 component: require('./lecturerComp/Forum/Main.vue'),
                 name: 'tutor-discussion',
             },
+            {
+                path: '/tutor-discussion/:id',
+                component: require('./lecturerComp/Forum/Discussion.vue'),
+                name: 'tutor-discussion-id',
+            },
+            {
+                path: '/tutor-discussion-create',
+                component: require('./lecturerComp/Forum/Create.vue'),
+                name: 'tutor-discussion-create',
+            },
+            {
+                path: '/tutor-discussion-edit/:id',
+                component: require('./lecturerComp/Forum/Edit.vue'),
+                name: 'tutor-discussion-edit',
+            },
+            {
+                path: '/tutor-myDiscussion',
+                component: require('./lecturerComp/Forum/MyDiscussions.vue'),
+                name: 'tutor-myDiscussion',
+            },
             { 
                 path: '/tutor-course',  
                 component: require('./lecturerComp/Courses/MyCourses.vue'),

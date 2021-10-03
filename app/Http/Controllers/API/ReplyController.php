@@ -21,7 +21,9 @@ class ReplyController extends Controller
 {
     public function index($did){
         $target = Reply::with('discussion')->with('lecturer')->with('user')->where('discussion_id', $did)->get();
-        return $target;
+        return response([
+            'data'=>$target,
+        ]);
     }
 
     public function createReply(Request $request){

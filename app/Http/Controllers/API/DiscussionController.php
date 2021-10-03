@@ -22,7 +22,39 @@ class DiscussionController extends Controller
 {
     public function index(){
         $target = Discussion::with('channel')->with('lecturer')->with('user')->get();
-        return $target;
+        return response([
+            'data' => $target
+        ]);
+    }
+
+    public function discussion($id){
+        $target = Discussion::with('channel')->with('lecturer')->with('user')->where('id', $id)->get();
+        return response([
+            'data'=>$target,
+            'time' => $target[0]->created_at->diffForHumans(),
+            'precise' => $target[0]->created_at->format('Y-m-d H:i:s'),
+        ]);
+    }
+
+    public function filterDiscussion(Request $request){
+        $target = Discussion::with('channel')->with('lecturer')->with('user')->where('channel_id', $request['cid'])->latest()->get();
+        return response([
+            'data'=>$target,
+        ]); 
+    }
+
+    public function tutorDiscussion($lid){
+        $target = Discussion::with('replies')->with('lecturer')->with('user')->where('lecturer_id', $lid)->get();
+        return response([
+            'data'=>$target,
+        ]);
+    }
+
+    public function channels(){
+        $target = Channel::all();
+        return response([
+            'data' => $target,
+        ]);
     }
 
     public function createDiscussion(Request $request){
@@ -75,7 +107,7 @@ class DiscussionController extends Controller
             $target = Discussion::with('channel')->with('lecturer')->where('lecturer_id', $request['lecturer_id'])->orderBy('updated_at', 'ACS')->get();
             return response([
                 'status' => 'success',
-                'data' => $target[0],
+                // 'data' => $target[0],
             ]);
         }
         else if ($request['user'] === 'user')

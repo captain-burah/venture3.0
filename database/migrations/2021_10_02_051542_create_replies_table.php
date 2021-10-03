@@ -15,7 +15,7 @@ class CreateRepliesTable extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('content');
+            $table->longText('content');
 
             $table->integer('discussion_id')->unsigned()->index();
             $table->foreign('discussion_id')->references('id')->on('discussions');
