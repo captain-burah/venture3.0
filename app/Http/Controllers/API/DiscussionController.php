@@ -50,6 +50,13 @@ class DiscussionController extends Controller
         ]);
     }
 
+    public function userDiscussion($uid){
+        $target = Discussion::with('replies')->with('lecturer')->with('user')->where('user_id', $uid)->get();
+        return response([
+            'data'=>$target,
+        ]);
+    }
+
     public function channels(){
         $target = Channel::all();
         return response([

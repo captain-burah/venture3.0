@@ -11,6 +11,7 @@ Route::apiResource('academies', 'Api\AcademicController')->only(['index', 'show'
     Route::get('discussions', 'API\DiscussionController@index');
     Route::get('discussions/{id}', 'API\DiscussionController@discussion');
     Route::get('tuDiscussions/{lid}', 'API\DiscussionController@tutorDiscussion');
+    Route::get('stuDiscussions/{uid}', 'API\DiscussionController@userDiscussion');
     Route::get('replies/{did}', 'API\ReplyController@index');
     Route::get('channels', 'API\DiscussionController@channels');
     Route::post('filterDiscussion', 'API\DiscussionController@filterDiscussion');
@@ -29,6 +30,7 @@ Route::apiResource('academies', 'Api\AcademicController')->only(['index', 'show'
 
 
 Route::prefix('/user')->group( function() {
+    Route::get('fetch/{id}', 'API\UserController@user');
     Route::post('/login', 'Auth\LoginController@userLogin');
     Route::post('/logout', 'Auth\LoginController@logout');
     Route::post('/register', 'Auth\RegisterController@createUser');

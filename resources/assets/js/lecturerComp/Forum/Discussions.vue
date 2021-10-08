@@ -53,7 +53,9 @@
                 <span v-if="discussion.lecturer">
                     {{ discussion.lecturer.fname }} {{ discussion.lecturer.lname }}
                 </span>
-                
+                <span v-if="discussion.user">
+                    {{ discussion.user.fname }} {{ discussion.user.lname }}
+                </span>
             </div>
         </div>
         

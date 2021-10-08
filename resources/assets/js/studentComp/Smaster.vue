@@ -51,7 +51,7 @@
           </li>
 
           <li class="nav-item border-bottom border-secondary">
-            <router-link to="#studentcast" class="nav-link text-light d-flex justify-content-start">
+            <router-link to="/student-discussion" class="nav-link text-light d-flex justify-content-start">
               <i class="nav-icon fas fa-hashtag text-danger"></i>
               <p class="my-auto pl-2 text-left text-light">
                 Studentcast

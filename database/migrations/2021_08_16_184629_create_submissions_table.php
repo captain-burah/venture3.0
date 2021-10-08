@@ -17,17 +17,23 @@ class CreateSubmissionsTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->string('notes')->nullable();
-            $table->string('file')->nullable();
-            $table->string('marks')->nullable();
-            $table->string('comments')->nullable();
+            $table->string('name');
 
-            $table->integer('lesson_id')->unsigned()->index();
+            $table->integer('lesson_id')->unsigned()->index()->nullable(true);
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
 
-            //Student Id comes below
-            // $table->integer('lesson_id')->unsigned()->index();
-            // $table->foreign('lesson_id')->references('id')->on('lessons');
+            $table->integer('user_id')->unsigned()->index()->nullable(true);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->integer('quiz_id')->unsigned()->index()->nullable(true);
+            $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
+
+            $table->integer('exam_id')->unsigned()->index()->nullable(true);
+            $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
+
+            $table->integer('assignment_id')->unsigned()->index()->nullable(true);
+            $table->foreign('assignment_id')->references('id')->on('assignments')->onDelete('cascade');
+
         });
     }
 

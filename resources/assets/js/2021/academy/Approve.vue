@@ -65,7 +65,7 @@
       <router-link :to="{ name: 'student-courses'}">
         <button class="btn btn-block btn-warning">Go to My Courses</button>
       </router-link>
-      <button v-if="precise === null" class="btn btn-block btn-primary" @click="goTo">Save as PDF</button>
+      <button v-if="precise === null" class="btn btn-block btn-primary" v-on:click="printme">Save as PDF</button>
       <div class="w-100">
           <div class="mx-auto w-50" ref="paypal"></div>
       </div>
@@ -108,20 +108,24 @@ export default {
   },
 
 
-  methods: {
+  methods: 
+  {
     formatCurrency(price){
         price = (price / 100);
         return price.toLocaleString('ta-LK', { style: "currency", currency: "LKR"});
     },
     goTo(){
       return this.$router.push({ name: ''});
-    }
+    },
+    printme() {
+        window.print();
+    },
   },
 
 
   mounted() {
 
-    if (localStorage.student_token != null) {
+    if (sessionStorage.student_token != null) {
       console.log('token is true')
     }
     else {

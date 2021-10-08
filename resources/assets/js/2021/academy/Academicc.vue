@@ -241,7 +241,7 @@ export default {
     },
     
     mounted() {
-      if (localStorage.student_token != null) {
+      if (sessionStorage.student_token != null) {
         console.log('token is true')
         this.addToCart = { name: 'checkout', params: this.academic.id };
       }

@@ -80,6 +80,31 @@ const routes = [
                 component: require('./studentComp/MyCourse.vue'),
                 name: "student-course"
             },
+            {
+                path: '/student-discussion',
+                component: require('./studentComp/Forum/Main.vue'),
+                name: 'student-discussion',
+            },
+            {
+                path: '/student-discussion/:id',
+                component: require('./studentComp/Forum/Discussion.vue'),
+                name: 'student-discussion-id',
+            },
+            {
+                path: '/student-discussion-create',
+                component: require('./studentComp/Forum/Create.vue'),
+                name: 'student-discussion-create',
+            },
+            {
+                path: '/student-discussion-edit/:id',
+                component: require('./studentComp/Forum/Edit.vue'),
+                name: 'student-discussion-edit',
+            },
+            {
+                path: '/student-myDiscussion',
+                component: require('./studentComp/Forum/MyDiscussions.vue'),
+                name: 'student-myDiscussion',
+            },
             { path: '/Lessons', component: require('./lecturerComp/Lessons/Lesson.vue'), 
                 children: [
                 { path: '/', component: require('./lecturerComp/Lessons/Overview.vue') },

@@ -23,9 +23,12 @@ class UserController extends Controller
         return User::latest()->paginate(10);
     }
 
-    public function purchase(Request $request)
+    public function user($id)
     {
-        
+        $target = User::findOrFail($id);
+        return response([
+            'data'=>$target
+        ]);
     }
 
     public function store(Request $request)

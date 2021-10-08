@@ -11,8 +11,23 @@ class Submission extends Model
        return $this->belongsTo(Lesson::class);
    }
 
-   public function lecturer()
+   public function user()
    {
-       return $this->belongsTo(Lecturer::class);
+       return $this->belongsTo(User::class);
+   }
+
+   public function quiz()
+   {
+       return $this->belongsTo(Quiz::class);
+   }
+
+   public function exam()
+   {
+       return $this->belongsTo(Exam::class);
+   }
+
+   public function assignment()
+   {
+       return $this->belongsTo(Assignment::class);
    }
 }
